@@ -1,0 +1,4 @@
+cp Davies2016_UKB_college_summary_results_22072016.txt 27046643_Educational_attainment.txt
+cp Davies2016_UKB_Memory_summary_results_22072016.txt 27046643_memory.txt
+cp Davies2016_UKB_Reaction_time_summary_results_22072016.txt 27046643_reaction_time.txt
+cp Davies2016_UKB_VNR_summary_results_22072016.txt 27046643_verbal-numerical_reasoning.txt

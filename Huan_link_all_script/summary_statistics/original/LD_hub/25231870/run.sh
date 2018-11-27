@@ -1,0 +1,3 @@
+wget http://www.reprogen.org/Menarche_Nature2014_GWASMetaResults_17122014.zip
+unzip  Menarche_Nature2014_GWASMetaResults_17122014.zip
+cp Menarche_Nature2014_GWASMetaResults_17122014.txt 25231870_Age_at_Menarche.txt

@@ -1,0 +1,2 @@
+wget -c https://grasp.nhlbi.nih.gov/downloads/ResultsOctober2016/McMahon/MajorDepressiveDisorders_McMahon_6683cases_9068controls.txt
+cp MajorDepressiveDisorders_McMahon_6683cases_9068controls.txt 20081856_Major_depressive_disorder.txt

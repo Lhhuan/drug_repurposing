@@ -1,0 +1,2 @@
+wget http://portals.broadinstitute.org/collaboration/giant/images/4/47/GIANT_HEIGHT_LangoAllen2010_publicrelease_HapMapCeuFreq.txt
+cp GIANT_HEIGHT_LangoAllen2010_publicrelease_HapMapCeuFreq.txt 20881960_Height_2010.txt

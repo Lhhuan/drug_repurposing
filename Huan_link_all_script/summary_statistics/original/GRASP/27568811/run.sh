@@ -1,0 +1,4 @@
+wget -c https://grasp.nhlbi.nih.gov/downloads/FullResults/2016/2016_Marinelli/Marinelli_Sleep2016_EAGLE_MA_summary_statistics_basic_model.txt
+cp Marinelli_Sleep2016_EAGLE_MA_summary_statistics_basic_model.txt 27568811_basic_Sleep_duration_in_children.txt
+wget -c https://grasp.nhlbi.nih.gov/downloads/FullResults/2016/2016_Marinelli/Marinelli_Sleep2016_EAGLE_MA_summary_statistics_BMI_adjusted_model.txt
+cp Marinelli_Sleep2016_EAGLE_MA_summary_statistics_BMI_adjusted_model.txt 27568811_BMI_adjusted_Sleep_duration_in_children.txt

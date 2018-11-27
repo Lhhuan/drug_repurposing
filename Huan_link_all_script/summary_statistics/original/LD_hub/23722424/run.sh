@@ -1,0 +1,4 @@
+wget http://ssgac.org/documents/SSGAC_Rietveld2013.zip
+unzip SSGAC_Rietveld2013.zip
+cp SSGAC_College_Rietveld2013_publicrelease.txt 23722424_College_completion.txt
+cp SSGAC_EduYears_Rietveld2013_publicrelease.txt 23722424_Years_of_schooling.txt

@@ -1,0 +1,12 @@
+wget -c ftp://ftp.ebi.ac.uk/pub/databases/gwas/summary_statistics/ManningAK_22581228_GCST001526/MAGIC_Manning_et_al_lnFastingInsulin_Interaction.txt.gz
+gzip -cd  MAGIC_Manning_et_al_lnFastingInsulin_Interaction.txt.gz > MAGIC_Manning_et_al_lnFastingInsulin_Interaction.txt
+cp MAGIC_Manning_et_al_lnFastingInsulin_Interaction.txt 22581228_Fasting_blood_insulin_\(BMI_interaction\).txt
+wget -c ftp://ftp.ebi.ac.uk/pub/databases/gwas/summary_statistics/ManningAK_22581228_GCST005186/MAGIC_Manning_et_al_FastingGlucose_MainEffect.txt.gz
+gzip -cd  MAGIC_Manning_et_al_FastingGlucose_MainEffect.txt.gz > MAGIC_Manning_et_al_FastingGlucose_MainEffect.txt
+cp MAGIC_Manning_et_al_FastingGlucose_MainEffect.txt 22581228_Fasting_blood_glucose.txt
+wget -c ftp://ftp.ebi.ac.uk/pub/databases/gwas/summary_statistics/ManningAK_22581228_GCST005185/MAGIC_Manning_et_al_lnFastingInsulin_MainEffect.txt.gz
+gzip -cd MAGIC_Manning_et_al_lnFastingInsulin_MainEffect.txt.gz > MAGIC_Manning_et_al_lnFastingInsulin_MainEffect.txt
+cp MAGIC_Manning_et_al_lnFastingInsulin_MainEffect.txt 22581228_Fasting_blood_insulin.txt
+wget -c ftp://ftp.ebi.ac.uk/pub/databases/gwas/summary_statistics/ManningAK_22581228_GCST001527/MAGIC_Manning_et_al_FastingGlucose_Interaction.txt.gz
+gzip -cd MAGIC_Manning_et_al_FastingGlucose_Interaction.txt.gz > MAGIC_Manning_et_al_FastingGlucose_Interaction.txt
+cp MAGIC_Manning_et_al_FastingGlucose_Interaction.txt  22581228_Fasting_blood_glucose_\(BMI_interaction\).txt

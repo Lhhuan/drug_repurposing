@@ -1,0 +1,2 @@
+/f/Tools/vep/ensembl-vep-release-89/vep --dir /f/Tools/vep/ensembl-vep-release-89/.vep/ --assembly GRCh37 -i  ../CosmicCodingMuts.vcf.gz  -o CosmicCodingVariants_vep.vcf --cache --offline --fork 20  --symbol --gene --total_length
+nohup /f/Tools/vep/ensembl-vep-release-89/vep --dir /f/Tools/vep/ensembl-vep-release-89/.vep/ --assembly GRCh37 -i  ../CosmicNonCodingVariants.vcf.gz  -o CosmicNonCodingVariants_vep.vcf --cache --offline --fork 14  --symbol --gene --total_length > ../nohup.out &

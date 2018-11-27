@@ -1,0 +1,2 @@
+head "/f/mulinlab/huan/All_result_ICGC/Gene-based_drug_R_or_S_optimization/huan_data/01_filter_gene_based_drug_target_score_cancer_mutation_pathogenicity.txt"  > head_all_gene_based_drug_target_score_cancer_mutation_pathogenicity.txt  #all drug cancer basic information
+head  "/f/mulinlab/huan/All_result_ICGC/Gene-based_drug_R_or_S_optimization/huan_data/prediction_repurposing.txt" > gene_bsasd_repurposing_result.txt #all gene based repurposing result information

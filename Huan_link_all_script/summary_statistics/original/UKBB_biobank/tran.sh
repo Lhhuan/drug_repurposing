@@ -1,0 +1,1 @@
+scp -r shijie@147.8.193.36:/f/shijie/huan_ukbb_biobank/ /f/mulinlab/huan/summary_statistics/original/UKBB_biobank/

@@ -1,0 +1,1 @@
+cat Hagenaars2017_UKB_MPB_summary_results_Xchr_15Feb2017.txt Hagenaars2017_UKB_MPB_summary_results_10Feb2016.txt > 28196072_Male_pattern_baldness.txt

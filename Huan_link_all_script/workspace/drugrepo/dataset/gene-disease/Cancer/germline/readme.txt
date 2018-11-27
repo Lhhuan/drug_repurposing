@@ -1,0 +1,1 @@
+用GWASdb-NEW的数据进行处理，相比于GWAS,GWASdb-NEW算extend的时候没有设MAF

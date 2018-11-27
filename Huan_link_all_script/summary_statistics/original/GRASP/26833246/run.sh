@@ -1,0 +1,2 @@
+wget -c https://grasp.nhlbi.nih.gov/downloads/ResultsOctober2016/Lu/Body_fat_percentage_GWAS_PLUS_MC_ALL_ancestry_se_Sex_combined_for_locus_zoom_plot.TBL.txt
+cp Body_fat_percentage_GWAS_PLUS_MC_ALL_ancestry_se_Sex_combined_for_locus_zoom_plot.TBL.txt 26833246_Body_fat_percentage.txt

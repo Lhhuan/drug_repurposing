@@ -1,0 +1,1 @@
+wget http://egg-consortium.org/downloads/EGG_BW2_DISCOVERY.txt.gz

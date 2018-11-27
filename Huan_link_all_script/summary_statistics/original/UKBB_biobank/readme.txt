@@ -1,0 +1,2 @@
+find_sample_size.pl #为ukbb_biobank.txt文件中的sub study提供sample size, 在网页上看到，这些sample都是从uk中招募的。得文件ukbb_biobank1.txt
+filter_woman_senital_system.pl 筛选出ukbb_biobank1.txt的生殖系统疾病，得文件ukbb_biobank1_woman_sential_system.txt。没有女性生殖系统疾病的文件为ukbb_biobank1_no_woman_sential_system.txt

@@ -1,0 +1,2 @@
+wget http://ldsc.broadinstitute.org/static/media/LD-Hub_study_information_and_SNP_heritability.xlsx 获取LD_HUB的总结表
+01_fill_in_ld_hub_gwas_sum.pl  填写部分的LD_hub_gwas_summary_statistic.txt

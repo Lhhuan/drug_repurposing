@@ -1,0 +1,2 @@
+wget -c https://grasp.nhlbi.nih.gov/downloads/ResultsOctober2016/Kasperaviciute/PartialEpilepsySyndromes_Kasperaviciute_3445cases_6935controls.txt
+cp PartialEpilepsySyndromes_Kasperaviciute_3445cases_6935controls.txt 20522523_Partial_epilepsy.txt

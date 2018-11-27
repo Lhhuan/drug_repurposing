@@ -1,0 +1,2 @@
+wget -c https://grasp.nhlbi.nih.gov/downloads/ResultsOctober2016/Styrkarsdottir/SpineBMD_Strykarsdottir.txt
+cp SpineBMD_Strykarsdottir.txt 18445777_Bone_mineral_density\(hip\),Bone_mineral_density\(spine\).txt

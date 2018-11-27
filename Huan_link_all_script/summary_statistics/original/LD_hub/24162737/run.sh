@@ -1,0 +1,2 @@
+unzip IGAP_summary_statistics.zip
+cp IGAP_stage_1.txt 24162737_Alzheimers_disease.txt

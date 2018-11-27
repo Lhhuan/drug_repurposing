@@ -1,0 +1,2 @@
+wget -c ftp://ftp.ebi.ac.uk/pub/databases/gwas/summary_statistics/SaxenaR_20081857_GCST000569/MAGIC_2hrGlucose_AdjustedForBMI.txt
+cp MAGIC_2hrGlucose_AdjustedForBMI.txt 20081857_Two-hour_glucose_challenge.txt

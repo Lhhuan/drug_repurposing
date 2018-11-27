@@ -1,0 +1,2 @@
+wget -c https://grasp.nhlbi.nih.gov/downloads/FullResults/2017/2017_Deary/Deary_2017_UKB_self_reported_tiredness_summary_results_15022017.txt
+cp Deary_2017_UKB_self_reported_tiredness_summary_results_15022017.txt  28322280_Self-reported_tiredness.txt

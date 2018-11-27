@@ -1,0 +1,6 @@
+#wget -c https://grasp.nhlbi.nih.gov/downloads/ResultsOctober2016/Fritsche/Fristche_AMDGene2013_Neovascular_v_Controls.txt
+cp Fristche_AMDGene2013_Neovascular_v_Controls.txt 23455636_Neovascularization.txt
+wget -c https://grasp.nhlbi.nih.gov/downloads/ResultsOctober2016/Fritsche/Fritsche_AMDGene2013_GeographicAtropy_v_Controls.txt
+cp Fritsche_AMDGene2013_GeographicAtropy_v_Controls.txt 23455636_Geographic_atrophy.txt
+wget -c https://grasp.nhlbi.nih.gov/downloads/ResultsOctober2016/Fritsche/FritscheAMDGene2013_Advanced_v_Controls.txt
+cp FritscheAMDGene2013_Advanced_v_Controls.txt 23455636_Age-related_macular_degeneration.txt

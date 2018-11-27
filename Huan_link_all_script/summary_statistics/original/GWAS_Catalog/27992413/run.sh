@@ -1,0 +1,2 @@
+wget ftp://ftp.ebi.ac.uk/pub/databases/gwas/summary_statistics/JiSG_27992413_GCST004030/ipscsg2016.result.combined.full.with_header.txt
+cp ipscsg2016.result.combined.full.with_header.txt 27992413_Primary_sclerosing_cholangitis.txt

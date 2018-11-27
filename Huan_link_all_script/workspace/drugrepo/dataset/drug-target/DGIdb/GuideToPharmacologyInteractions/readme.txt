@@ -1,0 +1,4 @@
+
+step1：将interactions_v3.tsv中的GuideToPharmacologyInteractions部分挑出来，得到文件interactions_v3-GuideToPharmacologyInteractions.txt
+
+step2:将interactions_v3-GuideToPharmacologyInteractions.txt中的药物，通过药物和疾病id和疾病名字联系起来。共有药物6495个，能匹配到indication的药物有238个（文件：step2_result_drug_indication）。不能匹配到的药物有6257个（step2_unmatch_drug）。

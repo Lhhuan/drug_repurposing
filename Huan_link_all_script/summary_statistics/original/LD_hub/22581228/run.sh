@@ -1,0 +1,6 @@
+wget ftp://ftp.sanger.ac.uk/pub/magic/MAGIC_Manning_et_al_FastingGlucose_MainEffect.txt.gz
+gzip -cd MAGIC_Manning_et_al_FastingGlucose_MainEffect.txt.gz > MAGIC_Manning_et_al_FastingGlucose_MainEffect.txt
+cp MAGIC_Manning_et_al_FastingGlucose_MainEffect.txt  22581228_Fasting_glucose_main_effect.txt
+wget ftp://ftp.sanger.ac.uk/pub/magic/MAGIC_Manning_et_al_lnFastingInsulin_MainEffect.txt.gz
+gzip -cd MAGIC_Manning_et_al_lnFastingInsulin_MainEffect.txt.gz > MAGIC_Manning_et_al_lnFastingInsulin_MainEffect.txt
+cp  MAGIC_Manning_et_al_lnFastingInsulin_MainEffect.txt  22581228_Fasting_insulin_main_effect.txt

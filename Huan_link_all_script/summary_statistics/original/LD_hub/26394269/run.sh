@@ -1,0 +1,2 @@
+wget https://data.broadinstitute.org/alkesgroup/sumstats_formatted/PASS_Primary_biliary_cirrhosis.sumstats
+cp PASS_Primary_biliary_cirrhosis.sumstats 26394269_primary_biliary_cirrhosis.txt

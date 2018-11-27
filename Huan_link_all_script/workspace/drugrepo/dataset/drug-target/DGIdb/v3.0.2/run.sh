@@ -1,0 +1,1 @@
+wget -c http://dgidb.org/data/interactions.tsv

@@ -1,0 +1,2 @@
+wget -c https://grasp.nhlbi.nih.gov/downloads/ResultsOctober2016/Perry/Menarche_Nature2014_GWASMetaResults_17122014.txt
+cp Menarche_Nature2014_GWASMetaResults_17122014.txt 25231870_Age_at_menarche.txt

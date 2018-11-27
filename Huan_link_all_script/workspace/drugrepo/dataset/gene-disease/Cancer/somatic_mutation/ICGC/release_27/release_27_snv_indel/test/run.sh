@@ -1,0 +1,1 @@
+vep --dir /f/mulinlab/huan/tools/vep/ensembl-vep-release-93/.vep/ --assembly GRCh37  -i ../04_out_gene_varint_enhancer_target_info.vcf --cache --offline  -o 04_out_gene_varint_enhancer_target_info_vep.vcf --nearest gene --fork 20  --symbol --gene --total_length --hgvs --hgvsg --protein --biotype 

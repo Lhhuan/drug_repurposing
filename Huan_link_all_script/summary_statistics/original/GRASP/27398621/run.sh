@@ -1,0 +1,2 @@
+unzip DIAGRAM.Fuchsberger2016.Meta.2016JUL08.zip
+cp DIAGRAMmeta_Fuchsberger2016.txt 27398621_Type_2_Diabetes.txt

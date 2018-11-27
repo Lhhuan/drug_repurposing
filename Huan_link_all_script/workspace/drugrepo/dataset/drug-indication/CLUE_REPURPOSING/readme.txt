@@ -1,0 +1,24 @@
+01_filter_drug.pl将文件Repurposing_Hub_export.txt中没有target和indication的数据筛掉得文件01_filter_repurposing_hub.txt。
+
+cp "/f/mulinlab/huan/workspace/drugrepo/dataset/drug-target/DGIdb/drug_indication_unique/step10-3_all_target_drug_indication.txt" DGIdb_target_drug_indication.txt
+
+cp "/f/mulinlab/huan/workspace/drugrepo/dataset/drug-target/DGIdb/drug_indication_unique/step1-interactions_v3_drug_target_database.txt"  DGIdb_all_drug_target.txt
+
+02_repeat.pl 看01_filter_repurposing_hub.txt和DGIdb_target_drug_indication.txt的重合程度。得重合文件02_repeat.txt，得不重合文件02_no_repeat_hub.txt
+03_drug_chembl.pl 为文件02_no_repeat_hub.txt中药物寻找chembl_id,得有chembl的文件03_yes_chembl.txt，没有chembl的文件03_no_chembl.txt
+ 并将两者都输出03_chembl_drug.txt
+
+cp "/f/mulinlab/huan/workspace/drugrepo/dataset/drug-target/DGIdb/drug_indication_unique/step10-4_unique_indication.txt" dgidb_unique_indication.txt
+复制dgidb中进行mapin的文件。
+
+04_split_indication.pl 将文件03_chembl_drug.txt中的一行中的多个indication进行分割，得文件04_split_indication.txt
+04_split_indication_target.pl将文件03_chembl_drug.txt中的一行中的多个indication和多个target进行分割，得文件04_split_indication_target.txt，作为最后的要导入数据库的文件
+
+05_filter_indication.pl 看文件04_split_indication.txt和文件dgidb_unique_indication.txt的重叠程度，得重叠文件05_repeat_indication.txt  和不重叠文件05_no_repeat_indication.txt
+   对不重叠文件05_no_repeat_indication.txt进行mapin，在mapin文件夹
+
+06_split_target.pl 将文件03_chembl_drug.txt中的一行多个target进行分割，得文件06_split_target.txt ，并得到唯一的target文件06_uni_target.txt
+
+Rscript 01.2_mygene_tf2symbol.R
+Rscript 061_mygene_tf2symbol.R #把06_uni_target.txt转成
+07_deal with_tranfrom_gene.pl 将transform.txt进行的ensg那列的多余字符进行处理。

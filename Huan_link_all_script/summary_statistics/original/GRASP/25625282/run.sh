@@ -1,0 +1,4 @@
+wget -c https://grasp.nhlbi.nih.gov/downloads/ResultsOctober2016/Mahajan/Mahajan_2014_ExomeChip.zip
+unzip Mahajan_2014_ExomeChip.zip
+cat Mahajan_2014_SV_ExomeChip_FG_AdjForBMI.txt Mahajan_2014_GB_ExomeChip_FG_AdjForBMI.txt Mahajan_2014_SV_ExomeChip_FG_AdjForBMI_G6PC2.Condition.on.H177YandV219.txt Mahajan_2014_SV_ExomeChip_FG_AdjForBMI_G6PC2.Condition.on.rs560887andH177Y.txt Mahajan_2014_SV_ExomeChip_FG_AdjForBMI_G6PC2.Condition.on.rs560887andV219L.txt Mahajan_2014_SV_ExomeChip_FG_AdjForBMI_G6PC2.Condition.on.rs560887.txt > 25625282_Multiple_diabetes_traits:fasting_glucose_\(FG\)_in_non-diabetic_individuals.txt 
+cat Mahajan_2014_GB_ExomeChip_lnFI_AdjForBMI.txt Mahajan_2014_SV_ExomeChip_lnFI_AdjForBMI.txt > 25625282_Multiple_diabetes_traits:fasting_insulin\(FI\)_in_non-diabetic_individuals.txt

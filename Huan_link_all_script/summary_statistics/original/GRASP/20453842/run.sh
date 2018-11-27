@@ -1,0 +1,2 @@
+wget -c https://grasp.nhlbi.nih.gov/downloads/ResultsOctober2016/Stahl/RheumatoidArthritis_Stahl_5539cases_20169controls.txt
+cp RheumatoidArthritis_Stahl_5539cases_20169controls.txt 20453842_Rheumatoid_arthritis.txt

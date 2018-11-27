@@ -1,0 +1,3 @@
+wget -c https://grasp.nhlbi.nih.gov/downloads/ResultsOctober2016/Heid/GIANT_WHRadjBMI_Heid2010_publicrelease_HapMapCeuFreq.txt.gz
+gzip -cd GIANT_WHRadjBMI_Heid2010_publicrelease_HapMapCeuFreq.txt.gz > GIANT_WHRadjBMI_Heid2010_publicrelease_HapMapCeuFreq.txt
+cp GIANT_WHRadjBMI_Heid2010_publicrelease_HapMapCeuFreq.txt 20935629_Waist-hip_ratio.txt

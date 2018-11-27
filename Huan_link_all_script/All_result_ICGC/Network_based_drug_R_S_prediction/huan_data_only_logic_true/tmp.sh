@@ -1,0 +1,5 @@
+
+perl 02_filter_infos_for_calculate_feature_final.pl 
+echo -e "finish_02_filter_infos_for_calculate_feature_final\n"
+perl 03_calculate_for_network_based_repo_logistic_regression_data_final.pl 
+echo -e "finish_02_03_calculate_for_network_based_repo_logistic_regression_data_final\n"

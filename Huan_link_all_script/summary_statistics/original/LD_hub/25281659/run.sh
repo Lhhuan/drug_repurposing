@@ -1,0 +1,1 @@
+wget http://egg-consortium.org/downloads/EGG-GWAS-BL.txt.gz

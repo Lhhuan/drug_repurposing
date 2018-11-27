@@ -1,0 +1,3 @@
+wget -c https://grasp.nhlbi.nih.gov/downloads/ResultsOctober2016/Wood/GIANT_HEIGHT_Wood_et_al_2014_publicrelease_HapMapCeuFreq.txt.gz
+gzip -cd GIANT_HEIGHT_Wood_et_al_2014_publicrelease_HapMapCeuFreq.txt.gz > GIANT_HEIGHT_Wood_et_al_2014_publicrelease_HapMapCeuFreq.txt
+cp GIANT_HEIGHT_Wood_et_al_2014_publicrelease_HapMapCeuFreq.txt 25282103_Height.txt

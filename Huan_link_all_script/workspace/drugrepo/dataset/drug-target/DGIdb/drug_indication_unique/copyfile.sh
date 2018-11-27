@@ -1,0 +1,14 @@
+cp "/f/mulinlab/huan/workspace/drugrepo/dataset/drug-target/DGIdb/uni-drug-2/step5_all_drug_indication1.txt" uni-drug-2-step5_all_drug_indication1.txt
+cp "/f/mulinlab/huan/workspace/drugrepo/dataset/drug-target/DGIdb/uni-drug-2/step5_all_drug_indication2.txt" uni-drug-2-step5_all_drug_indication2.txt
+cp "/f/mulinlab/huan/workspace/drugrepo/dataset/drug-target/DGIdb/uni-drug-2/step7_drug_indication.txt"   uni-drug-2-step7_drug_indication.txt
+cp "/f/mulinlab/huan/workspace/drugrepo/dataset/drug-target/DGIdb/uni-drug-2/step9_drug_indication.txt"  uni-drug-2-step9_drug_indication.txt
+cp "/f/mulinlab/huan/workspace/drugrepo/dataset/drug-target/DGIdb/uni-drug-2/step10_drug_indication2.txt"  uni-drug-2-step10_drug_indication2.txt
+cp "/f/mulinlab/huan/workspace/drugrepo/dataset/drug-target/DGIdb/uni-drug-2/step10_drug_indication1.txt" uni-drug-2-step10_drug_indication1.txt
+cp "/f/mulinlab/huan/workspace/drugrepo/dataset/drug-target/DGIdb/uni-drug-2/step13-1_drug-indication-exist.txt" uni-drug-2-step13-1_drug-indication-exist.txt
+cp "/f/mulinlab/huan/workspace/drugrepo/dataset/drug-target/DGIdb/uni-drug-2/step14_chembl_exist_indication.txt" uni-drug-2-step14_chembl_exist_indication.txt
+cp "/f/mulinlab/huan/workspace/drugrepo/dataset/drug-target/DGIdb/uni-drug-2/step14-1_drug-indication-exist.txt" uni-drug-2-step14-1_drug-indication-exist.txt
+cp "/f/mulinlab/huan/workspace/drugrepo/dataset/drug-target/DGIdb/uni-drug-2/step14-2_drug-indication-exist.txt" uni-drug-2-step14-2_drug-indication-exist.txt
+cp "/f/mulinlab/huan/workspace/drugrepo/dataset/drug-target/DGIdb/uni-drug-2/step15_drug-indication-exist.txt"  uni-drug-2-step15_drug-indication-exist.txt
+cp "/f/mulinlab/huan/workspace/drugrepo/dataset/drug-target/DGIdb/uni-drug-2/step16_drug-indication-exist.txt"  uni-drug-2-step16_drug-indication-exist.txt
+cp "/f/mulinlab/huan/workspace/drugrepo/dataset/drug-target/DGIdb/uni-drug-2/step17_drug-indication-exist.txt"  uni-drug-2-step17_drug-indication-exist.txt
+cp "/f/mulinlab/huan/workspace/drugrepo/dataset/drug-target/DGIdb/uni-drug-2/step20_drug-indication-exist.txt"  uni-drug-2-step20_drug-indication-exist.txt

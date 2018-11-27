@@ -1,0 +1,2 @@
+wget -c https://grasp.nhlbi.nih.gov/downloads/FullResults/2014/2014_Benke/BenkeMeta3.INTsnplist_F.txt
+cp BenkeMeta3.INTsnplist_F.txt 24839885_Preschool_internalizing_problems_\(INT\)_\(Psychiatric\).txt

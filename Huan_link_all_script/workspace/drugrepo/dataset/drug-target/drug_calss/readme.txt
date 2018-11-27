@@ -1,0 +1,1 @@
+cp "/f/mulinlab/huan/workspace/drugrepo/dataset/drug-target/DGIdb/drug_indication_unique/step8_target_drug_indication.txt" all_target_drug_indication.txt

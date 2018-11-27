@@ -1,0 +1,4 @@
+从postgresql恢复得文件drugs.txt，drug_claims.txt，chembl_molecules.txt
+从"/f/mulinlab/huan/workspace/drugrepo/dataset/drug-target/DGIdb/uni-drug-1/step12_drug_unmatch_indication_out_drugbank.txt" 中复制step12_drug_unmatch_indication_out_drugbank.txt
+是drugbank外的数据，不清楚其fda approval的批准情况。
+step1:看文件step12_drug_unmatch_indication_out_drugbank.txt中drug的approval情况。

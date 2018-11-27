@@ -1,0 +1,3 @@
+wget -c ftp://ftp.ebi.ac.uk/pub/databases/gwas/summary_statistics/SchottJM_26993346_GCST003452/Autsms_PCA_MEGA_Solid_PCA_freq1_scr_Summary_Stats.zip
+unzip Autsms_PCA_MEGA_Solid_PCA_freq1_scr_Summary_Stats.zip
+cp Autsms_PCA_MEGA_Solid_PCA_freq1_scr_Summary_Stats 26993346_Posterior_cortical_atrophy_and_Alzheimer\'s_disease.txt

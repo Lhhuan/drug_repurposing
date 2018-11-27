@@ -1,0 +1,2 @@
+wget http://walker05.u.hpc.mssm.edu/body_fat_percentage_GWAS_PLUS_MC_ALL_ancestry_se_Sex_combined_for_locus_zoom_plot.TBL.txt
+cp body_fat_percentage_GWAS_PLUS_MC_ALL_ancestry_se_Sex_combined_for_locus_zoom_plot.TBL.txt 26833246_Body_fat.txt

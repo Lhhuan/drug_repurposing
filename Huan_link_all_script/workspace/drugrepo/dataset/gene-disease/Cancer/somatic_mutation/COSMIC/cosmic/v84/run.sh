@@ -1,0 +1,1 @@
+perl 01_merge_coding_and_noncoding_mutation_id.pl #把coding的tsv文件CosmicMutantExport.tsv.gz（带有mutation id 和 tumor type）和noncoding文件CosmicNCV.tsv.gz merge 起来，得文件01_merge_coding_and_noncoding_mutation_id_cancer_type.txt

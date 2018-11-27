@@ -1,0 +1,1 @@
+perl link_all_script_add.pl #把之前的所有的脚本link 到./Huan_link_all_script/下面

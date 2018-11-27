@@ -1,0 +1,6 @@
+wget -c https://grasp.nhlbi.nih.gov/downloads/ResultsOctober2016/Yang_BMI_and_Height/GIANT_Yang2012Nature_publicrelease_HapMapCeuFreq_BMI.txt.gz
+gzip -cd GIANT_Yang2012Nature_publicrelease_HapMapCeuFreq_BMI.txt.gz > GIANT_Yang2012Nature_publicrelease_HapMapCeuFreq_BMI.txt
+cp GIANT_Yang2012Nature_publicrelease_HapMapCeuFreq_BMI.txt 22982992_BMI_variability.txt
+wget -c https://grasp.nhlbi.nih.gov/downloads/ResultsOctober2016/Yang_BMI_and_Height/GIANT_Yang2012Nature_publicrelease_HapMapCeuFreq_Height.txt.gz
+gzip -cd GIANT_Yang2012Nature_publicrelease_HapMapCeuFreq_Height.txt.gz > GIANT_Yang2012Nature_publicrelease_HapMapCeuFreq_Height.txt
+cp GIANT_Yang2012Nature_publicrelease_HapMapCeuFreq_Height.txt 22982992_Height_variability.txt

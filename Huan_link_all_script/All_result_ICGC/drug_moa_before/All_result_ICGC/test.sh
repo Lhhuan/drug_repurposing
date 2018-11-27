@@ -1,0 +1,2 @@
+cat DGIdb_all_target_drug_indication.txt | perl -ane 'unless(/^Drug_chembl_id/){my @f= split/\t/; my $drug= $f[8];my $drug_source =$f[6];if($drug_source =$f[6]=~/Drugbank/){print "$drug\n";}} '| sort -u >original_drugbank_drug.txt #2163个drug
+cat DGIdb_all_target_drug_indication.txt | perl -ane 'unless(/^Drug_chembl_id/){my @f= split/\t/; my $indication= $f[-1];print "$indication\n";} '| sort -u >original_indication.txt #5122

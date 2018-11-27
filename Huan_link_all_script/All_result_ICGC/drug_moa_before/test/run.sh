@@ -1,0 +1,1 @@
+perl test.pl #检查"/f/mulinlab/huan/All_result_ICGC/DGIdb_all_target_drug_indication.txt"比"/f/mulinlab/huan/All_result_ICGC/drug_moa_before/All_result_ICGC/DGIdb_all_target_drug_indication.txt"多的列

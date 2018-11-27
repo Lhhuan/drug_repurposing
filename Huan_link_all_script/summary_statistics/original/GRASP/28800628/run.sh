@@ -1,0 +1,1 @@
+cp GENEREPOL_GWAS_DeltaAmplitude_PlosOne.txt  28800628_ECG_phenotypes_for_changes_in_ventricular_repolarization_after_Sotalol_drug_administration.txt
