@@ -6,7 +6,7 @@ use File::Basename;
 
 my $dir_out   = "/f/mulinlab/huan/Script_backup/Huan_link_all_script/";
 mkdir $dir_out unless -d $dir_out;
-
+#
 chdir "/f/mulinlab/huan/";
 system "find -name *.pl > /f/mulinlab/huan/perl_script";
 system "find -name *.R > /f/mulinlab/huan/R_script";
