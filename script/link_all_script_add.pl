@@ -4,7 +4,7 @@ use strict;
 use utf8;
 use File::Basename;
 
-my $dir_out   = "/f/mulinlab/huan/Script_backup/Huan_link_all_script/";
+my $dir_out   = "/f/mulinlab/huan/Script_backup/Huan_link_all_script";
 mkdir $dir_out unless -d $dir_out;
 
 chdir "/f/mulinlab/huan/";
@@ -25,21 +25,22 @@ while(<$I1>)
             unless($script=~/^\.\/php/){
                 my $file = basename($script);
                 my $dir = dirname($script);
+                $dir=~s/^\.\///;
                 my $do = "$dir_out/$dir";
                 # mkdir  $do unless -d $do;
                 unless(-e $do ){
                     system "mkdir -p $do";
                 }
-                my $new_file =" $do/$file";
-                unless(-e $new_file){
-                    my $link1 = "ln $script $do/" ;
-                    system "$link1\n";
+                my $new_file ="$do/$file";
+                unless(-e "$new_file"){
+                    #print "#$new_file\n";
+                    my $link1 = "ln \"$script\" \"$new_file\"" ;  #把变量引起来，这样就可以将名为12 3.pl的脚本copy 过来。而不会只copy12 而不copy 12 3.pl
+                   system "$link1\n";
                     # print "$link1\n";
                 }
             }
         }
     }
-    
 }
 
 my $f2 ="/f/mulinlab/huan/R_script";
@@ -53,21 +54,22 @@ while(<$I2>)
             unless($script=~/^\.\/php/){
                 my $file = basename($script);
                 my $dir = dirname($script);
+                $dir=~s/^\.\///;
                 my $do = "$dir_out/$dir";
                 # mkdir  $do unless -d $do;
                 unless(-e $do ){
                     system "mkdir -p $do";
                 }
-                my $new_file =" $do/$file";
-                unless(-e $new_file){
-                    my $link1 = "ln $script $do/" ;
-                    system "$link1\n";
+                my $new_file ="$do/$file";
+                unless(-e "$new_file"){
+                    #print "#$new_file\n";
+                    my $link1 = "ln \"$script\" \"$new_file\"" ;  #把变量引起来，这样就可以将名为12 3.pl的脚本copy 过来。而不会只copy12 而不copy 12 3.pl
+                   system "$link1\n";
                     # print "$link1\n";
                 }
             }
         }
     }
-    
 }
 
 my $f3 ="/f/mulinlab/huan/all_sh_script";
@@ -81,21 +83,22 @@ while(<$I3>)
             unless($script=~/^\.\/php/){
                 my $file = basename($script);
                 my $dir = dirname($script);
+                $dir=~s/^\.\///;
                 my $do = "$dir_out/$dir";
                 # mkdir  $do unless -d $do;
                 unless(-e $do ){
                     system "mkdir -p $do";
                 }
-                my $new_file =" $do/$file";
-                unless(-e $new_file){
-                    my $link1 = "ln $script $do/" ;
-                    system "$link1\n";
+                my $new_file ="$do/$file";
+                unless(-e "$new_file"){
+                    #print "#$new_file\n";
+                    my $link1 = "ln \"$script\" \"$new_file\"" ;  #把变量引起来，这样就可以将名为12 3.pl的脚本copy 过来。而不会只copy12 而不copy 12 3.pl
+                   system "$link1\n";
                     # print "$link1\n";
                 }
             }
         }
     }
-    
 }
 
 my $f4 ="/f/mulinlab/huan/readme";
@@ -109,21 +112,22 @@ while(<$I4>)
             unless($script=~/^\.\/php/){
                 my $file = basename($script);
                 my $dir = dirname($script);
+                $dir=~s/^\.\///;
                 my $do = "$dir_out/$dir";
                 # mkdir  $do unless -d $do;
                 unless(-e $do ){
                     system "mkdir -p $do";
                 }
-                my $new_file =" $do/$file";
-                unless(-e $new_file){
-                    my $link1 = "ln $script $do/" ;
-                    system "$link1\n";
+                my $new_file ="$do/$file";
+                unless(-e "$new_file"){
+                    #print "#$new_file\n";
+                    my $link1 = "ln \"$script\" \"$new_file\"" ;  #把变量引起来，这样就可以将名为12 3.pl的脚本copy 过来。而不会只copy12 而不copy 12 3.pl
+                   system "$link1\n";
                     # print "$link1\n";
                 }
             }
         }
     }
-    
 }
 
 my $f5 ="/f/mulinlab/huan/python_script";
@@ -137,24 +141,20 @@ while(<$I5>)
             unless($script=~/^\.\/php/){
                 my $file = basename($script);
                 my $dir = dirname($script);
+                $dir=~s/^\.\///;
                 my $do = "$dir_out/$dir";
                 # mkdir  $do unless -d $do;
                 unless(-e $do ){
                     system "mkdir -p $do";
                 }
-                my $new_file =" $do/$file";
-                unless(-e $new_file){
-                    my $link1 = "ln $script $do/" ;
-                    system "$link1\n";
+                my $new_file ="$do/$file";
+                unless(-e "$new_file"){
+                    #print "#$new_file\n";
+                    my $link1 = "ln \"$script\" \"$new_file\"" ;  #把变量引起来，这样就可以将名为12 3.pl的脚本copy 过来。而不会只copy12 而不copy 12 3.pl
+                   system "$link1\n";
                     # print "$link1\n";
                 }
             }
         }
     }
-    
 }
-
-# system "rm -r /f/mulinlab/huan/Script_backup/Huan_link_all_script/anaconda3/";
-# system "rm -r /f/mulinlab/huan/Script_backup/Huan_link_all_script/anaconda/";
-# system "rm -r /f/mulinlab/huan/Script_backup/Huan_link_all_script/anaconda2/";
-# system "rm -r /f/mulinlab/huan/Script_backup/Huan_link_all_script/oncotree/";
