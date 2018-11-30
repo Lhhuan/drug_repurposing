@@ -51,9 +51,10 @@ perl 09_prepare_data_for_repo_logistic_regression.pl #用08_sorted_logic_not_no_
 
 #-------------------------------------------------------------------------------------------------------------------------------------以上部分可以算作是收集数据
 #---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-perl 10_merge_drug_name_data_for_logistic_regression.pl #将"/f/mulinlab/huan/All_result_ICGC/21_all_drug_infos.txt" 中的Drug_chembl_id_Drug_claim_primary_name和Drug_claim_primary_name提出来，
-#和"/f/mulinlab/huan/All_result_ICGC/merge_SV_CNV_repurposing_model/Gene-based_drug_R_or_S_optimization/huan_data/022_calculate_for_repo_logistic_regression_data.txt" merge 起来
+perl 10_merge_drug_name_data_for_logistic_regression.pl ##将"/f/mulinlab/huan/All_result_ICGC/21_all_drug_infos.txt" 中的Drug_chembl_id_Drug_claim_primary_name和Drug_claim_primary_name提出来，
+#和"/f/mulinlab/huan/All_result_ICGC/merge_SV_CNV_repurposing_model_both/Gene-based_drug_R_or_S_optimization/huan_data/output/023_calculate_for_gene_based_repo_logistic_regression_data_final.txt" merge 起来
 #得10_drug_primary_calculate_for_gene_based_repo_logistic_regression_data.txt
+
 perl 11_filter_repo_withdrwal_data_for_logistic_regression.pl ##根据09_prepare_data_for_repo_logistic_regression.txt中的drug cancer pair 在"10_drug_primary_calculate_for_gene_based_repo_logistic_regression_data.txt"
 #中提取repo_or_withdrawl 的logistic_regression信息。得./11_drug_primary_calculate_for_gene_based_repo_logistic_regression_data.txt,
 Rscript test_repo_cancer_model.R #用./11_drug_primary_calculate_for_gene_based_repo_logistic_regression_data.txt进行模型预测，并对模型进行评价

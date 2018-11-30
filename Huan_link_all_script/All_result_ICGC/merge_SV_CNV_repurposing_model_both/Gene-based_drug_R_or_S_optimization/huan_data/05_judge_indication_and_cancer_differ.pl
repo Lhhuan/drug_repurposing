@@ -96,8 +96,8 @@ while(<$I2>)
         if(exists $hash7{$k}){
             my @drug_cancer_infos = @{$hash7{$k}};
             foreach my $drug_cancer_info (@drug_cancer_infos){
-                my @f= split/\t/,$drug_cancer_info;
-                my $output = join("\t",@f[0..14]); #不再输出indication
+                my @f1= split/\t/,$drug_cancer_info;
+                my $output = join("\t",@f1[0..14]); #不再输出indication
                 unless(exists $hash8{$output}){
                     $hash8{$output}=1;
                     print $O3 "$output\n";

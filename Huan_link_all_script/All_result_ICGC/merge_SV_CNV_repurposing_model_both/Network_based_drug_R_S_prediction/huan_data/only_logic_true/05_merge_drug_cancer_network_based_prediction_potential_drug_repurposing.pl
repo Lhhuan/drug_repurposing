@@ -1,12 +1,12 @@
 #因为./output/04_logistic_regression_prediction_potential_drug_repurposing_data.txt中没有drug cancer 的信息，
-#所以用./output/03_calculate_for_network_based_repo_logistic_regression_data.txt和./output/04_logistic_regression_prediction_potential_drug_repurposing_data.txt merge起来，
+#所以用"./output/031_calculate_for_network_based_repo_logistic_regression_data_final.txt"和./output/04_logistic_regression_prediction_potential_drug_repurposing_data.txt merge起来，
 #并得到预测结果为repurposing 的文件./output/05_merge_drug_cancer_network_based_prediction_potential_drug_repurposing.txt
 #!/usr/bin/perl
 use warnings;
 use strict; 
 use utf8;
 
-my $f1 = "./output/03_calculate_for_network_based_repo_logistic_regression_data.txt";
+my $f1 = "./output/031_calculate_for_network_based_repo_logistic_regression_data_final.txt";
 my $f2 = "./output/04_logistic_regression_prediction_potential_drug_repurposing_data.txt";
 my $fo1 = "./output/05_drug_cancer_prediction_repurposing.txt";
 open my $I1, '<', $f1 or die "$0 : failed to open input file '$f1' : $!\n";

@@ -1,11 +1,11 @@
-#因为prediction_repurposing.txt中没有drug cancer 的信息，所以用02_calculate_for_repo_logistic_regression_data.txt和prediction_repurposing.txt merge起来，得到./output/03_drug_cancer_prediction_repurposing.txt
+#因为prediction_repurposing.txt中没有drug cancer 的信息，所以用./output/023_calculate_for_gene_based_repo_logistic_regression_data_final.txt和prediction_repurposing.txt merge起来，得到./output/03_drug_cancer_prediction_repurposing.txt
 #并得到预测结果为repurposing 的文件./output/03_drug_cancer_prediction_repurposing_true.txt
 #!/usr/bin/perl
 use warnings;
 use strict; 
 use utf8;
 
-my $f1 = "./02_calculate_for_repo_logistic_regression_data.txt";
+my $f1 = "./output/023_calculate_for_gene_based_repo_logistic_regression_data_final.txt";
 my $f2 = "./output/prediction_repurposing.txt";
 my $fo1 = "./output/03_drug_cancer_prediction_repurposing.txt";
 open my $I1, '<', $f1 or die "$0 : failed to open input file '$f1' : $!\n";
@@ -55,8 +55,9 @@ while(<$I2>)
         my $averge_gene_num_in_tra_hotspot = $f[8];
         my $predict = $f[9];
         my $prediction_value = $f[10];
-        my $k = "$average_drug_score\t$averge_gene_mutation_frequency\t$average_gene_CADD_score\t$average_mutation_map_to_gene_level_score\t$averge_gene_num_in_del_hotspot";
-        $k ="$k\t$averge_gene_num_in_dup_hotspot\t$averge_gene_num_in_cnv_hotspot\t$averge_gene_num_in_inv_hotspot\t$averge_gene_num_in_tra_hotspot";
+        my $k =join("\t",@f[0..8]);
+        # my $k = "$average_drug_score\t$averge_gene_mutation_frequency\t$average_gene_CADD_score\t$average_mutation_map_to_gene_level_score\t$averge_gene_num_in_del_hotspot";
+        # $k ="$k\t$averge_gene_num_in_dup_hotspot\t$averge_gene_num_in_cnv_hotspot\t$averge_gene_num_in_inv_hotspot\t$averge_gene_num_in_tra_hotspot";
         my $v = "$predict\t$prediction_value";
         push @{$hash2{$k}},$v;
     }
@@ -77,6 +78,9 @@ foreach my $features(sort keys %hash1){
                 }
             }
         }
+    }
+    else{
+        print STDERR "$features\n";
     }
 }
 

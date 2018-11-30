@@ -9,7 +9,7 @@ org1<-org %>% dplyr::select(average_drug_score,averge_gene_mutation_frequency,av
                             ,min_rwr_normal_P_value,averge_gene_num_in_del_hotspot,averge_gene_num_in_dup_hotspot,averge_gene_num_in_cnv_hotspot,
                             averge_gene_num_in_inv_hotspot,averge_gene_num_in_tra_hotspot,drug_repurposing)
 #需要预测的数据
-test_huan<-read.table("./output/03_calculate_for_network_based_repo_logistic_regression_data.txt",header = T,sep = "\t") %>% as.data.frame()
+test_huan<-read.table("./output/031_calculate_for_network_based_repo_logistic_regression_data_final.txt",header = T,sep = "\t") %>% as.data.frame()
 test_huan1<-test_huan%>%dplyr::select(average_drug_score,averge_gene_mutation_frequency,average_gene_CADD_score,average_mutation_map_to_gene_level_score,average_path_length
                             ,min_rwr_normal_P_value,averge_gene_num_in_del_hotspot,averge_gene_num_in_dup_hotspot,averge_gene_num_in_cnv_hotspot,
                             averge_gene_num_in_inv_hotspot,averge_gene_num_in_tra_hotspot)
@@ -20,7 +20,7 @@ test_huan1<-test_huan%>%dplyr::select(average_drug_score,averge_gene_mutation_fr
 #---------------------------------------------------------------------- 
 #测试集的真实值
 pre <- glm(drug_repurposing ~.,family=binomial(link = "logit"),data = org1)
-summary(org1)
+summary(pre)
 #predict函数可以获得模型的预测值。这里预测所需的模型对象为pre，预测对象newdata为测试集,预测所需类型type选择response,对响应变量的区间进行调整
 
 predict. <- predict.glm(pre,type='response',newdata=test_huan1)

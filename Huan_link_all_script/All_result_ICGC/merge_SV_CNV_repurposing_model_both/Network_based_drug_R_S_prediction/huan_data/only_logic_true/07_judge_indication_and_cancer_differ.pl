@@ -13,6 +13,7 @@ my $fo1 ="./output/07_indication_and_cancer_same.txt";
 open my $O1, '>', $fo1 or die "$0 : failed to open output file '$fo1' : $!\n";
 my $fo2 ="./output/07_indication_and_cancer_differ.txt"; 
 open my $O2, '>', $fo2 or die "$0 : failed to open output file '$fo2' : $!\n";
+
 my $title = "drug\trepo_cancer";
 print $O1 "drug\tindication\n";
 print $O2 "$title\n";
@@ -36,10 +37,10 @@ while(<$I1>)
         foreach my $indication(@f2){ 
             push @{$hash1{$drug}},$indication;
         }
-        # my $Max_phase= $f[10];
-        # my $First_approval =$f[11];
-        # my $v9 = "$Max_phase\t$First_approval";
-        # push @{$hash9{$drug}},$v9;
+        my $Max_phase= $f[-3];
+        my $First_approval =$f[-2];
+        my $v9 = "$Max_phase\t$First_approval";
+        push @{$hash9{$drug}},$v9;
     }
 }
 
@@ -77,6 +78,8 @@ open my $I2, '<', $f2 or die "$0 : failed to open input file '$f2' : $!\n";
 my $fo3 ="./output/07_indication_and_cancer_differ_info.txt"; 
 open my $O3, '>', $fo3 or die "$0 : failed to open output file '$fo3' : $!\n";
 
+my $fo4 ="./output/07_more_than1_status_drug.txt"; 
+open my $O4, '>', $fo4 or die "$0 : failed to open output file '$fo4' : $!\n";
 
 my $header = "Drug_chembl_id_Drug_claim_primary_name\tcancer_oncotree_main_id\taverage_drug_score\taverge_gene_mutation_frequency\taverage_gene_CADD_score\taverage_mutation_map_to_gene_level_score";
 $header = "$header\taverage_path_length\tmin_rwr_normal_P_value\taverge_gene_num_in_del_hotspot\taverge_gene_num_in_dup_hotspot\taverge_gene_num_in_inv_hotspot\taverge_gene_num_in_tra_hotspot\taverge_gene_num_in_cnv_hotspot";
@@ -108,15 +111,15 @@ while(<$I2>)
 }
 
 
-# foreach my $drug(sort keys %hash9){
-#     my @Max_phases = @{$hash9{$drug}};
-#     my %hash10;
-#     @Max_phases = grep { ++$hash10{$_} < 2 } @Max_phases;  #对数组内元素去重
-#     my $num = @Max_phases;
-#     if($num>1){
-#         foreach my $Max_phase(@Max_phases){
-#             print STDERR "$drug\n$Max_phase\n";
-#         }
-#     }
+foreach my $drug(sort keys %hash9){
+    my @Max_phases = @{$hash9{$drug}};
+    my %hash10;
+    @Max_phases = grep { ++$hash10{$_} < 2 } @Max_phases;  #对数组内元素去重
+    my $num = @Max_phases;
+    if($num>1){
+        foreach my $Max_phase(@Max_phases){
+            print $O4 "$drug\t$Max_phase\n";
+        }
+    }
 
-# }
+}

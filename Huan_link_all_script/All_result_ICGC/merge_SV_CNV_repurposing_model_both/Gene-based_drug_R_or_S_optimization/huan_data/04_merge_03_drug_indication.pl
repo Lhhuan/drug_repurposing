@@ -6,7 +6,7 @@ use strict;
 use utf8;
 
 my $f1 ="/f/mulinlab/huan/All_result_ICGC/21_all_drug_infos.txt";
-my $f2 ="./03_drug_cancer_prediction_repurposing_true.txt";
+my $f2 ="./output/03_drug_cancer_prediction_repurposing_true.txt";
 my $fo1 ="./output/04_drug_cancer_gene_based_prediction_potential_drug_repurposing_indication.txt"; 
 open my $I1, '<', $f1 or die "$0 : failed to open input file '$f1' : $!\n";
 open my $I2, '<', $f2 or die "$0 : failed to open input file '$f2' : $!\n";
@@ -21,7 +21,7 @@ while(<$I1>)
 {
     chomp;
     my @f= split /\t/;
-    unless(/^the_shortest_path/){
+    unless(/^Drug_chembl_id/){
        my $Drug_chembl_id_Drug_claim_primary_name = $f[0];
        my $Max_phase =$f[6];
        my $First_approval = $f[7];
@@ -38,6 +38,7 @@ while(<$I2>)
     chomp;
     my @f= split /\t/;
     unless(/^Drug/){
+        # print STDERR "$_\n";
        my $Drug_chembl_id_Drug_claim_primary_name = $f[0];
        if (exists $hash1{$Drug_chembl_id_Drug_claim_primary_name}){
             my @drug_infos = @{$hash1{$Drug_chembl_id_Drug_claim_primary_name}};

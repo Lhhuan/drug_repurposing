@@ -136,6 +136,7 @@ while(<$I3>)
             }
         }
         elsif($repo_info =~/Withdrawn|Terminated/){ #Withdrawn或者Terminated给0
+        # elsif($repo_info =~/Withdrawn|Terminated|Side_effect/){ #Withdrawn或者Terminated给0
             my $output1 = "$output\t0";
             unless(exists $hash3{$output1}){
                 $hash3{$output1} =1;

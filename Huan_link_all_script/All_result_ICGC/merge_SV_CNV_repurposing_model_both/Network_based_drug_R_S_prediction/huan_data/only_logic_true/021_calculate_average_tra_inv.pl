@@ -1,5 +1,5 @@
 #将"/f/mulinlab/huan/workspace/drugrepo/dataset/gene-disease/Cancer/somatic_mutation/ICGC/release_27/release_27_cnv_and_indel_both/pathogenic_hotspot/04_all_tra_inv_pathogenic_hotspot_gene_oncotree.txt"
-#和./output/02_filter_infos_for_calculate_feature.txt merge在一起，计算drug cancer pair 中的cancer gene在inv_tra中的average gene,得文件./output/021_drug_cancer_pair_average_gene_in_inv_tra.txt,
+#和"./output/unique_02_filter_infos_for_calculate_feature.txt"在一起，计算drug cancer pair 中的cancer gene在inv_tra中的average gene,得文件./output/021_drug_cancer_pair_average_gene_in_inv_tra.txt,
 #并得drug cancer pair 中的cancer gene在存在的具体hotspot，及和具体Hotspot的那个gene 有overlap,得文件"./output/021_drug_cancer_pair_in_inv_tra.txt"
 #!/usr/bin/perl
 use warnings;
@@ -93,10 +93,10 @@ foreach my $drug_cancer(sort keys %hash2){
             my @gene_in_ENSG2 =(); #用来记录落在@ENSG2_array中的cancer gene数目
             foreach my $cancer_ENSG(@cancer_ENSGs){
                 if(grep /$cancer_ENSG/, @ENSG1_array ){  #捕获在@ENSG1_array里出现的$cancer_ENSG
-                    push @gene_in_ENSG1,$cancer_ENSG
+                    push @gene_in_ENSG1,$cancer_ENSG;
                 }
                 if(grep /$cancer_ENSG/, @ENSG2_array ){ 
-                    push @gene_in_ENSG2,$cancer_ENSG
+                    push @gene_in_ENSG2,$cancer_ENSG;
                 }
             }
             my $length_gene_in_ENSG1 = @gene_in_ENSG1;
@@ -107,11 +107,22 @@ foreach my $drug_cancer(sort keys %hash2){
                 my $output1 = "$drug_cancer\t$out_ENSG1\t$out_ENSG2\t$source\t$ID";
                 print $O3 "$output1\n"; #输出中间结果，用于检查。
                 my $num = $length_gene_in_ENSG1+$length_gene_in_ENSG2;
-                if ($source=~/inv_svscore/){
-                    push @all_gene_in_inv_hotspot_num_array,$num;
+                if($ENSG1 eq $ENSG2){ #如果inv或者tra 两端的基因相同，那么相同基因只算一遍，所以讲num/2
+                    $num =$num/2;
+                    if ($source=~/inv_svscore/){
+                        push @all_gene_in_inv_hotspot_num_array,$num;
+                    }
+                    elsif($source=~/tra_svscore/){
+                        push @all_gene_in_tra_hotspot_num_array,$num;
+                    }
                 }
-                elsif($source=~/tra_svscore/){
-                    push @all_gene_in_tra_hotspot_num_array,$num;
+                else{
+                    if ($source=~/inv_svscore/){
+                        push @all_gene_in_inv_hotspot_num_array,$num;
+                    }
+                    elsif($source=~/tra_svscore/){
+                        push @all_gene_in_tra_hotspot_num_array,$num;
+                    }
                 }
             } 
         }

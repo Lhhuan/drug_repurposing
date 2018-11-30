@@ -10,9 +10,9 @@ setwd("/f/mulinlab/huan/All_result_ICGC/merge_SV_CNV_repurposing_model_both/Gene
 org<-read.table("11_drug_primary_calculate_for_gene_based_repo_logistic_regression_data.txt",header = T,sep = "\t") %>% as.data.frame()
 #org1<-org %>% dplyr::select(Drug_claim_primary_name,oncotree_main_ID,average_drug_score,averge_gene_mutation_frequency,average_gene_CADD_score,average_mutation_map_to_gene_level_score,drug_repurposing)
 org1<-org %>% dplyr::select(average_drug_score,averge_gene_mutation_frequency,average_gene_CADD_score,average_mutation_map_to_gene_level_score,
-                            averge_gene_num_in_del_hotspot,averge_gene_num_in_dup_hotspot,averge_gene_num_in_inv_hotspot,averge_gene_num_in_tra_hotspot,
-                            averge_gene_num_in_cnv_hotspot,repo_info)
-N = length(org1$drug_repurposing)
+                            averge_gene_num_in_del_hotspot,averge_gene_num_in_dup_hotspot,averge_gene_num_in_cnv_hotspot,averge_gene_num_in_inv_hotspot,
+                            averge_gene_num_in_tra_hotspot,repo_info)
+N = length(org1$repo_info)
 #ind=1的是0.7概率出现的行，ind=2是0.3概率出现的行
 ind=sample(2,N,replace=TRUE,prob=c(0.7,0.3))
 #生成训练集(这里训练集和测试集随机设置为原数据集的70%，30%)
@@ -25,10 +25,10 @@ aus_test <- org1[ind==2,]
 #family：每一种响应分布（指数分布族）允许各种关联函数将均值和线性预测器关联起来。常用的family：binomal(link='logit')--响应变量服从二项分布，连接函数为logit，即logistic回归
 #---------------------------------------------------------------------- 
 #测试集的真实值
-pre <- glm(drug_repurposing ~.,family=binomial(link = "logit"),data = aus_train)
+pre <- glm(repo_info ~.,family=binomial(link = "logit"),data = aus_train)
 summary(pre)
 #测试集的真实值
-real <- aus_test$drug_repurposing
+real <- aus_test$repo_info
 #predict函数可以获得模型的预测值。这里预测所需的模型对象为pre，预测对象newdata为测试集,预测所需类型type选择response,对响应变量的区间进行调整
 predict. <- predict.glm(pre,type='response',newdata=aus_test)
 #按照预测值为1的概率，>0.5的返回1，其余返回0
@@ -97,15 +97,17 @@ points(c(0,1),c(0,1),type="l",lty=2)
 #--------------------- 
 #6.更换测试集和训练集的选取方式，采用五折交叉验证
 #--------------------- 
-org<-read.table("09_prepare_data_for_repo_logistic_regression.txt",header = T,sep = "\t") %>% as.data.frame()
+org<-read.table("11_drug_primary_calculate_for_gene_based_repo_logistic_regression_data.txt",header = T,sep = "\t") %>% as.data.frame()
 #org1<-org %>% dplyr::select(Drug_claim_primary_name,oncotree_main_ID,average_drug_score,averge_gene_mutation_frequency,average_gene_CADD_score,average_mutation_map_to_gene_level_score,drug_repurposing)
-org1<-org %>% dplyr::select(average_drug_score,averge_gene_mutation_frequency,average_gene_CADD_score,average_mutation_map_to_gene_level_score,drug_repurposing)
+org1<-org %>% dplyr::select(average_drug_score,averge_gene_mutation_frequency,average_gene_CADD_score,average_mutation_map_to_gene_level_score,
+                            averge_gene_num_in_del_hotspot,averge_gene_num_in_dup_hotspot,averge_gene_num_in_cnv_hotspot,averge_gene_num_in_inv_hotspot,
+                            averge_gene_num_in_tra_hotspot,repo_info)
 #将org1数据分成随机十等分
 #install.packages("caret")
 #固定folds函数的分组
 set.seed(7)
 require(caret)
-folds <- createFolds(y=org1$drug_repurposing,k=5)
+folds <- createFolds(y=org1$repo_info,k=5)
 
 #构建for循环，得5次交叉验证的测试集精确度、训练集精确度
 max=0
@@ -118,7 +120,7 @@ for(i in 1:5){
   
   print("***组号***")
   
-  fold_pre <- glm(drug_repurposing ~.,family=binomial(link='logit'),data=fold_train)
+  fold_pre <- glm(repo_info ~.,family=binomial(link='logit'),data=fold_train)
   fold_predict <- predict(fold_pre,type='response',newdata=fold_test)
   fold_predict1 =ifelse(fold_predict>0.5,1,0)
   fold_test$predict = fold_predict1
