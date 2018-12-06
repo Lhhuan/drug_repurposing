@@ -11,6 +11,8 @@ perl 04_merge_all_tra_inv_project_oncotree.pl #将./pathogenic_hotspot/03_all_tr
 #得./pathogenic_hotspot/04_all_tra_inv_pathogenic_hotspot_gene_oncotree.txt
 perl 04_merge_all_CNV_dup_del_project_oncotree.pl #将./pathogenic_hotspot/03_all_CNV_dup_del_gene.txt 和"/f/mulinlab/huan/All_result_ICGC/ICGC_occurthan1_snv_indel_project_oncotree_normalized.txt"中的project_full_name和oncotree_id等merge到一起
 #得./pathogenic_hotspot/04_all_CNV_dup_del_pathogenic_hotspot_gene_oncotree.txt
+perl 05_merge_cnv_sv_all.pl #因为现在是gene只要落在INV和tra的一个break point 就认为这个基因落在Hotspot。
+#所以将./pathogenic_hotspot/04_all_tra_inv_pathogenic_hotspot_gene_oncotree.txt和./pathogenic_hotspot/04_all_CNV_dup_del_pathogenic_hotspot_gene_oncotree.txt merge在一起，得./pathogenic_hotspot/05_all_sv_cnv_oncotree.txt
 
 
 

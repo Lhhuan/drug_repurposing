@@ -1,0 +1,8 @@
+# perl 01_filter_gene_based_drug_cancer_mutation_info.pl
+# echo -e "finish_01_filter_gene_based_drug_cancer_mutation_info\n"
+# perl 02_filter_data_for_calculate_logistic_regression_data.pl
+# echo -e "finish_02_filter_data_for_calculate_logistic_regression_data\n"
+perl 03_merge_drug_cancer_prediction_repurposing.pl
+perl 04_merge_03_drug_indication.pl
+perl 05_judge_indication_and_cancer_differ.pl
+perl 06_filter_drug_status_unique_drug_repurposing.pl

@@ -1,0 +1,2 @@
+#此文件夹利用金标准数据来优化判断药物对癌症是副作用还是潜在药物重新利用的参数。
+perl 01_filter_drug_treat_cancer.pl # 把"/f/mulinlab/huan/All_result_ICGC/network/rwr_parameter_optimization/new_repo_disgenet/10_all_sorted_drug_target_repo_symbol_entrez_num.txt"中indication是cancer的整行过滤出来，得01_filter_drug_treat_cancer.txt

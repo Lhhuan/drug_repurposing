@@ -1,0 +1,4 @@
+perl 02_merge_drug_name_data_for_logistic_regression.pl
+echo -e "finish_02_merge_drug_name_data_for_logistic_regression\n"
+perl 03_filter_repo_withdrwal_data_for_logistic_regression.pl
+echo -e "finish_03_filter_repo_withdrwal_data_for_logistic_regression\n"

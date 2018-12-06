@@ -89,8 +89,8 @@ while(<$I3>)
 {
     chomp;
     my @f= split /\t/;
-    my $SVSCORETOP10 =$f[4];
-    if(/^#CHROM/){
+    my $SVSCORETOP10 =$f[7];
+    if(/^#CHR1/){
         print $O3 "$_\n";
         print $O7 "$_\tsource\n";  #输出到总文件
     }
@@ -111,8 +111,8 @@ while(<$I4>)
 {
     chomp;
     my @f= split /\t/;
-    my $SVSCORETOP10 =$f[4];
-    if(/^#CHROM/){
+    my $SVSCORETOP10 =$f[7];
+    if(/^#CHR1/){
         print $O4 "$_\n";
         # print STDERR "$SVSCORETOP10\n";
     }

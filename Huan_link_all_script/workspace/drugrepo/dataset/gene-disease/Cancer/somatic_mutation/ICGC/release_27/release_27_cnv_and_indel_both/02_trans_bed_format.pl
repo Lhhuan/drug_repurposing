@@ -44,7 +44,7 @@ while(<$I2>)
 {
     chomp;
     my @f= split /\t/;
-    if(/^#CHROM/){
+    if(/^#CHR1/){
         print $O2 "$_\tID\n";
     }
     else{

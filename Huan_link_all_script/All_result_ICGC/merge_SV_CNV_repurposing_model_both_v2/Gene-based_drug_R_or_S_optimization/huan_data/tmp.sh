@@ -1,0 +1,4 @@
+perl 01_filter_gene_based_drug_cancer_mutation_info.pl
+echo -e "finish_01_filter_gene_based_drug_cancer_mutation_info\n"
+perl 02_filter_data_for_calculate_logistic_regression_data.pl
+echo -e "finish_02_filter_data_for_calculate_logistic_regression_data\n"

@@ -13,7 +13,8 @@ open my $I1, '<', $f1 or die "$0 : failed to open input file '$f1' : $!\n";
 open my $I2, '<', $f2 or die "$0 : failed to open input file '$f2' : $!\n";
 open my $O1, '>', $fo1 or die "$0 : failed to open output file '$fo1' : $!\n";
 
-my $header = "#CHROM1\tBEGIN1\tEND1\tENSG1\tCHROM2\tBEGIN2\tEND2\tENSG2\tPROJECT\tSVSCORETOP10\tSVSCOREMAX\tSVSCORESUM\tSVSCOREMEAN\tsource\tID\toncotree_term_detail\toncotree_ID_detail\toncotree_term_main_tissue\toncotree_ID_main_tissue";
+# my $header = "#CHROM1\tBEGIN1\tEND1\tENSG1\tCHROM2\tBEGIN2\tEND2\tENSG2\tPROJECT\tSVSCORETOP10\tSVSCOREMAX\tSVSCORESUM\tSVSCOREMEAN\tsource\tID\toncotree_term_detail\toncotree_ID_detail\toncotree_term_main_tissue\toncotree_ID_main_tissue";
+my $header = "#CHROM1\tBEGIN1\tEND1\tENSG1\tCHROM2\tBEGIN2\tEND2\tENSG2\tPROJECT\tSVSCORETOP10\tSVSCOREMAX\tSVSCORESUM\tSVSCOREMEAN\tsource\tID\toncotree_ID_main_tissue";
 print $O1 "$header\n";
 my (%hash1,%hash2,%hash3,%hash4);
 
@@ -27,8 +28,9 @@ while(<$I1>)
         my $oncotree_ID_detail =$f[5];
         my $oncotree_term_main_tissue =$f[6];
         my $oncotree_ID_main_tissue =$f[7];
-        my $v = "$oncotree_term_detail\t$oncotree_ID_detail\t$oncotree_term_main_tissue\t$oncotree_ID_main_tissue";
-        $hash1{$project}=$v;
+        # my $v = "$oncotree_term_detail\t$oncotree_ID_detail\t$oncotree_term_main_tissue\t$oncotree_ID_main_tissue";
+        # $hash1{$project}=$v;
+        $hash1{$project}=$oncotree_ID_main_tissue;
     }
 }
 

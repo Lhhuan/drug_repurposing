@@ -1,4 +1,6 @@
 #把./output/cancer_from_repoDB_approved.txt 和./output/unique_cancer_term_from_repoDB_approved_oncotree.txt merge 在一起，得./output/001_merge_repoDB_oncotree.txt
+#把临床前re
+
 
 #!/usr/bin/perl
 use warnings;

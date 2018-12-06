@@ -31,7 +31,7 @@ while(<$I2>)
 {
     chomp;
     my @f= split /\t/;
-    unless(/^#CHROM/){
+    unless(/^#CHR1/){
         my $CHROM1 =$f[0];
         my $BEGIN1 =$f[1];
         my $END1 =$f[2];
