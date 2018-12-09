@@ -5,4 +5,16 @@ perl 02_merge_drug_target_infos.pl #把"/f/mulinlab/huan/All_result_ICGC/all_dru
 #并和./output/01_unique_merge_gene_based_and_network_based_data.txt merge在一起，得"./output/02_extract_drug_target_gene_network_data.txt",并得drug target 文件./output/02_drug_target.txt
 perl 03_merge_sv_cnv_gene_network_based.pl #把./output/02_extract_drug_target_gene_network_data.txt和"/f/mulinlab/huan/workspace/drugrepo/dataset/gene-disease/Cancer/somatic_mutation/ICGC/release_27/release_27_cnv_and_indel_both/pathogenic_hotspot/05_all_sv_cnv_oncotree.txt"
 #merge在一起，得./output/03_final_data_for_calculate_features.txt
-perl 04_calculate_features_for_logistic_regression.pl # 用./output/03_final_data_for_calculate_features.txt计算逻辑回归需要的features，得04_calculate_features_for_logistic_regression.txt
+perl 04_calculate_features_for_logistic_regression.pl # 用./output/03_final_data_for_calculate_features.txt计算逻辑回归需要的features，得"./output/04_calculate_features_for_logistic_regression.txt"
+Rscript 05_prediction_drug_repurposing.R #预测"./output/04_calculate_features_for_logistic_regression.txt"的repurposing 情况，得./output/05_logistic_regression_prediction_potential_drug_repurposing_data.txt
+perl 06_merge_drug_cancer_prediction_potential_drug_repurposing.pl  #因为./output/05_logistic_regression_prediction_potential_drug_repurposing_data.txt中没有drug cancer 的信息，
+#所以用"./output/04_calculate_features_for_logistic_regression.txt"和./output/05_logistic_regression_prediction_potential_drug_repurposing_data.txt merge起来，
+#并得到merge的文件./output/06_merge_drug_cancer_prediction_potential_drug_repurposing.txt
+##并得到预测结果为repurposing 的文件"./output/06_drug_cancer_prediction_potential_drug_repurposing.txt"
+perl 07_merge_06_drug_indication.pl #将"/f/mulinlab/huan/All_result_ICGC/21_all_drug_infos.txt"中的indication和./output/06_drug_cancer_prediction_potential_drug_repurposing.txt
+#merge 到一起，得./output/07_merge_drug_cancer_prediction_potential_drug_repurposing_indication.txt
+perl 08_judge_indication_and_cancer_differ.pl #判断./output/07_merge_drug_cancer_prediction_potential_drug_repurposing_indication.txt中的indication和cancer是否相同，
+#得indication和cancer相同文件./output/08_indication_and_cancer_same.txt ,得indication和cancer不相同文件./output/08_indication_and_cancer_differ.txt，
+#并从./output/07_merge_drug_cancer_prediction_potential_drug_repurposing_indication.txt中为./output/08_indication_and_cancer_differ.txt提取其他信息，得./output/08_indication_and_cancer_differ_info.txt
+perl 09_filter_drug_status_unique_drug_repurposing.pl ##因为./output/08_indication_and_cancer_differ_info.txt中同一个drug有不同status，
+#对于有多个status的药物，取最大的status得./output/09_final_network_based_drug_repurposing_success.txt

@@ -1,0 +1,8 @@
+perl 06_merge_drug_cancer_prediction_potential_drug_repurposing.pl
+echo -e "finish_06_merge_drug_cancer_prediction_potential_drug_repurposing\n"
+perl 07_merge_06_drug_indication.pl
+echo -e "finish_07_merge_06_drug_indication\n"
+perl 08_judge_indication_and_cancer_differ.pl
+echo -e "finish_08_judge_indication_and_cancer_differ\n"
+perl 09_filter_drug_status_unique_drug_repurposing.pl
+echo -e "finish_09_filter_drug_status_unique_drug_repurposing\n"

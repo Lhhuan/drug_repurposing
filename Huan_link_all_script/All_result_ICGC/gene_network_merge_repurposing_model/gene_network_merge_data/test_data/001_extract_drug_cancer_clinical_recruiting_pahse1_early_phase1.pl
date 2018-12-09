@@ -44,7 +44,7 @@ while(<$I2>)
 {
     chomp;
     my @f= split /\t/;
-    unless(/^Rank/){
+    unless(/^Status/){
         my $Status = $f[0];
         my $Conditions = $f[1];
         my $Interventions = $f[2];

@@ -22,8 +22,8 @@ while(<$I1>)
    system "sed -n '$end_final,${line}p' ../9.21_drug_target_num.txt > ./input/9.21_drug_target_num50.txt" ;
     for (my $i = 1;$i<50;$i=$i+1){ #进行39个循环
         $i= sprintf("%.f", $i); 
-        my $start = $i *$count_line1 +1;
-        my $end = ($i +1)*$count_line1;
+        my $start = ($i-1) *$count_line1 +1;
+        my $end = $i*$count_line1;
         system "sed -n '$start,${end}p' ../9.21_drug_target_num.txt > ./input/9.21_drug_target_num${i}.txt" ;  #取特定行到特定文件
     }
 }

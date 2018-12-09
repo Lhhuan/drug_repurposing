@@ -1,0 +1,8 @@
+perl 01_merge_gene_based_and_network_based_data.pl
+echo -e "finish_01_merge_gene_based_and_network_based_data\n"
+perl 02_merge_drug_target_infos.pl
+echo -e "finish_02_merge_drug_target_infos\n"
+perl 03_merge_sv_cnv_gene_network_based.pl
+echo -e "finish_03_merge_sv_cnv_gene_network_based\n"
+perl 04_calculate_features_for_logistic_regression.pl
+echo -e "finish_04_calculate_features_for_logistic_regression\n"

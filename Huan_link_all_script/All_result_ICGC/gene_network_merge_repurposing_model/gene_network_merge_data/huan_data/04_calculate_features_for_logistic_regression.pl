@@ -3,6 +3,7 @@
 use warnings;
 use strict; 
 use utf8;
+use List::Util qw/sum/;
 use List::Util qw/max min/;
 
 
@@ -115,8 +116,7 @@ foreach my $k (sort keys %hash1){
         push @score_t,$score;
     }
     my $drug_target_num= @drug_target_score_infos; #
-    my $sum_score_t = 0;
-    $sum_score_t += $_ foreach @score_t; 
+    my $sum_score_t = sum @score_t; 
     my $average_effective_drug_target_score = $sum_score_t/$drug_target_num;
     #---------------------------------------------------计算 average mutation frequency (除以mutation number)
     my @cancer_affect_donor_infos = @{$hash2{$k}};
@@ -128,23 +128,21 @@ foreach my $k (sort keys %hash1){
         my @f = split/\t/,$v2_t;
         my $cancer_specific_affected_donors = $f[1];
         push @cancer_specific_affected_donors,$cancer_specific_affected_donors;
-    }
-    my $sum_mutation_f =0;  
-    $sum_mutation_f += $_ foreach @cancer_specific_affected_donors; 
+    } 
+    my $sum_mutation_f =sum @cancer_specific_affected_donors; 
     my $averge_mutation_frequency = $sum_mutation_f/$mutation_num;
     #-------------------------------------------------------------#计算 average mutation pathogenicity score (除以mutation number)
     my @mutation_pathogenicity_infos = @{$hash4{$k}};
     my %hash16;
     @mutation_pathogenicity_infos = grep { ++$hash16{$_} < 2 } @mutation_pathogenicity_infos;
     my @gene_pathogenicity =();
-    my $mutation_num2 = @mutation_pathogenicity_infos;
+    my $mutation_num2 = @mutation_pathogenicity_infos;#$mutation_num2理论上是等于$mutation_num，为了避免出错，再写一次
     foreach my $mutation_pathogenicity_info(@mutation_pathogenicity_infos){
         my @f =split/\t/,$mutation_pathogenicity_info;
         my $mutation_pathogenicity=$f[1];
         push @gene_pathogenicity,$mutation_pathogenicity;
     }
-    my $sum_mutation_p = 0;
-    $sum_mutation_p += $_ foreach @gene_pathogenicity;
+    my $sum_mutation_p = sum @gene_pathogenicity;
     my $averge_mutation_pathogenicity = $sum_mutation_p/$mutation_num2;
     #------------------------------------------------------------------- #计算 average map_to_gene_level_score (除以mutation number)
     my @mutation_map_to_gene_level_infos = @{$hash5{$k}};
@@ -157,8 +155,7 @@ foreach my $k (sort keys %hash1){
         my $mutation_map_to_gene_level_score=$f[1];
         push @mutation_map_to_gene_level,$mutation_map_to_gene_level_score;
     }
-    my $sum_mutation_map_to_gene_level_score = 0;
-    $sum_mutation_map_to_gene_level_score += $_ foreach @mutation_map_to_gene_level;
+    my $sum_mutation_map_to_gene_level_score = sum @mutation_map_to_gene_level;
     my $averge_mutation_map_to_gene_level_score = $sum_mutation_map_to_gene_level_score/$mutation_num3;
     #-----------------------------------------------------------------------------#计算average the shortest path length of drug target to cancer gene(除以 path number)
     my @path_length_infos = @{$hash3{$k}};
@@ -171,8 +168,7 @@ foreach my $k (sort keys %hash1){
         my $path_length = $f[1];
         push @path_length_array,$path_length;
     }
-    my $sum_path_length = 0;
-    $sum_path_length += $_ foreach @path_length_array;
+    my $sum_path_length = sum @path_length_array;
     my $average_path_length = $sum_path_length/$path_number;
     #-------------------------------------------------------------------------- #计算min normal P 和 median p
     my @rwr_normal_score_P_infos = @{$hash6{$k}};
@@ -225,8 +221,7 @@ foreach my $k (sort keys %hash1){
             my $svscore = $f[1];
             push @del_svscore,$svscore;
         }
-        my $sum_del_svscore = 0;
-        $sum_del_svscore += $_ foreach @del_svscore;
+        my $sum_del_svscore = sum @del_svscore;
         my $average_del_svscore = $sum_del_svscore/$del_gene_number;
         push @outputs,$average_del_svscore; 
     }
@@ -246,8 +241,7 @@ foreach my $k (sort keys %hash1){
             my $svscore = $f[1];
             push @dup_svscore,$svscore;
         }
-        my $sum_dup_svscore = 0;
-        $sum_dup_svscore += $_ foreach @dup_svscore;
+        my $sum_dup_svscore = sum @dup_svscore;
         my $average_dup_svscore = $sum_dup_svscore/$dup_gene_number;
         push @outputs,$average_dup_svscore; 
     }
@@ -267,8 +261,7 @@ foreach my $k (sort keys %hash1){
             my $svscore = $f[1];
             push @inv_svscore,$svscore;
         }
-        my $sum_inv_svscore = 0;
-        $sum_inv_svscore += $_ foreach @inv_svscore;
+        my $sum_inv_svscore = sum @inv_svscore;
         my $average_inv_svscore = $sum_inv_svscore/$inv_gene_number;
         push @outputs,$average_inv_svscore; 
     }
@@ -288,8 +281,7 @@ foreach my $k (sort keys %hash1){
             my $svscore = $f[1];
             push @tra_svscore,$svscore;
         }
-        my $sum_tra_svscore = 0;
-        $sum_tra_svscore += $_ foreach @tra_svscore;
+        my $sum_tra_svscore = sum @tra_svscore;
         my $average_tra_svscore =  $sum_tra_svscore/$tra_gene_number;
         push @outputs,$average_tra_svscore; 
     }
@@ -309,8 +301,7 @@ foreach my $k (sort keys %hash1){
             my $svscore = $f[1];
             push @cnv_svscore,$svscore;
         }
-        my $sum_cnv_svscore = 0;
-        $sum_cnv_svscore += $_ foreach @cnv_svscore;
+        my $sum_cnv_svscore = sum @cnv_svscore;
         my $average_cnv_svscore = $sum_cnv_svscore/$cnv_gene_number;
         push @outputs,$average_cnv_svscore; 
     }
