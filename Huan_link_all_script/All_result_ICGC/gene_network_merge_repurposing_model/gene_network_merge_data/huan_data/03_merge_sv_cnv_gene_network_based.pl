@@ -12,7 +12,7 @@ my $fo1 = "./output/03_final_data_for_calculate_features.txt";
 open my $I1, '<', $f1 or die "$0 : failed to open input file '$f1' : $!\n";
 open my $I2, '<', $f2 or die "$0 : failed to open input file '$f2' : $!\n";
 open my $O1, '>', $fo1 or die "$0 : failed to open output file '$fo1' : $!\n";
-my $header = "Drug_chembl_id_Drug_claim_primary_name\tdrug_entrze\tdrug_ENSG\tdrug_target_score\tend_entrze\tthe_shortest_path\tpath_length\tnormal_score_P\tMutation_ID\tcancer_specific_affected_donors\tCADD_MEANPHRED";
+my $header = "Drug_chembl_id_Drug_claim_primary_name\tdrug_entrze\tdrug_ENSG\tdrug_target_score\tend_entrze\tthe_shortest_path\tpath_length\tnormal_score_P\tMutation_ID\tcancer_specific_affected_donors\toriginal_cancer_ID\tCADD_MEANPHRED";
 $header = "$header\tcancer_ENSG\toncotree_ID_main_tissue\tthe_final_logic\tMap_to_gene_level\tmap_to_gene_level_score\tdata_source\tdrug_target_number\tSVSCORETOP10\tsource\tID";
 print $O1 "$header\n";
 
@@ -44,8 +44,8 @@ while(<$I2>)
     unless (/^Drug_chembl_id/){
         my @f =split/\t/;
         my $Drug_chembl_id_Drug_claim_primary_name = $f[0];
-        my $cancer_ENSG = $f[11];
-        my $oncotree_ID_main_tissue = $f[12];
+        my $cancer_ENSG = $f[12];
+        my $oncotree_ID_main_tissue = $f[13];
         my $k = "$oncotree_ID_main_tissue\t$cancer_ENSG";
         if (exists $hash1{$k}){
             my @sv_infos =@{$hash1{$k}};

@@ -1,5 +1,5 @@
 #因为./output/08_indication_and_cancer_differ_info.txt中同一个drug有不同status，
-#对于有多个status的药物，取最大的status得./output/09_final_network_based_drug_repurposing_success.txt
+#对于有多个status的药物，取最大的status得./output/09_final_drug_repurposing_success.txt
 #!/usr/bin/perl
 use warnings;
 use strict; 
@@ -8,7 +8,7 @@ use List::Util qw/max min/;
 
 my $f1 ="./output/08_indication_and_cancer_differ_info.txt";
 open my $I1, '<', $f1 or die "$0 : failed to open input file '$f1' : $!\n";
-my $fo1 ="./output/09_final_network_based_drug_repurposing_success.txt"; 
+my $fo1 ="./output/09_final_drug_repurposing_success.txt"; 
 open my $O1, '>', $fo1 or die "$0 : failed to open output file '$fo1' : $!\n";
 
 

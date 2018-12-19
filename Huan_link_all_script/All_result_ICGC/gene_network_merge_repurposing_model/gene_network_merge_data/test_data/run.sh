@@ -18,3 +18,6 @@ perl 02_merge_drug_name_data_for_logistic_regression.pl #把"/f/mulinlab/huan/Al
 perl 03_filter_test_data_for_logistic_regression.pl #从./output/02_drug_primary_calculate_features_for_logistic_regression.txt过滤出./output/01_final_filter_original_gene_network_based_test_data.txt
 #需要的feature，得 ./output/03_filter_test_data_for_logistic_regression.txt
 Rscript 04_test_logistic_regression.R #测试model
+Rscript 04_test_logistic_regression_normal.R  #是将数据归一化后训练model
+
+Rscript picture_features.R #为./output/03_filter_test_data_for_logistic_regression.txt画图

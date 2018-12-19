@@ -17,7 +17,7 @@ my $header="Drug_chembl_id_Drug_claim_primary_name\tcancer_oncotree_main_id\tave
 $header ="$header\taverge_mutation_pathogenicity\taverge_mutation_map_to_gene_level_score\taverage_the_shortest_path_length\tmin_rwr_normal_P_value\tmedian_rwr_normal_P_value";
 $header = "$header\tcancer_gene_exact_match_drug_target_ratio\taverage_del_svscore\taverage_dup_svscore\taverage_inv_svscore\taverage_tra_svscore\taverage_cnv_svscore";
 print $O1 "$header\n";
-my (%hash1,%hash2,%hash3,%hash4,%hash5,%hash6,%hash7,%hash8,%hash9,%hash10,%hash11,%hash12,%hash13);
+my (%hash1,%hash2,%hash3,%hash4,%hash5,%hash6,%hash7,%hash8,%hash9,%hash10,%hash11,%hash12,%hash13,%hash30);
 
 
 while(<$I1>)
@@ -36,19 +36,21 @@ while(<$I1>)
         my $normal_score_P = $f[7];
         my $Mutation_ID = $f[8];
         my $cancer_specific_affected_donors = $f[9];
-        my $CADD_MEANPHRED = $f[10];
-        my $cancer_ENSG = $f[11];
-        my $oncotree_ID_main_tissue =$f[12];
-        my $the_final_logic = $f[13];
-        my $Map_to_gene_level = $f[14];
-        my $map_to_gene_level_score = $f[15];
-        my $data_source = $f[16];
-        my $drug_all_target_number =$f[17];
-        my $SVSCORETOP10 = $f[18];
-        my $sv_or_cnv_type = $f[19];
-        my $sv_or_cnv_id= $f[20];
+        my $original_cancer_ID = $f[10];
+        #--------------------------------------------
+        my $CADD_MEANPHRED = $f[11];
+        my $cancer_ENSG = $f[12];
+        my $oncotree_ID_main_tissue =$f[13];
+        my $the_final_logic = $f[14];
+        my $Map_to_gene_level = $f[15];
+        my $map_to_gene_level_score = $f[16];
+        my $data_source = $f[17];
+        my $drug_all_target_number =$f[18];
+        my $SVSCORETOP10 = $f[19];
+        my $sv_or_cnv_type = $f[20];
+        my $sv_or_cnv_id= $f[21];
         my $k = "$Drug_chembl_id_Drug_claim_primary_name\t$oncotree_ID_main_tissue";
-        my $v2 = "$Mutation_ID\t$cancer_specific_affected_donors";
+        my $v2 = "$Mutation_ID\t$cancer_specific_affected_donors\t$original_cancer_ID";
         my $v4 = "$Mutation_ID\t$CADD_MEANPHRED";
         my $v5 = "$Mutation_ID\t$map_to_gene_level_score";
         my $v3 = "$the_shortest_path\t$path_length";
@@ -57,7 +59,7 @@ while(<$I1>)
         push @{$hash4{$k}},$v4;
         push @{$hash5{$k}},$v5;
         push @{$hash6{$k}},$normal_score_P;
-        
+        push @{$hash30{$k}},$cancer_ENSG; #all_cancer genes
         #-----------------------------------------------
         #-----------------------------------------------push drug target score
         if ($drug_target_score =~/NA/){
@@ -69,8 +71,9 @@ while(<$I1>)
             push @{$hash1{$k}},$v1;
         }
         #---------------------------------------------------------- #把cancer gene 和drug target 直接match的push进数组。
+
         if ($data_source =~/gene_based/){
-            push @{$hash7{$k}},$cancer_ENSG; #cancer gene 个数
+            push @{$hash7{$k}},$cancer_ENSG; # exact match cancer gene 个数
             $hash13{$k}=$drug_all_target_number;
         }
         #----------------------------------------------------------------------
@@ -122,15 +125,20 @@ foreach my $k (sort keys %hash1){
     my @cancer_affect_donor_infos = @{$hash2{$k}};
     my %hash15;
     @cancer_affect_donor_infos = grep { ++$hash15{$_} < 2 } @cancer_affect_donor_infos;
-    my $mutation_num = @cancer_affect_donor_infos;
     my @cancer_specific_affected_donors =();
+    my @cancer_specific_mutation = ();
     foreach my $v2_t(@cancer_affect_donor_infos){
         my @f = split/\t/,$v2_t;
+        my $mutation_id = $f[0];
         my $cancer_specific_affected_donors = $f[1];
-        push @cancer_specific_affected_donors,$cancer_specific_affected_donors;
+        push @cancer_specific_mutation,$mutation_id;#因为同一mutation 会对应同一main cancer typex下的sub cancer type,所以会出现一个mutation 对应同一个main cancer type 会出现多个不同的cancer_specific_affected_donors，所以把单独看mutation的个数
+        push @cancer_specific_affected_donors,$cancer_specific_affected_donors; 
     } 
     my $sum_mutation_f =sum @cancer_specific_affected_donors; 
-    my $averge_mutation_frequency = $sum_mutation_f/$mutation_num;
+    my %hash26;
+    @cancer_specific_mutation = grep { ++$hash26{$_} < 2 } @cancer_specific_mutation;
+    my $mutation_num = @cancer_specific_mutation;
+    my $averge_mutation_frequency = $sum_mutation_f/$mutation_num;   
     #-------------------------------------------------------------#计算 average mutation pathogenicity score (除以mutation number)
     my @mutation_pathogenicity_infos = @{$hash4{$k}};
     my %hash16;
@@ -195,14 +203,18 @@ foreach my $k (sort keys %hash1){
     my $output1 = "$average_effective_drug_target_score\t$averge_mutation_frequency\t$averge_mutation_pathogenicity\t$averge_mutation_map_to_gene_level_score";
     $output1 = "$output1\t$average_path_length\t$min_rwr_normal_P_value\t$median_rwr_normal_P_value";
     push @outputs,$output1;
-    #-------------------------------------------------------------------------#计算cancer gene 和drug target 直接match ratio
+    #-------------------------------------------------------------------------#计算exact match cancer gene 和all cancer gene
     if (exists $hash7{$k}){
         my @cancer_ensgs =  @{$hash7{$k}};
-        my $drug_all_target_number = $hash13{$k};
+        # my $drug_all_target_number = $hash13{$k};
+        my @all_cancer_genes = @{$hash30{$k}};
         my %hash20;
         @cancer_ensgs = grep { ++$hash20{$_} < 2 } @cancer_ensgs;
+        my %hash31;
+        @all_cancer_genes =grep { ++$hash31{$_} < 2 } @all_cancer_genes;
         my $cancer_gene_exact_match_drug_target_number = @cancer_ensgs;
-        my $cancer_gene_exact_match_drug_target_ratio = $cancer_gene_exact_match_drug_target_number/$drug_all_target_number;
+        my $all_cancer_gene_num = @all_cancer_genes;
+        my $cancer_gene_exact_match_drug_target_ratio = $cancer_gene_exact_match_drug_target_number/$all_cancer_gene_num;
         push @outputs,$cancer_gene_exact_match_drug_target_ratio;
     }
     else{

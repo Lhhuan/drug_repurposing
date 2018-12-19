@@ -1,4 +1,4 @@
-perl 01_filter_gene_based_drug_cancer_mutation_info.pl #为 "/f/mulinlab/huan/All_result_ICGC/19_gene_based_ICGC_somatic_repo_may_success_logic.txt"
+perl 01_filter_gene_based_drug_cancer_mutation_info.pl #为 "/f/mulinlab/huan/All_result_ICGC/19_ICGC_Indel_SNV_repo-may_success_logic_true.txt"
 #从"/f/mulinlab/huan/workspace/drugrepo/dataset/gene-disease/Cancer/somatic_mutation/ICGC/release_27/release_27_snv_indel/cadd_score/SNV_Indel_cadd_score.vcf"提出mutation pathogenicity score，
 #从"/f/mulinlab/huan/All_result_ICGC/all_drug_infos_score.txt"提出drug target score，得01_filter_gene_based_drug_target_score_cancer_mutation_pathogenicity.txt
 perl 02_filter_data_for_calculate_logistic_regression_data.pl #用01_filter_gene_based_drug_target_score_cancer_mutation_pathogenicity.txt输出用于计算出logistic_regression需要的data的数据，02_data_used_calculate_for_repo_logistic_regression.txt

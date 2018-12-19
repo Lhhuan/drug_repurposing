@@ -35,7 +35,6 @@ nohup Rscript 09_run_the_shortest_path33.R &
 nohup Rscript 09_run_the_shortest_path34.R &
 nohup Rscript 09_run_the_shortest_path35.R &
 nohup Rscript 09_run_the_shortest_path36.R &
-nohup Rscript 09_run_the_shortest_path36.R &
 nohup Rscript 09_run_the_shortest_path37.R &
 nohup Rscript 09_run_the_shortest_path38.R &
 nohup Rscript 09_run_the_shortest_path39.R &

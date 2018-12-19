@@ -12,7 +12,7 @@ my $fo1 = "./output/01_merge_gene_based_and_network_based_data.txt";
 open my $I1, '<', $f1 or die "$0 : failed to open input file '$f1' : $!\n";
 open my $I2, '<', $f2 or die "$0 : failed to open input file '$f2' : $!\n";
 open my $O1, '>', $fo1 or die "$0 : failed to open output file '$fo1' : $!\n";
-my $header = "Drug_chembl_id_Drug_claim_primary_name\tdrug_entrze\tdrug_ENSG\tdrug_target_score\tend_entrze\tthe_shortest_path\tpath_length\tnormal_score_P\tMutation_ID\tcancer_specific_affected_donors\tCADD_MEANPHRED";
+my $header = "Drug_chembl_id_Drug_claim_primary_name\tdrug_entrze\tdrug_ENSG\tdrug_target_score\tend_entrze\tthe_shortest_path\tpath_length\tnormal_score_P\tMutation_ID\tcancer_specific_affected_donors\toriginal_cancer_ID\tCADD_MEANPHRED";
 $header = "$header\tcancer_ENSG\toncotree_ID_main_tissue\tthe_final_logic\tMap_to_gene_level\tmap_to_gene_level_score\tdata_source";
 print $O1 "$header\n";
 
@@ -33,13 +33,14 @@ while(<$I1>)
         my $normal_score_P = $f[8];
         my $Mutation_ID = $f[9];
         my $cancer_specific_affected_donors = $f[10];
-        my $CADD_MEANPHRED = $f[11];
-        my $cancer_ENSG = $f[12];
-        my $oncotree_ID_main_tissue =$f[13];
-        my $the_final_logic = $f[14];
-        my $Map_to_gene_level = $f[15];
-        my $map_to_gene_level_score = $f[16];
-        my $output = join("\t",$f[0],@f[2..16]);
+        my $original_cancer_id =$f[11];
+        my $CADD_MEANPHRED = $f[12];
+        my $cancer_ENSG = $f[13];
+        my $oncotree_ID_main_tissue =$f[14];
+        my $the_final_logic = $f[15];
+        my $Map_to_gene_level = $f[16];
+        my $map_to_gene_level_score = $f[17];
+        my $output = join("\t",$f[0],@f[2..17]);
         print $O1 "$output\tnetwork_based\n";
     }
 }
@@ -60,13 +61,14 @@ while(<$I2>)
         my $normal_score_P = "0"; #因为start 和 end是同一基因，是特别显著，所以在这里把gene based的p设置为0；
         my $mutation_id = $f[2];
         my $cancer_specific_affected_donors = $f[6];
+        my $original_cancer_ID = $f[7];
         my $CADD_MEANPHRED = $f[0];
         my $cancer_ENSG = $f[29];
         my $cancer_oncotree_main_id = $f[13];
         my $the_final_logic = $f[-1];
         my $map_to_gene_level = $f[3];
         my $output = "$Drug_chembl_id_Drug_claim_primary_name\t$drug_entrze\t$drug_ENSG\t$drug_target_score\t$end_entrze\t$the_shortest_path\t$path_length\t$normal_score_P\t$mutation_id";
-        my $output1 = "$output\t$cancer_specific_affected_donors\t$CADD_MEANPHRED\t$cancer_ENSG\t$cancer_oncotree_main_id\t$the_final_logic\t$map_to_gene_level";
+        my $output1 = "$output\t$cancer_specific_affected_donors\t$original_cancer_ID\t$CADD_MEANPHRED\t$cancer_ENSG\t$cancer_oncotree_main_id\t$the_final_logic\t$map_to_gene_level";
         if ($the_final_logic =~ /true/){
             if($map_to_gene_level=~/Level1_protein_coding/){ #Level1_protein_coding 给score 为5
                 print $O1 "$output1\t5\tgene_based\n";

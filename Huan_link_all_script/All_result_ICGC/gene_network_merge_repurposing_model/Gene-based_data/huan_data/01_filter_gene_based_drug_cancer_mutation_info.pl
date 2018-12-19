@@ -1,4 +1,4 @@
-#为 "/f/mulinlab/huan/All_result_ICGC/19_gene_based_ICGC_somatic_repo_may_success_logic.txt"
+#为 "/f/mulinlab/huan/All_result_ICGC/19_ICGC_Indel_SNV_repo-may_success_logic_true.txt"
 #从"/f/mulinlab/huan/workspace/drugrepo/dataset/gene-disease/Cancer/somatic_mutation/ICGC/release_27/release_27_snv_indel/cadd_score/SNV_Indel_cadd_score.vcf"提出mutation pathogenicity score，
 #从"/f/mulinlab/huan/All_result_ICGC/all_drug_infos_score.txt"提出drug target score，得01_filter_gene_based_drug_target_score_cancer_mutation_pathogenicity.txt
 #!/usr/bin/perl
@@ -6,7 +6,7 @@ use warnings;
 use strict; 
 use utf8;
 
-my $f1 = "/f/mulinlab/huan/All_result_ICGC/19_gene_based_ICGC_somatic_repo_may_success_logic.txt";
+my $f1 = "/f/mulinlab/huan/All_result_ICGC/19_ICGC_Indel_SNV_repo-may_success_logic_true.txt";
 my $f2 ="/f/mulinlab/huan/workspace/drugrepo/dataset/gene-disease/Cancer/somatic_mutation/ICGC/release_27/release_27_snv_indel/cadd_score/SNV_Indel_cadd_score.vcf";
 my $f3 ="/f/mulinlab/huan/All_result_ICGC/all_drug_infos_score.txt";
 my $fo1 = "./01_filter_gene_based_drug_target_score_cancer_mutation_pathogenicity.txt";

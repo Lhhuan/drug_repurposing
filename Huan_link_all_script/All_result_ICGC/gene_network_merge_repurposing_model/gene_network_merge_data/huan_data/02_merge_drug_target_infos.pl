@@ -14,7 +14,7 @@ open my $I1, '<', $f1 or die "$0 : failed to open input file '$f1' : $!\n";
 open my $I2, '<', $f2 or die "$0 : failed to open input file '$f2' : $!\n";
 open my $O1, '>', $fo1 or die "$0 : failed to open output file '$fo1' : $!\n";
 open my $O2, '>', $fo2 or die "$0 : failed to open output file '$fo2' : $!\n";
-my $header = "Drug_chembl_id_Drug_claim_primary_name\tdrug_entrze\tdrug_ENSG\tdrug_target_score\tend_entrze\tthe_shortest_path\tpath_length\tnormal_score_P\tMutation_ID\tcancer_specific_affected_donors\tCADD_MEANPHRED";
+my $header = "Drug_chembl_id_Drug_claim_primary_name\tdrug_entrze\tdrug_ENSG\tdrug_target_score\tend_entrze\tthe_shortest_path\tpath_length\tnormal_score_P\tMutation_ID\tcancer_specific_affected_donors\toriginal_cancer_ID\tCADD_MEANPHRED";
 $header = "$header\tcancer_ENSG\toncotree_ID_main_tissue\tthe_final_logic\tMap_to_gene_level\tmap_to_gene_level_score\tdata_source\tdrug_target_number";
 print $O1 "$header\n";
 print $O2 "Drug_chembl_id_Drug_claim_primary_name\tdrug_target\n";

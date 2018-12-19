@@ -65,6 +65,3 @@ foreach my $drug (sort keys %hash1){
     }
 }
 
-   
-
-

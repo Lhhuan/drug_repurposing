@@ -8,7 +8,7 @@ use utf8;
 
 my $f1 ="./output/01_final_filter_original_gene_network_based_test_data.txt";
 my $f2 ="./output/02_drug_primary_calculate_features_for_logistic_regression.txt";
-my $fo1 ="./output/03_filter_test_data_for_logistic_regression.txt";
+my $fo1 ="./output/03_median_filter_test_data_for_logistic_regression.txt";
 open my $I1, '<', $f1 or die "$0 : failed to open input file '$f1' : $!\n";
 open my $I2, '<', $f2 or die "$0 : failed to open input file '$f2' : $!\n";
 open my $O1, '>', $fo1 or die "$0 : failed to open output file '$fo1' : $!\n";
@@ -91,3 +91,20 @@ while(<$I2>)
 
 
 close $O1 or warn "$0 : failed to close output file '$fo1' : $!\n"; #关闭文件句柄
+
+my $f3 ="./output/03_median_filter_test_data_for_logistic_regression.txt";
+my $fo2 ="./output/03_filter_test_data_for_logistic_regression.txt";
+open my $I3, '<', $f3 or die "$0 : failed to open input file '$f3' : $!\n";
+open my $O2, '>', $fo2 or die "$0 : failed to open output file '$fo2' : $!\n";
+
+while(<$I3>)
+{
+    chomp;
+    my @f= split /\t/;
+    my $k = join ("\t",@f[1..16]);
+    unless (exists $hash4{$k}){
+        $hash4{$k} =1;
+        print $O2 "$k\n";
+    }
+}
+

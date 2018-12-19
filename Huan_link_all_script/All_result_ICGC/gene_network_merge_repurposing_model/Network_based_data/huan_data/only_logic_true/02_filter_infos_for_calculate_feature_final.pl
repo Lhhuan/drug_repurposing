@@ -14,7 +14,7 @@ my $fo1 ="./output/02_filter_infos_for_calculate_feature.txt";
 open my $I1, '<', $f1 or die "$0 : failed to open input file '$f1' : $!\n";
 open my $O1, '>', $fo1 or die "$0 : failed to open output file '$fo1' : $!\n";
 
-my $header = "Drug_chembl_id_Drug_claim_primary_name\tDrug_claim_primary_name\tdrug_entrze\tdrug_ENSG\tdrug_target_score\tend_entrze\tthe_shortest_path\tpath_length\tnormal_score_P\tMutation_ID\tcancer_specific_affected_donors\tCADD_MEANPHRED";
+my $header = "Drug_chembl_id_Drug_claim_primary_name\tDrug_claim_primary_name\tdrug_entrze\tdrug_ENSG\tdrug_target_score\tend_entrze\tthe_shortest_path\tpath_length\tnormal_score_P\tMutation_ID\tcancer_specific_affected_donors\toriginal_cancer_ID\tCADD_MEANPHRED";
 $header = "$header\tcancer_ENSG\toncotree_ID_main_tissue\tthe_final_logic\tMap_to_gene_level\tmap_to_gene_level_score";
 print $O1 "$header\n";
 my (%hash1,%hash2,%hash3,%hash4);
@@ -32,6 +32,7 @@ while(<$I1>)
        my $cancer_ENSG = $f[11];
        my $map_to_gene_level = $f[12];
        my $cancer_specific_affected_donors = $f[14];
+       my $original_cancer_id = $f[15];
        my $oncotree_ID_main_tissue =$f[21];
        my $Drug_chembl_id_Drug_claim_primary_name = $f[23];
        my $Drug_claim_primary_name = $f[27];
@@ -39,7 +40,7 @@ while(<$I1>)
        my $drug_ENSG = $f[37];
        my $drug_target_score = $f[-3];
        my $the_final_logic = $f[-1];
-       my $output1 = "$Drug_chembl_id_Drug_claim_primary_name\t$Drug_claim_primary_name\t$drug_entrze\t$drug_ENSG\t$drug_target_score\t$end_entrze\t$the_shortest_path\t$path_length\t$normal_score_P\t$Mutation_ID\t$cancer_specific_affected_donors\t$CADD_MEANPHRED";
+       my $output1 = "$Drug_chembl_id_Drug_claim_primary_name\t$Drug_claim_primary_name\t$drug_entrze\t$drug_ENSG\t$drug_target_score\t$end_entrze\t$the_shortest_path\t$path_length\t$normal_score_P\t$Mutation_ID\t$cancer_specific_affected_donors\t$original_cancer_id\t$CADD_MEANPHRED";
        $output1 = "$output1\t$cancer_ENSG\t$oncotree_ID_main_tissue\t$the_final_logic\t$map_to_gene_level";
        if($map_to_gene_level=~/Level1_protein_coding/){ #Level1_protein_coding 给score 为5
             print $O1 "$output1\t5\n";

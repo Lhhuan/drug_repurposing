@@ -25,7 +25,7 @@ while(<$I1>)
     my $num = $_;
     my $dir = "./huan_data_rwr/random_select/rwr_result/${num}";
     mkdir $dir unless -d $dir; #建文件夹
-    for(my $i=1; $i<1001;$i++){# 给你 random 取1000 个看看 
+    for(my $i=1; $i<1001;$i++){# 
         my $f2 ="./huan_data_rwr/random_select/start/${num}/start${i}.txt";#输入的是drug target
 
         system "python run_walker.py original_network_num.txt $f2 > ./huan_data_rwr/random_select/rwr_result/${num}/result${i}.txt";

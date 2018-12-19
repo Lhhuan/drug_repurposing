@@ -21,7 +21,9 @@ my %hash5;
 while(<$I1>)
 {
     chomp;
-    my @f= split /\t/;
+    my $info = $_;
+    $info =~ s/"//g;
+    my @f= split /\t/,$info;
     unless(/^Drug_chembl_id/){
         my $Drug_chembl_id_Drug_claim_primary_name = $f[0];
         my $Drug_claim_primary_name = $f[4];
