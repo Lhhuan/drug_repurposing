@@ -1,6 +1,6 @@
 #为 "/f/mulinlab/huan/All_result_ICGC/19_gene_based_ICGC_somatic_repo_may_success_logic.txt"
 #从"/f/mulinlab/huan/workspace/drugrepo/dataset/gene-disease/Cancer/somatic_mutation/ICGC/release_27/release_27_snv_indel/cadd_score/SNV_Indel_cadd_score.vcf"提出mutation pathogenicity score，
-#从"/f/mulinlab/huan/All_result_ICGC/all_drug_infos_score.txt"提出drug target score，得01_filter_gene_based_drug_target_score_cancer_mutation_pathogenicity.txt
+#从"/f/mulinlab/huan/All_result_ICGC/all_drug_infos_score.txt"提出drug target score，得./output/01_filter_gene_based_drug_target_score_cancer_mutation_pathogenicity.txt
 #!/usr/bin/perl
 use warnings;
 use strict; 
@@ -9,7 +9,7 @@ use utf8;
 my $f1 = "/f/mulinlab/huan/All_result_ICGC/19_gene_based_ICGC_somatic_repo_may_success_logic.txt";
 my $f2 ="/f/mulinlab/huan/workspace/drugrepo/dataset/gene-disease/Cancer/somatic_mutation/ICGC/release_27/release_27_snv_indel/cadd_score/SNV_Indel_cadd_score.vcf";
 my $f3 ="/f/mulinlab/huan/All_result_ICGC/all_drug_infos_score.txt";
-my $fo1 = "./01_filter_gene_based_drug_target_score_cancer_mutation_pathogenicity.txt";
+my $fo1 = "./output/01_filter_gene_based_drug_target_score_cancer_mutation_pathogenicity.txt";
 open my $I1, '<', $f1 or die "$0 : failed to open input file '$f1' : $!\n";
 open my $I2, '<', $f2 or die "$0 : failed to open input file '$f2' : $!\n";
 open my $I3, '<', $f3 or die "$0 : failed to open input file '$f3' : $!\n";

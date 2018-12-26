@@ -38,21 +38,13 @@ while(<$I1>)
         my $end = $f[23];
         my $ref= $f[24];
         my $alt = $f[25];
-        if ($clinical_significance =~/Sensitivity/){
+        if ($clinical_significance =~/^Sensitivity/){
             unless($drug =~/NONE|NULL/){
                 my $output = "$drug\t$disease\t$clinical_significance\t$gene\t$variant\t$evidence_statement\t$variant_id\t$chr\t$start\t$end\t$ref\t$alt\t$entrez_id";
                 unless(exists $hash1{$output}){
                     $hash1{$output}=1;
                     print $O1 "$output\n";
                 }
-                # my @drug_array = split/\,/,$drug;
-                # foreach my $single_drug (@drug_array){
-                #     my $output = "$single_drug\t$disease\t$clinical_significance\t$gene\t$variant\t$evidence_statement\t$variant_id\t$chr\t$start\t$end\t$ref\t$alt\t$entrez_id";
-                #     unless(exists $hash1{$output}){
-                #         $hash1{$output}=1;
-                #         print $O1 "$output\n";
-                #     }
-                # }
             }
         }
     }

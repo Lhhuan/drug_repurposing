@@ -1,4 +1,4 @@
-#用../04_map_ICGC_snv_indel_in_network_num.txt把../12_ICGC_snv_indel_network_drug_indication_cancer.txt 中的 drug entrze id 转化成在网络中的编号。得15.1_merge_drug_target_network_id_success_pair_info.txt
+#用../04_map_ICGC_snv_indel_in_network_num.txt把./12_ICGC_snv_indel_network_drug_indication_cancer.txt 中的 drug entrze id 转化成在网络中的编号。得15.1_merge_drug_target_network_id_success_pair_info.txt
 #!/usr/bin/perl
 use warnings;
 use strict;

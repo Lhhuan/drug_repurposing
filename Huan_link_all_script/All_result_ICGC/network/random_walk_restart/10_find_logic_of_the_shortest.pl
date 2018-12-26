@@ -1,4 +1,4 @@
-#用"/f/mulinlab/huan/All_result_ICGC/network/the_shortest_path/normal_network_num.txt"为09_the_shortest_path.txt里面的路径寻找start和end的逻辑关系。
+#用"/f/mulinlab/huan/All_result_ICGC/network/the_shortest_path/normal_network_num.txt"为09_the_shortest_path.txt里面的路径寻找start和end的逻辑关系,得10_start_end_logical.txt
 #!/usr/bin/perl
 use warnings;
 use strict; 

@@ -119,7 +119,7 @@ cat 08_drug_start_comma_end.txt | cut -f1,2 | sort -u > 08_drug_start_comma.txt
         #在一起，得 9.27_merge_drug_target_network_gene_normal_score.txt
 
 #------------------------------------------------------------------------------------
-perl 10_find_logic_of_the_shortest.pl #用"/f/mulinlab/huan/All_result_ICGC/network/the_shortest_path/normal_network_num.txt"为09_the_shortest_path.txt里面的路径寻找start和end的逻辑关系。
+perl 10_find_logic_of_the_shortest.pl #用"/f/mulinlab/huan/All_result_ICGC/network/the_shortest_path/normal_network_num.txt"为09_the_shortest_path.txt里面的路径寻找start和end的逻辑关系,得10_start_end_logical.txt
 
 #-------------------------------------------------------------------------
 perl 11_find_cancer_for_drug.pl #利用9.27_merge_drug_target_network_gene_normal_score.txt和../04_map_ICGC_snv_indel_in_network_num.txt 和致病性的突变与癌症关系的文件"/f/mulinlab/huan/All_result_ICGC/pathogenicity_mutation_cancer/pathogenicity_mutation_cancer.txt" ，
@@ -131,7 +131,7 @@ perl 12_merge_drug_indication_cancer.pl  ##利用../../all_drug_infos_score.txt�
         # perl 14_filter_indication_from_cancer.pl #把13_network_based_ICGC_somatic_repo_indication_cancer_differ.txt文件在indication里出现的cancer滤掉（一整行滤掉），得得文件有可能repo成功的repo drug pairs 文件14_drug_repo_cancer_pairs_may_success.txt 得drug不可以repo的cancer(是drug本来治疗的cancer)文件14_drug_repo_cancer_pairs_may_fail.txt
         # perl 15_filter_success_pair_info.pl ##把14_drug_repo_cancer_pairs_may_success.txt中的drug_repo pair从13_network_based_ICGC_somatic_repo_indication_cancer_differ.txt的全部信息（整行）筛选出来。得文件15_network_based_ICGC_somatic_repo_may_success.txt
         #-----------------------------------------------------
-perl 15.1_merge_drug_target_network_id_success_pair_info.pl #用../04_map_ICGC_snv_indel_in_network_num.txt把15_network_based_ICGC_somatic_repo_may_success.txt 中的 drug entrze id 转化成在网络中的编号。得15.1_merge_drug_target_network_id_success_pair_info.txt
+perl 15.1_merge_drug_target_network_id_success_pair_info.pl #用../04_map_ICGC_snv_indel_in_network_num.txt把./12_ICGC_snv_indel_network_drug_indication_cancer.txt 中的 drug entrze id 转化成在网络中的编号。得15.1_merge_drug_target_network_id_success_pair_info.txt
 perl 16_merge_logic_shortest_path_cancer_gene_drug_moa_and_judge_logic.pl ##把网络最短路径的文件10_start_end_logical.txt及15.1_merge_drug_target_network_id_success_pair_info.txt merge在一起，得文件16_merge_logic_shortest_path_cancer_gene_drug_moa.txt（因为测试过中间文件很大，所以就不输出了，直接对其判断逻辑）
 #并判断最短路径的逻辑和drug target 和cancer gene的逻辑，得逻辑一致的文件16_judge_the_shortest_drug_target_cancer_gene_logic_true.txt,得逻辑不一致的文件16_judge_the_shortest_drug_target_cancer_gene_logic_conflict.txt,
 #得没有逻辑的文件16_judge_the_shortest_drug_target_cancer_gene_no_logic.txt,

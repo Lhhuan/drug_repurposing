@@ -1,7 +1,6 @@
 wget https://civicdb.org/downloads/nightly/nightly-ClinicalEvidenceSummaries.tsv
 mv nightly-ClinicalEvidenceSummaries.tsv ./data/
-perl 01_filter_Sensitivity_clinical_significance.pl #把./data/nightly-ClinicalEvidenceSummaries.tsv 中clinical_significan为Sensitivity的筛选出来，并把一行中有多个drug的分开输出，
-#得./output/01_filter_Sensitivity_clinical_significance.txt
+perl 01_filter_Sensitivity_clinical_significance.pl #把./data/nightly-ClinicalEvidenceSummaries.tsv 中clinical_significan为Sensitivity的筛选出来，得./output/01_filter_Sensitivity_clinical_significance.txt
 cat ./output/01_filter_Sensitivity_clinical_significance.txt | cut -f2 | sort -u >./output/unqie_cancer.txt
 #将./output/unqie_cancer.txt map 到http://oncotree.mskcc.org/#/home oncotree的主干上，得./output/unqie_cancer_oncotree.txt
 perl 02_merge_oncotree.pl #将./output/01_filter_Sensitivity_clinical_significance.txt和./output/unqie_cancer_oncotree.txt merge到一起，得./output/02_Sensitivity_clinical_significance_oncotree.txt

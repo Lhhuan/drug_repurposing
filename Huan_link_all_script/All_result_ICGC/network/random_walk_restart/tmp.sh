@@ -1,9 +1,9 @@
-cat ./tmp_shortest_path_data/09_the_shortest_path*.txt >09_the_shortest_path.txt
-cat ./9.25_random_overlap_fact/output/9.25_random_overlap_fact*.txt > 9.25_random_overlap_fact.txt
-perl 9.26_count_random_overlap_fact.pl
-echo -e "finish_9.26_count_random_overlap_fact\n"
-perl 9.27_merge_drug_target_network_gene_normal_score.pl
-echo -e "finish_9.27_merge_drug_target_network_gene_normal_score\n"
+# cat ./tmp_shortest_path_data/09_the_shortest_path*.txt >09_the_shortest_path.txt
+# cat ./9.25_random_overlap_fact/output/9.25_random_overlap_fact*.txt > 9.25_random_overlap_fact.txt
+# perl 9.26_count_random_overlap_fact.pl
+# echo -e "finish_9.26_count_random_overlap_fact\n"
+# perl 9.27_merge_drug_target_network_gene_normal_score.pl
+# echo -e "finish_9.27_merge_drug_target_network_gene_normal_score\n"
 perl 10_find_logic_of_the_shortest.pl
 echo -e "finish_10_find_logic_of_the_shortest\n"
 perl 11_find_cancer_for_drug.pl

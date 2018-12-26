@@ -43,7 +43,8 @@ cp huan_mapin_do_hpo_oncotree.txt huan_mapin_do_hpo_oncotree_main.txt
     perl extract_before_unique_indication_mapin.pl #利用refine_huan_used_mapin_id.txt 在huan_mapin_do_hpo_oncotree_main1.txt提取unique 的mapin 结果，最终得到huan_mapin_do_hpo_oncotree_before.txt
     #在add_new_indication_map_DO_HPO_Oncotree中处理漏掉的indication，
     cat refine_huan_used_mapin_id.txt ./add_new_indication_map_DO_HPO_Oncotree/refine_new_add_drugbank_indication_s.txt > huan_used_mapin_final.txt
-    cat huan_mapin_do_hpo_oncotree_before.txt ./add_new_indication_map_DO_HPO_Oncotree/merge_add_hpo_do_oncotree_s.txt >huan_mapin_do_hpo_oncotree_final.txt
+    cat huan_mapin_do_hpo_oncotree_before.txt ./add_new_indication_map_DO_HPO_Oncotree/merge_add_hpo_do_oncotree_s.txt >huan_mapin_do_hpo_oncotree_all.txt
+    #对huan_mapin_do_hpo_oncotree_all.txt进行检查，得huan_mapin_do_hpo_oncotree_final.txt
 #------------------------------------------------
 
 perl merge_dgidb_entrez_to_ensg_transform.pl #用DGIdb_Entrez_id-ENSG_ID.txt将DGIdb_all_target_drug_indication_refine.txt (原来是DGIdb_all_target_drug_indication.txt)文件中追加一列entrez对应的ensg_id,得文件DGIdb_all_target_drug_indication_trans.txt
