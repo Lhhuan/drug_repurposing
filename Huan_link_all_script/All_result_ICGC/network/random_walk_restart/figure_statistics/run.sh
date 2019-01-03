@@ -1,0 +1,1 @@
+Rscript plot_cutoff.R #为"/f/mulinlab/huan/All_result_ICGC/network/random_walk_restart/parameter_optimization/top/hit_result/02_cutoff_p_significant_count.txt" 画图

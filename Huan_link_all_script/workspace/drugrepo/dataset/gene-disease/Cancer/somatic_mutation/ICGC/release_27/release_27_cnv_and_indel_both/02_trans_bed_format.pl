@@ -44,10 +44,7 @@ while(<$I2>)
 {
     chomp;
     my @f= split /\t/;
-    if(/^#CHR1/){
-        print $O2 "$_\tID\n";
-    }
-    else{
+    unless(/^#CHR1/){
         my $CHROM1 =$f[0];
         my $BEGIN1 =$f[1];
         my $tran_BEGIN1 = $BEGIN1 -1; #0_baesd将begin-1
@@ -62,8 +59,7 @@ while(<$I2>)
         my $SVSCORESUM =$f[9];
         my $SVSCOREMEAN =$f[10];
         my $source = $f[11];
-        my $num = "$CHROM1\_$BEGIN1\_$END1\_$CHROM2\_$BEGIN2\_$END2";
-        my $id ="ID$num";   
+        my $num = "$CHROM1\_$BEGIN1\_$END1\_$CHROM2\_$BEGIN2\_$END2";   
         my $out1 = join("\t",@f[5..11]);
         my $output = "$CHROM1\t$tran_BEGIN1\t$END1\n$CHROM2\t$tran_BEGIN2\t$END2";
         print $O2 "$output\n";

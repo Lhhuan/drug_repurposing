@@ -40,7 +40,6 @@ while(<$I2>)
 }
 
 foreach my $k (sort keys %hash1){
-     print STDERR "$k\n";
     if(exists $hash2{$k}){
         # print STDERR "$k\n";
         my @infos=@{$hash1{$k}};

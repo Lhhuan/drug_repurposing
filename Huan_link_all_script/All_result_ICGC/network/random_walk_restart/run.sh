@@ -139,4 +139,3 @@ perl 16_merge_logic_shortest_path_cancer_gene_drug_moa_and_judge_logic.pl ##æŠŠç
 
 cat ./13_network_based_ICGC_somatic_repo_fail.txt | perl -ane 'chomp;@f= split/\t/;unless(/start_id/){print "$f[9]\t$f[-1]\n"}' | sort -u > network_based_fail_repo.txt #1902
 cat network_based_fail_repo.txt | cut -f1 | sort -u > network_based_fail_drug.txt #852
-
