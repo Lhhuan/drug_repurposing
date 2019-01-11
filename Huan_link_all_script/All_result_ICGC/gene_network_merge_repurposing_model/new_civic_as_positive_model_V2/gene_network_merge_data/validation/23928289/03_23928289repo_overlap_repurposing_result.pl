@@ -5,9 +5,9 @@ use warnings;
 use strict; 
 use utf8;
 
-my $f1 = "../test_data/output/09_filter_test_data_for_logistic_regression.txt";
+my $f1 = "../../test_data/output/09_filter_test_data_for_logistic_regression.txt";
 open my $I1, '<', $f1 or die "$0 : failed to open input file '$f1' : $!\n";
-my $f2 = "../huan_data/output/09_repurposing_Drug_claim_primary_name.txt";
+my $f2 = "../../huan_data/output/09_repurposing_Drug_claim_primary_name.txt";
 open my $I2, '<', $f2 or die "$0 : failed to open input file '$f2' : $!\n";
 my $f3 = "./output/02_23928289_repo_cancer.txt";
 open my $I3, '<', $f3 or die "$0 : failed to open input file '$f3' : $!\n";
@@ -36,24 +36,27 @@ while(<$I2>)
     my @f= split/\t/;
     unless (/^Drug_claim_primary_name/){
         my @f =split/\t/;
-        my $Drug_claim_primary_name = $f[0];
-        $Drug_claim_primary_name =lc ($Drug_claim_primary_name);
-        $Drug_claim_primary_name =~ s/"//g;
-        $Drug_claim_primary_name =~ s/'//g;
-        $Drug_claim_primary_name =~ s/,//g;
-        $Drug_claim_primary_name =~ s/\s+//g;
-        $Drug_claim_primary_name =~s/\&/+/g;
-        $Drug_claim_primary_name =~s/\)//g;
-        $Drug_claim_primary_name =~s/\//_/g; 
+        my $Drug_claim_primary_names = $f[0];
         my $Drug_chembl_id_Drug_claim_primary_name = $f[1];
         my $cancer_oncotree_id =$f[2];
         my $cancer_oncotree_id_type =$f[3];
         my $predict_value =$f[-1];
-        my $k = "$Drug_chembl_id_Drug_claim_primary_name\t$cancer_oncotree_id";
-        my $k1 = "$Drug_claim_primary_name\t$cancer_oncotree_id";
-        my $v = "$Drug_chembl_id_Drug_claim_primary_name\t$cancer_oncotree_id_type\t$predict_value";
-        unless(exists $hash1{$k}){
-            $hash2{$k1}=$v;
+        my @f2 =split/\|/,$Drug_claim_primary_names;
+        foreach my $Drug_claim_primary_name(@f2){
+            $Drug_claim_primary_name =lc ($Drug_claim_primary_name);
+            $Drug_claim_primary_name =~ s/"//g;
+            $Drug_claim_primary_name =~ s/'//g;
+            $Drug_claim_primary_name =~ s/,//g;
+            $Drug_claim_primary_name =~ s/\s+//g;
+            $Drug_claim_primary_name =~s/\&/+/g;
+            $Drug_claim_primary_name =~s/\)//g;
+            $Drug_claim_primary_name =~s/\//_/g; 
+            my $k = "$Drug_chembl_id_Drug_claim_primary_name\t$cancer_oncotree_id";
+            my $k1 = "$Drug_claim_primary_name\t$cancer_oncotree_id";
+            my $v = "$Drug_chembl_id_Drug_claim_primary_name\t$cancer_oncotree_id_type\t$predict_value";
+            unless(exists $hash1{$k}){
+                $hash2{$k1}=$v;
+            }
         }
     }
 }
@@ -65,7 +68,8 @@ while(<$I3>)
     my @f= split/\t/;
     unless (/^Drug_claim_primary_name/){
         my @f =split/\t/;
-        my $Drug_claim_primary_name = $f[0];
+        my $Drug_claim_primary_name_o = $f[0];
+        my $Drug_claim_primary_name = $Drug_claim_primary_name_o;
         $Drug_claim_primary_name =lc ($Drug_claim_primary_name);
         $Drug_claim_primary_name =~ s/"//g;
         $Drug_claim_primary_name =~ s/'//g;
@@ -74,20 +78,23 @@ while(<$I3>)
         $Drug_claim_primary_name =~s/\&/+/g;
         $Drug_claim_primary_name =~s/\)//g;
         $Drug_claim_primary_name =~s/\//_/g; 
-        my $oncotree_main_term = $f[2];
+        my $oncotree_detail_term = $f[2];
         my $oncotree_detail_ID = $f[3];
+        my $oncotree_main_term = $f[4];
         my $oncotree_main_ID = $f[5];
         my $k1 = "$Drug_claim_primary_name\t$oncotree_detail_ID";
         my $k2 = "$Drug_claim_primary_name\t$oncotree_main_ID";
         if (exists $hash2{$k1}){
             my $v= $hash2{$k1};
-            my $output = "$k1\t$oncotree_main_term\t$v";
+            #my $output = "$k1\t$oncotree_detail_term\t$v";
+            my $output = "$Drug_claim_primary_name_o\t$oncotree_detail_ID\t$oncotree_detail_term\t$v";
             print $O1 "$output\n";
         }
         else{
             if (exists $hash2{$k2}){
                 my $v= $hash2{$k2};
-                my $output = "$k2\t$oncotree_main_term\t$v";
+                # my $output = "$k2\t$oncotree_main_term\t$v";
+                my $output = "$Drug_claim_primary_name_o\t$oncotree_main_ID\t$oncotree_main_term\t$v";
                 print $O1 "$output\n";
             }
         }

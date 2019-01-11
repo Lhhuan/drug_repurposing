@@ -7,7 +7,7 @@ use utf8;
 
 my $f1 = "../test_data/output/09_filter_test_data_for_logistic_regression.txt";
 open my $I1, '<', $f1 or die "$0 : failed to open input file '$f1' : $!\n";
-my $f2 = "../huan_data/output/09_repurposing_Drug_claim_primary_name.txt";
+my $f2 = "../../huan_data/output/09_repurposing_Drug_claim_primary_name.txt";
 open my $I2, '<', $f2 or die "$0 : failed to open input file '$f2' : $!\n";
 my $f3 = "./output/02_23928289_repo_cancer.txt";
 open my $I3, '<', $f3 or die "$0 : failed to open input file '$f3' : $!\n";

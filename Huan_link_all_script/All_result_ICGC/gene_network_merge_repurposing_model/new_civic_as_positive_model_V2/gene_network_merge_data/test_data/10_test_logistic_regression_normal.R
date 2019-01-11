@@ -4,9 +4,9 @@ library(readxl)
 library(dplyr)
 setwd("/f/mulinlab/huan/All_result_ICGC/gene_network_merge_repurposing_model/new_civic_as_positive_model_V2/gene_network_merge_data/test_data/")
 
-#org<-read.table("./output/09_filter_test_data_for_logistic_regression.txt",header = T,sep = "\t") %>% as.data.frame()
+org<-read.table("./output/09_filter_test_data_for_logistic_regression.txt",header = T,sep = "\t") %>% as.data.frame()
 #org<-read.table("./output/09_filter_test_data_for_logistic_regression_test.txt",header = T,sep = "\t") %>% as.data.frame()
-org<-read.table("./output/09_filter_test_data_for_logistic_regression_0.788.txt",header = T,sep = "\t") %>% as.data.frame()
+#org<-read.table("./output/09_filter_test_data_for_logistic_regression_0.788.txt",header = T,sep = "\t") %>% as.data.frame()
 #org<-read.table("./output/04_filter_features_cancer_phase_than0.txt",header = T,sep = "\t") %>% as.data.frame()
 org2<-org %>% dplyr::select(average_effective_drug_target_score,average_mutation_frequency,average_mutation_pathogenicity,average_mutation_map_to_gene_level_score
                             ,average_the_shortest_path_length,min_rwr_normal_P_value,median_rwr_normal_P_value,cancer_gene_exact_match_drug_target_ratio,average_del_svscore

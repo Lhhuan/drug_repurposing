@@ -19,3 +19,10 @@ perl 07_filter_icgc_data_features_for_logistic_regression.pl #用./output/04_fin
 #的feature，得./output/07_filter_icgc_data_features_for_logistic_regression.txt
 Rscript 08_prediction_drug_repurposing_normal.R #预测./output/07_filter_icgc_data_features_for_logistic_regression.txt的repurposing 结果，得./output/08_logistic_regression_prediction_potential_drug_repurposing_data.txt
 perl 09_repurposing_Drug_claim_primary_name.pl #给./output/08_logistic_regression_prediction_potential_drug_repurposing_data.txt加一列Drug_claim_primary_name，得./output/09_repurposing_Drug_claim_primary_name.txt
+perl 10_merge_drug_indication.pl #将"/f/mulinlab/huan/All_result_ICGC/21_all_drug_infos.txt"中的indication和./output/09_repurposing_Drug_claim_primary_name.txt merge 到一起，
+#得 ./output/10_merge_drug_indication.txt
+perl 11_filter_drug_unique_status.pl #提取./output/10_merge_drug_indication.txt 中的unique的status,得./output/11_drug_unique_status.txt 并得附加其他信息的文件./output/11_drug_unique_status_infos.txt
+perl 12_merge_cancer_detail_main_ID.pl #用"/f/mulinlab/huan/All_result_ICGC/ICGC_occurthan1_snv_indel_project_oncotree_normalized.txt"中的detail id 和 main id
+#和./output/11_drug_unique_status_infos.txt merge到一起，得./output/12_merge_cancer_detail_main_ID.txt #原来的$cancer_oncotree_id变成了$indication_OncoTree_detail_ID
+perl 13_judge_indication_and_cancer_differ.pl #判断./output/12_merge_cancer_detail_main_ID.txt中的indication和cancer是否相同，
+#得indication和cancer相同文件./output/13_indication_and_cancer_same.txt ,得indication和cancer不相同文件./output/13_indication_and_cancer_differ.txt，

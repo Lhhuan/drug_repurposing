@@ -43,10 +43,15 @@ cat simple_somatic_mutation.largethan1_vep.vcf | perl -ane 'chomp;unless(/^#/){@
 #3 在1,2中都没有gene的药物用临近基因法获得，这里的临近基因法分为两步：
 # （1）用vep上下游5000bp 注释到的就算有gene,
 #  (2)  在（1）中没有map到gene的variant用最近的基因作为variat的gene
-perl 01_mutation_in_protein_coding_map_gene.pl  #为simple_somatic_mutation.largethan1_vep.vcf的mutation寻找对应的gene，此step把出现在protein coding区域的特定 consequence的mutation对应的gene找出来，得01_mutation_in_protein_coding_map_gene.vcf,没有落在protein区域的是01_mutation_out_protein_coding_map_gene.vcf 
+perl 01_mutation_in_protein_coding_map_gene.pl  #为simple_somatic_mutation.largethan1_vep.vcf的mutation寻找对应的gene，此step把出现在protein coding区域的特定 consequence的mutation对应的gene找出来，
+#得map 到L1,1的文件01_mutation_in_protein_coding_map_gene_L1.1.vcf，map 到L1,2的文件01_mutation_in_protein_coding_map_gene_tmp_L1.2.vcf（则里面含有即map到L1.1,又map到1.2的数据）
+#把01_mutation_in_protein_coding_map_gene_tmp_L1.2.vcf 在L1.1中出现的L1.2数据去掉，得01_mutation_in_protein_coding_map_gene_L1.2.vcf
+#cat 01_mutation_in_protein_coding_map_gene_L1.1.vcf 01_mutation_in_protein_coding_map_gene_L1.2.vcf > 01_mutation_in_protein_coding_map_gene.vcf
+#没有落在protein区域的是01_mutation_out_protein_coding_map_gene.vcf 
 cat 01_mutation_out_protein_coding_map_gene.vcf | perl -ane 'unless(/^#/){@f =split/\s+/;print "$f[0]\t$f[1]\n"}' | sort -u > unique_01_out_gene.txt #
 cat 01_mutation_in_protein_coding_map_gene.vcf | perl -ane 'chomp;unless(/^#/){@f = split/\s+/;my $id = $f[0];print"$id\n";}' | sort -u > unique_01_in_gene1.txt # 2319927
 cat 01_mutation_out_protein_coding_map_gene.vcf | perl -ane 'chomp;unless(/^#/){@f = split/\s+/;my $id = $f[0];print"$id\n";}' | sort -u > unique_01_out_gene1.txt  #4015338
+perl 01_check_result.pl #
 perl 02_normal_unique_01_out_gene_varint_bed.pl #把01_mutation_out_protein_coding_map_gene.vcf转成bed文件，得02_normal_unique_01_out_gene_varint.bed 就是给源文件添加bed 文件需要的前三列,
 
 bedtools sort -i 02_normal_unique_01_out_gene_varint.bed > 02_sorted_final_normal_unique_01_out_gene_varint.bed #排序
@@ -121,3 +126,9 @@ cp  -r /f/mulinlab/zhouyao/workspace/huan/results/cadd_score ./
 
 
 cat all_level_somatic_snv_indel_gene.vcf | perl -ane 'chomp; my @f= split/\t/; my $'
+
+
+
+less ./01_mutation_in_protein_coding_map_gene.vcf | perl -ane 'unless(/^#/){my @f= split/\s+/; print "$f[0]\t$f[3]\n"}' | sort -u >01_test_protein_coding_huan.txt
+
+2446760

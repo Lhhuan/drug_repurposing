@@ -1,0 +1,1 @@
+wget -c https://tcga.xenahubs.net/download/TCGA.COADREAD.sampleMap/SNP6_nocnv_genomicSegment.gz

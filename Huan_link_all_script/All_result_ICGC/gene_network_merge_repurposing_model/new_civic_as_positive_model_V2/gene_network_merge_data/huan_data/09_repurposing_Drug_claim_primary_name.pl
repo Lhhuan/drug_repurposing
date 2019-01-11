@@ -36,13 +36,11 @@ while(<$I2>)
             my @Drug_claim_primary_names = @{$hash1{$Drug}};
             my %hash5;
             @Drug_claim_primary_names = grep { ++$hash5{$_} < 2 } @Drug_claim_primary_names;
-            foreach my $Drug_claim_primary_name(@Drug_claim_primary_names){
-                my $output = "$Drug_claim_primary_name\t$_";
-                unless(exists $hash2{$output}){
-                    $hash2{$output} =1;
-                    print $O1 " $output\n";
-                }
-                
+            my $Drug_claim_primary_name = join ("|",@Drug_claim_primary_names);
+            my $output = "$Drug_claim_primary_name\t$_";
+            unless(exists $hash2{$output}){
+                $hash2{$output} =1;
+                print $O1 " $output\n";
             }
         }
         else{ #正确的情况下，这里else没有东西输出
