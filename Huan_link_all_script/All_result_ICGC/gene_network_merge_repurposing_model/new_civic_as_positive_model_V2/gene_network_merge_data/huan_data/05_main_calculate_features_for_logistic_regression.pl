@@ -1,4 +1,5 @@
-# 用./output/04_final_data_for_calculate_features.txt中的oncotree main tissue ID 计算逻辑回归需要的features，得./output/05_main_calculate_features_for_logistic_regression.txt
+#用/f/mulinlab/huan/workspace/drugrepo/dataset/gene-disease/Cancer/somatic_mutation/ICGC/release_27/release_27_cnv_and_indel_both/pathogenic_hotspot/05_merge_all_cnv_sv_project.txt
+# 用./output/03_unique_merge_gene_based_and_network_based_data.txt和中的oncotree main tissue ID 计算逻辑回归需要的features，得./output/05_main_calculate_features_for_logistic_regression.txt
 #!/usr/bin/perl
 use warnings;
 use strict; 

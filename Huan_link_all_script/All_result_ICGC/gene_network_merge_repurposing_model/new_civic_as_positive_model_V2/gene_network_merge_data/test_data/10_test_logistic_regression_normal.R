@@ -50,7 +50,7 @@ for(i in 1:5){
   print(fold_accuracy)
   print("***训练集精确度***")
   fold_predict2 <- predict(fold_pre,type='response',newdata=fold_train)
-  fold_predict2 =ifelse(fold_predict2>0.253,1,0)
+  fold_predict2 =ifelse(fold_predict2>0.5,1,0)
   fold_train$predict = fold_predict2
   fold_error2 = fold_train[,15]-fold_train[,14]
   fold_accuracy2 = (nrow(fold_train)-sum(abs(fold_error2)))/nrow(fold_train) 
@@ -64,9 +64,6 @@ for(i in 1:5){
   }
   
 }
-
-print(max)
-print(num)
 
 #----------------------------
 library(pROC)

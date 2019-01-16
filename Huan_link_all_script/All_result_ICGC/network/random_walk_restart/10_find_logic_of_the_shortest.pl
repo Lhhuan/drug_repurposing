@@ -45,7 +45,7 @@ while(<$I2>)
          my @paths = split/-/,$the_shortest_path;
          my $path_node_count = @paths;
          my $path_length = $path_node_count-1;
-        if ($path_length>1 && $path_length <3.606){ #如果最短路径只有一个元素，说明没有最短路径，故此最短路径不保存下来,如果路径长度大于网络中平均最短路径长度，则说明这个路径太长了没有意义，所以只把路径长度大于1且小于平均路径3.606的最短路径留下来
+        if ($path_length>0 && $path_length <3.606){ #如果最短路径只有一个元素，说明没有最短路径，故此最短路径不保存下来,如果路径长度大于网络中平均最短路径长度，则说明这个路径太长了没有意义，所以只把路径长度大于0且小于平均路径3.606的最短路径留下来
              my $max_node =$path_node_count-1;
             for (my $i=0;$i<$path_node_count;$i++){
                 if ($i<$max_node){

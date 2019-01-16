@@ -10,8 +10,12 @@ perl 03_merge_gene_based_and_network_based_data.pl #把./output/02_unique_filter
 #对./output/03_merge_gene_based_and_network_based_data.txt 进行排序去重得 ./output/03_unique_merge_gene_based_and_network_based_data.txt
 # perl 04_merge_sv_cnv_gene_network_based.pl ##把./output/03_unique_merge_gene_based_and_network_based_data.txt和"/f/mulinlab/huan/workspace/drugrepo/dataset/gene-disease/Cancer/somatic_mutation/ICGC/release_27/release_27_cnv_and_indel_both/pathogenic_hotspot/05_all_sv_cnv_oncotree.txt"
 #merge在一起，得./output/04_final_data_for_calculate_features.txt
-perl 05_sub_calculate_features_for_logistic_regression.pl ## 用./output/04_final_data_for_calculate_features.txt中的oncotree sub tissue ID 计算逻辑回归需要的features，得./output/05_sub_calculate_features_for_logistic_regression.txt
-perl 05_main_calculate_features_for_logistic_regression.pl ## 用./output/04_final_data_for_calculate_features.txt中的oncotree main tissue ID 计算逻辑回归需要的features，得./output/05_main_calculate_features_for_logistic_regression.txt
+perl 05_sub_calculate_features_for_logistic_regression.pl 
+#用/f/mulinlab/huan/workspace/drugrepo/dataset/gene-disease/Cancer/somatic_mutation/ICGC/release_27/release_27_cnv_and_indel_both/pathogenic_hotspot/05_merge_all_cnv_sv_project.txt
+# 用./output/03_unique_merge_gene_based_and_network_based_data.txt中的oncotree sub tissue ID 计算逻辑回归需要的features，得./output/05_sub_calculate_features_for_logistic_regression.txt
+perl 05_main_calculate_features_for_logistic_regression.pl
+#用/f/mulinlab/huan/workspace/drugrepo/dataset/gene-disease/Cancer/somatic_mutation/ICGC/release_27/release_27_cnv_and_indel_both/pathogenic_hotspot/05_merge_all_cnv_sv_project.txt
+# 用./output/03_unique_merge_gene_based_and_network_based_data.txt和中的oncotree main tissue ID 计算逻辑回归需要的features，得./output/05_main_calculate_features_for_logistic_regression.txt
 perl 06_merge_sub_main_features_for_logistic_regression.pl ##将./output/05_sub_calculate_features_for_logistic_regression.txt和./output/05_main_calculate_features_for_logistic_regression.txt merge 在一起，
 #得./output/06_merge_sub_main_features_for_logistic_regression.txt
 #./output/06_merge_sub_main_features_for_logistic_regression.txt 是计算出所以的sub和main tissue的features 可以供用户查询时提供的data 
