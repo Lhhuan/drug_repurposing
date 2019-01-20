@@ -1,5 +1,6 @@
 #从./output/08_drug_primary_calculate_features_for_logistic_regression.txt过滤出./output/07_final_positive_and_negative.txt需要的feature，得./output/09_media_filter_test_data_for_logistic_regression.txt
-#提取./output/09_media_filter_test_data_for_logistic_regression.txt中需要的feature，得 ./output/09_filter_test_data_for_logistic_regression.txt
+#提取./output/09_media_filter_test_data_for_logistic_regression.txt中需要的feature，得 ./output/09_filter_test_data_for_logistic_regression_re.txt
+# 后来发现./output/09_filter_test_data_for_logistic_regression_re.txt 中有的重复（drug cancer pair既是0，也是1，）,所以要把这些去掉,得./output/09_filter_test_data_for_logistic_regression.txt
 #!/usr/bin/perl
 use warnings;
 use strict; 
@@ -13,7 +14,7 @@ open my $I1, '<', $f1 or die "$0 : failed to open input file '$f1' : $!\n";
 open my $I2, '<', $f2 or die "$0 : failed to open input file '$f2' : $!\n";
 open my $O1, '>', $fo1 or die "$0 : failed to open output file '$fo1' : $!\n";
 
-my (%hash1,%hash2,%hash3,%hash4);
+my (%hash1,%hash2,%hash3,%hash4,%hash5,%hash6);
 
 while(<$I1>)
 {
@@ -82,7 +83,7 @@ while(<$I2>)
 close $O1 or warn "$0 : failed to close output file '$fo1' : $!\n"; #关闭文件句柄
 
 my $f3 ="./output/09_media_filter_test_data_for_logistic_regression.txt";
-my $fo2 ="./output/09_filter_test_data_for_logistic_regression.txt";
+my $fo2 ="./output/09_filter_test_data_for_logistic_regression_re.txt";
 open my $I3, '<', $f3 or die "$0 : failed to open input file '$f3' : $!\n";
 open my $O2, '>', $fo2 or die "$0 : failed to open output file '$fo2' : $!\n";
 
@@ -96,4 +97,36 @@ while(<$I3>)
         print $O2 "$k\n";
     }
 }
+close ($O2);
+close ($O1);
 
+my $f4 ="./output/09_filter_test_data_for_logistic_regression_re.txt";
+my $fo3 ="./output/09_filter_test_data_for_logistic_regression.txt";
+open my $I4, '<', $f4 or die "$0 : failed to open input file '$f4' : $!\n";
+open my $O3, '>', $fo3 or die "$0 : failed to open output file '$fo3' : $!\n";
+
+while(<$I4>)
+{
+    chomp;
+    my @f= split /\t/;
+    if (/^cancer_oncotree_id_type/){
+        print $O3 "$_\n";
+    }
+    else{
+        my $cancer_oncotree_id_type = $f[0];
+        my $Drug_chembl_id_Drug_claim_primary_name = $f[1];
+        my $cancer_oncotree_id = $f[2];
+        my $k = "$cancer_oncotree_id_type\t$Drug_chembl_id_Drug_claim_primary_name\t$cancer_oncotree_id";
+        push @{$hash5{$k}},$_;
+    }
+}
+
+foreach my $k(sort keys %hash5){
+    my @vs = @{$hash5{$k}};
+    my $num = @vs;
+    unless($num>1){
+        foreach my $v(@vs){
+            print $O3 "$v\n";
+        }
+    }
+}

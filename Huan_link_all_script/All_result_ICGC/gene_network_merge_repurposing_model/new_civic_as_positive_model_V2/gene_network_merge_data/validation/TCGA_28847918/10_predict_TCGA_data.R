@@ -68,7 +68,7 @@ summary(huan1)
 
 predict. <- predict.glm(pre,type='response',newdata=huan1)
 #按照预测值为1的概率，>0.5的返回1，其余返回0
-predict =ifelse(predict.>0.299,1,0)
+predict =ifelse(predict.>0.278,1,0)
 #把预测的具体值记录下来
 predict_value = predict.
 #数据中加入预测值一列

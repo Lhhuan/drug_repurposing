@@ -19,7 +19,7 @@ rs<- bind_rows(org1,org2,org3,org4,org5)#把所有的表bind到一起
 
 setwd("/f/mulinlab/huan/All_result_ICGC/gene_network_merge_repurposing_model/new_civic_as_positive_model_V2/gene_network_merge_data/validation/TCGA_28847918/figure/")
 
-pdf("16_pandrug_top_buttom_group_comparison.pdf",height = 4,width = 5) #把图片存下来
+#pdf("16_pandrug_top_buttom_group_comparison.pdf",height = 4,width = 5) #把图片存下来
 p10 <- ggplot(rs, aes(x = ff, y = value_in_paper, fill = class)) +
   geom_boxplot(alpha=0.7) +
   scale_y_continuous(name = "drug sensitivity in paper") +
@@ -31,7 +31,7 @@ p10 <- ggplot(rs, aes(x = ff, y = value_in_paper, fill = class)) +
         axis.text.x=element_text(size = 11)) +
   scale_fill_brewer(palette = "Accent")
 p10
-dev.off()
+#dev.off()
 
 
 
