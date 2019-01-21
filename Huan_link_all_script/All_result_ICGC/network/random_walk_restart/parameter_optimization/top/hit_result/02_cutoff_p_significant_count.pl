@@ -26,6 +26,8 @@ while(<$I1>)
 }
 foreach my $cutoff (sort keys %hash1){
     my @v = @{$hash1{$cutoff}};
+    my %hash3;
+    @v = grep { ++$hash3{$_} < 2 } @v; #对数组元素进行去重，
     my $count = @v;
     print $O1 "$cutoff\t$count\n";
 }

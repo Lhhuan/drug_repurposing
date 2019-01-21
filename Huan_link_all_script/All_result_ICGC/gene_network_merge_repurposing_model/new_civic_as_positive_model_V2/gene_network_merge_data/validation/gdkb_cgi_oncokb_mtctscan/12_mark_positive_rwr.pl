@@ -25,7 +25,8 @@ while(<$I1>)
     }
     else{
         my $cancer_gene_exact_match_drug_target_ratio =$f[10];
-        if ($cancer_gene_exact_match_drug_target_ratio =~/0/){
+        #if ($cancer_gene_exact_match_drug_target_ratio =~/\b0\b/){
+        if ($cancer_gene_exact_match_drug_target_ratio -0 <0.00000000001){
             print $O1 "$_\texact_rwr\n";
         }
         else{
