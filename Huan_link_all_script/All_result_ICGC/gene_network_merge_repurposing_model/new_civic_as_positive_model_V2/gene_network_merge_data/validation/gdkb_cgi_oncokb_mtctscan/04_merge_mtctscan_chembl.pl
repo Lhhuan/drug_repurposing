@@ -25,6 +25,7 @@ while(<$I1>)
     }
     else{
         my $drug_name= $f[0];
+        my $source = $f[19];
         my $implication_result = $f[12];
         my $oncotree_detail_ID = $f[-3];
         my $oncotree_main_ID = $f[-1];
@@ -45,8 +46,10 @@ while(<$I1>)
         my $un_quality = "19|10|may";
         if ($implication_result =~/$quality/i ){
            unless($implication_result =~/$un_quality/i){
-                push @{$hash1{$k1}},$_;
-                push @{$hash2{$k2}},$_; 
+               unless($source =~/civic/i){
+                    push @{$hash1{$k1}},$_;
+                    push @{$hash2{$k2}},$_; 
+                }
            }
        }
     }

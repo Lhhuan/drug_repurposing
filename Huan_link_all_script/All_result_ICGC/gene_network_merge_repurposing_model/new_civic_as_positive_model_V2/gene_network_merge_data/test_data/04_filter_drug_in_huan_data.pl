@@ -41,6 +41,7 @@ while(<$I2>)
         my $Drug_chembl_id_Drug_claim_primary_name =$f[0];
         my $Drug_claim_primary_name = $f[4];
         $Drug_claim_primary_name =uc($Drug_claim_primary_name);
+        $Drug_claim_primary_name =~s/\(.*?$//g;
         $Drug_claim_primary_name =~ s/"//g;
         $Drug_claim_primary_name =~ s/'//g;
         $Drug_claim_primary_name =~ s/\s+//g;
@@ -64,6 +65,7 @@ while(<$I3>)
     unless (/^drug/){
         my $drug = $f[0];
         my $drug_rename = $f[1];
+        $drug_rename =~s/\(.*?$//g;
         $drug_rename =~ s/"//g;
         $drug_rename =~ s/'//g;
         $drug_rename =~ s/\s+//g;

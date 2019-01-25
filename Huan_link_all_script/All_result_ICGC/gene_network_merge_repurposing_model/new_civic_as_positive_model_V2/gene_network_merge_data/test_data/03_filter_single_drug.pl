@@ -30,6 +30,7 @@ while(<$I1>)
     unless (/^Drug_chembl_id/){
         my $Drug_chembl_id_Drug_claim_primary_name =$f[0];
         my $Drug_claim_primary_name = $f[4];
+        $Drug_claim_primary_name =~s/\(.*?$//g;
         $Drug_claim_primary_name =uc($Drug_claim_primary_name);
         $Drug_claim_primary_name =~ s/"//g;
         $Drug_claim_primary_name =~ s/'//g;
@@ -39,7 +40,7 @@ while(<$I1>)
         $Drug_claim_primary_name =~s/\+//g;
         $Drug_claim_primary_name =~s/\)//g;
         $Drug_claim_primary_name =~s/\(//g;
-        $Drug_claim_primary_name =~s/\//_/g;
+        $Drug_claim_primary_name =~s/\///g;
         $hash1{$Drug_claim_primary_name}= $Drug_chembl_id_Drug_claim_primary_name;
     }
 }
@@ -71,7 +72,7 @@ while(<$I2>)
             $drug_rename =~s/\+//g;
             $drug_rename =~s/\(.*?//g;
             $drug_rename =~s/\)//g;
-            $drug_rename =~s/\//_/g;
+            $drug_rename =~s/\///g;
             if (exists $hash1{$drug_rename}){
                 my $output2 = "$drug\t$drug_rename";
                 unless(exists $hash3{$output2}){

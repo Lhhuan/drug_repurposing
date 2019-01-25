@@ -36,7 +36,7 @@ perl 11_merge_prediction_and_icgc_result.pl ##把./output/10_prediction_logistic
 
 #-----------------------------------------------------------------------------------------------一些其他的验证
     Rscript 11_sort_value_in_paper.R  #对./output/11_prediction_and_icgc_result.txt 按照value in paper升序排列，得./output/11_prediction_and_icgc_result_sorted_by_value_in_paper.txt
-    head -7089 ./output/11_prediction_and_icgc_result_sorted_by_value_in_paper.txt > ./output/11_prediction_and_icgc_result_sorted_by_value_in_paper_top_0.1.txt
+    head -7174 ./output/11_prediction_and_icgc_result_sorted_by_value_in_paper.txt > ./output/11_prediction_and_icgc_result_sorted_by_value_in_paper_top_0.1.txt
     perl 12_value_in_paper_top0.1_overlap_prediction_top0.1.pl #看./output/11_prediction_and_icgc_result_top0.1.txt和./output/11_prediction_and_icgc_result_sorted_by_value_in_paper_top_0.1.txt的overlap
     #得./output/12_value_in_paper_top0.1_overlap_prediction_top0.1.txt
 

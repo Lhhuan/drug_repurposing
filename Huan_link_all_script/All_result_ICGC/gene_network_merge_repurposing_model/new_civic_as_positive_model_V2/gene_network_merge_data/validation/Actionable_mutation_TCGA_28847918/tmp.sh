@@ -1,0 +1,4 @@
+perl 01_filter_snv_in_huan.pl
+echo -e "finish_01_filter_snv_in_huan\n"
+perl 02_calculate_features_for_logistic_regression.pl
+echo -e "finish_02_calculate_features_for_logistic_regression\n"

@@ -2,7 +2,7 @@ library(gcookbook)
 library(dplyr)
 library(ggplot2)
 library(readr)
-setwd("/f/mulinlab/huan/All_result_ICGC/gene_network_merge_repurposing_model/new_civic_as_positive_model_V2/gene_network_merge_data/validation/gdkb_cgi_oncokb_mtctscan/")
+setwd("/f/mulinlab/huan/All_result_ICGC/gene_network_merge_repurposing_model/new_civic_as_positive_model_V2/gene_network_merge_data/validation/gdkb_cgi_oncokb_mtctscan_v2/")
 
 BOD1<-read_tsv("./output/09_number_of_positive_in_multi_top_ratio.txt",col_names = T )%>%as.data.frame()
 

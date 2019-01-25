@@ -1,4 +1,4 @@
-wget https://civicdb.org/downloads/nightly/nightly-ClinicalEvidenceSummaries.tsv
+wget https://civicdb.org/downloads/nightly/nightly-ClinicalEvidenceSummaries.tsv  #源于civic #2018.12.10download
 mv nightly-ClinicalEvidenceSummaries.tsv ./data/
 perl 01_filter_Sensitivity_clinical_significance.pl #把./data/nightly-ClinicalEvidenceSummaries.tsv 中clinical_significan为Sensitivity的筛选出来，得./output/01_filter_Sensitivity_clinical_significance.txt
 cat ./output/01_filter_Sensitivity_clinical_significance.txt | cut -f2 | sort -u >./output/unqie_cancer.txt
