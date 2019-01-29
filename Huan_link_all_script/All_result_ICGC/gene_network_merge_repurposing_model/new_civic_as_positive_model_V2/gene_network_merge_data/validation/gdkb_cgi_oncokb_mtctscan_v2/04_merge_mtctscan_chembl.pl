@@ -31,6 +31,7 @@ while(<$I1>)
         my $oncotree_main_ID = $f[-1];
         my $Drug_claim_primary_name = $drug_name;
         $Drug_claim_primary_name =uc ($Drug_claim_primary_name);
+        $Drug_claim_primary_name =~s/\(.*?$//g;
         $Drug_claim_primary_name =~ s/"//g;
         $Drug_claim_primary_name =~ s/'//g;
         $Drug_claim_primary_name =~ s/,//g;
@@ -68,6 +69,7 @@ while(<$I2>)
         my $Drug_chembl_id_Drug_claim_primary_name = $f[2];
         my $cancer_oncotree_id = $f[3];
         $Drug_claim_primary_name =uc ($Drug_claim_primary_name);
+        $Drug_claim_primary_name =~s/\(.*?$//g;
         $Drug_claim_primary_name =~ s/"//g;
         $Drug_claim_primary_name =~ s/'//g;
         $Drug_claim_primary_name =~ s/,//g;
@@ -76,7 +78,7 @@ while(<$I2>)
         $Drug_claim_primary_name =~s/\)//g;
         $Drug_claim_primary_name =~s/\//_/g;
         $Drug_claim_primary_name =~s/\.//g;
-        $Drug_claim_primary_name =~s/\-//g;
+        $Drug_claim_primary_name =~s/\-//g; 
         my $k = "$Drug_claim_primary_name\t$cancer_oncotree_id";
         if (exists $hash1{$k}){
             print $O1 "$_\tdetail\n";

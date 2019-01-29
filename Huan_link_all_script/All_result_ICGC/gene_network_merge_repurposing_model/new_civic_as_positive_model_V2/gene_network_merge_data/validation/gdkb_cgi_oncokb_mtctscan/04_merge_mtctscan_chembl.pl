@@ -31,6 +31,7 @@ while(<$I1>)
         my $oncotree_main_ID = $f[-1];
         my $Drug_claim_primary_name = $drug_name;
         $Drug_claim_primary_name =uc ($Drug_claim_primary_name);
+        $Drug_claim_primary_name =~s/\(.*?$//g;
         $Drug_claim_primary_name =~ s/"//g;
         $Drug_claim_primary_name =~ s/'//g;
         $Drug_claim_primary_name =~ s/,//g;
@@ -44,14 +45,14 @@ while(<$I1>)
         my $k2 = "$Drug_claim_primary_name\t$oncotree_main_ID"; 
         my $quality = "1|effective|FDA|sensitivity|approved"; #不加条件筛选 来数据会有很多，所以，要进一步筛选，将implication_result 的质量控制提高门槛
         my $un_quality = "19|10|may";
-        if ($implication_result =~/$quality/i ){
-           unless($implication_result =~/$un_quality/i){
+        # if ($implication_result =~/$quality/i ){
+        #    unless($implication_result =~/$un_quality/i){
                unless($source =~/civic/i){
                     push @{$hash1{$k1}},$_;
                     push @{$hash2{$k2}},$_; 
                 }
-           }
-       }
+    #        }
+    #    }
     }
 }
 
@@ -68,6 +69,7 @@ while(<$I2>)
         my $Drug_chembl_id_Drug_claim_primary_name = $f[2];
         my $cancer_oncotree_id = $f[3];
         $Drug_claim_primary_name =uc ($Drug_claim_primary_name);
+        $Drug_claim_primary_name =~s/\(.*?$//g;
         $Drug_claim_primary_name =~ s/"//g;
         $Drug_claim_primary_name =~ s/'//g;
         $Drug_claim_primary_name =~ s/,//g;
@@ -76,7 +78,7 @@ while(<$I2>)
         $Drug_claim_primary_name =~s/\)//g;
         $Drug_claim_primary_name =~s/\//_/g;
         $Drug_claim_primary_name =~s/\.//g;
-        $Drug_claim_primary_name =~s/\-//g;
+        $Drug_claim_primary_name =~s/\-//g; 
         my $k = "$Drug_claim_primary_name\t$cancer_oncotree_id";
         if (exists $hash1{$k}){
             print $O1 "$_\tdetail\n";
