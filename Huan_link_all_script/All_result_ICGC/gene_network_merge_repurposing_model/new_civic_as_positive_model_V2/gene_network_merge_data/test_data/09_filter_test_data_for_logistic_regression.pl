@@ -26,6 +26,7 @@ while(<$I1>)
     else{
         $_ =~ s/^\s+//g;
         my $Drug_claim_primary_name = $f[0];
+        $Drug_claim_primary_name =~s/\(.*?$//g;
         $Drug_claim_primary_name =uc ($Drug_claim_primary_name);
         $Drug_claim_primary_name =~ s/"//g;
         $Drug_claim_primary_name =~ s/'//g;
@@ -33,6 +34,7 @@ while(<$I1>)
         $Drug_claim_primary_name =~ s/\s+//g;
         $Drug_claim_primary_name =~s/\&/+/g;
         $Drug_claim_primary_name =~s/\)//g;
+        $Drug_claim_primary_name =~s/\(//g;
         $Drug_claim_primary_name =~s/\//_/g;
         my $cancer_oncotree_id= $f[3]; 
         my $k = "$Drug_claim_primary_name\t$cancer_oncotree_id";
@@ -54,6 +56,7 @@ while(<$I2>)
         $Drug =~ s/,//g;
         $Drug =~s/\&/+/g;
         $Drug =~s/\)//g;
+        $Drug =~s/\(//g;
         $Drug =~s/\//_/g;
         my $oncotree_detail_ID= $f[1];
         my $oncotree_main_ID= $f[3];
@@ -100,6 +103,7 @@ while(<$I3>)
 close ($O2);
 close ($O1);
 
+#-----------------------------------------------------------# 后来发现./output/09_filter_test_data_for_logistic_regression_re.txt 中有的重复（drug cancer pair既是0，也是1，）,所以要把这些去掉,得./output/09_filter_test_data_for_logistic_regression.txt
 my $f4 ="./output/09_filter_test_data_for_logistic_regression_re.txt";
 my $fo3 ="./output/09_filter_test_data_for_logistic_regression.txt";
 open my $I4, '<', $f4 or die "$0 : failed to open input file '$f4' : $!\n";

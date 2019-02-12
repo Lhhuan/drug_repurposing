@@ -1,4 +1,4 @@
-#统计./output/04_sample_in_paper_top_repurposing_value.txt 中predict_value >0.5的每个drug推荐的sample个数，得./output/05_count_drug_number_in_sample.txt
+#统计./output/04_sample_in_paper_top_repurposing_value.txt 中predict_value >0.9的每个drug推荐的sample个数，得./output/05_count_drug_number_in_sample.txt
 ## 得 包含drug sample数目的drug cancer sample info得 ./output/05_count_drug_number_in_sample_info.txt
 #!/usr/bin/perl
 use warnings;
@@ -24,7 +24,8 @@ while(<$I1>)
         my $oncotree_id_type =$f[2];
         my $paper_sample_name = $f[3];
         my $predict_value =$f[-1];
-        if ($predict_value>0.5){ #只统计predict_value>0.5
+        #if ($predict_value>0.5){ #只统计predict_value>0.5
+        if ($predict_value>0.9){ #只统计predict_value>0.5
             my $v= "$oncotree_id\t$oncotree_id_type\t$paper_sample_name\t$predict_value";
             push @{$hash1{$Drug_chembl_id_Drug_claim_primary_name}},$v;
         }

@@ -5,9 +5,10 @@ Rscript 03_predict_repurposing.R #为./output/02_calculate_features_for_logistic
 Rscript 04_sort_predict_value_by_sample.R #取出./output/03_prediction_logistic_regression.txt中每个sample repurposing value top1 的药物，得./output/04_sample_in_paper_top_repurposing_value.txt
 perl 05_count_drug_number_in_sample.pl #统计./output/04_sample_in_paper_top_repurposing_value.txt 中predict_value >0.5的每个drug推荐的sample个数，得./output/05_count_drug_number_in_sample.txt
 ## 得 包含drug sample数目的drug cancer sample info得 ./output/05_count_drug_number_in_sample_info.txt
-perl 06_merge_info_used_to_prediction_and_05_count_drug_number_sample.pl #为./output/05_count_drug_number_in_sample_info.txt $number>10的信息 从./output/01_sorted_filter_snv_in_huan.txt和output/02_calculate_features_for_logistic_regression.txt提取出用于预测的信息，得
+perl 06_merge_info_used_to_prediction_and_05_count_drug_number_sample.pl #
+#为./output/05_count_drug_number_in_sample_info.txt 从./output/01_sorted_filter_snv_in_huan.txt和output/02_calculate_features_for_logistic_regression.txt提取出用于预测的信息，得
 #./output/06_merge_info_used_to_prediction_and_05_count_drug_number_sample.txt
-perl 07_extract_ICGC_mutation_id_HVSGg.pl #将"/f/mulinlab/huan/workspace/drugrepo/dataset/gene-disease/Cancer/somatic_mutation/ICGC/release_27/release_27_snv_indel/simple_somatic_mutation.largethan1_vep.vcf"
+perl 07_extract_ICGC_mutation_id_HGVSg.pl #将"/f/mulinlab/huan/workspace/drugrepo/dataset/gene-disease/Cancer/somatic_mutation/ICGC/release_27/release_27_snv_indel/simple_somatic_mutation.largethan1_vep.vcf"
 #中的mutation id和HVSGg提取出来，得./output/07_ICGC_mutation_id_HGVSg.txt
 perl 08_merge_top_number_drug_sample_mutation_hgvsg.pl #为./output/06_merge_info_used_to_prediction_and_05_count_drug_number_sample.txt 添加 HGVSg，
 #得./output/08_merge_top_number_drug_sample_mutation_hgvsg.txt
@@ -25,6 +26,7 @@ perl 11_deal_with_drug_by_drug_interaction_type.pl #根据drug_interaction type�
 perl 12_merge_civic_and_mtctscan_other_database.pl # 把./output/11_civic_sensitivity_oncotree_deal_drug.txt 和../gdkb_cgi_oncokb_mtctscan/output/02_merge_mtctscan_all_sensitivity_oncotree.txt 中的非civic来源的sensitivity
 #merge 到一起，得./output/12_merge_civic_and_mtctscan_other_database.txt
 perl 13_transvar_ref_alt.pl #把区分./output/12_merge_civic_and_mtctscan_other_database.txt里面的突变类型是否可以用transvar 转换,得./output/13_transvar_ref_alt.txt
+#此步中报错没有关系，表明不能为该位点不能用transvar转
 perl 14_cancer_drug_specific_hit_actionable_mutation.pl #将./output/13_transvar_ref_alt.txt 和./output/082_merge_Drug_top_number_drug_sample_mutation_hgvsg_cancer_term.txt 通过cancer drug mutation merge 到一起，得
 #hit 住的action mutation 文件得./output/14_cancer_drug_specific_hit_actionable_mutation.txt ,
 ##得potential 的actionable mutation 得文件./output/14_cancer_drug_specific_potential_actionable_mutation.txt

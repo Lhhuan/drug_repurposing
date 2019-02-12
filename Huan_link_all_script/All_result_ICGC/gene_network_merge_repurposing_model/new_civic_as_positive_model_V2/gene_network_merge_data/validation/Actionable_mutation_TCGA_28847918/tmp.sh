@@ -1,4 +1,28 @@
-perl 01_filter_snv_in_huan.pl
-echo -e "finish_01_filter_snv_in_huan\n"
-perl 02_calculate_features_for_logistic_regression.pl
-echo -e "finish_02_calculate_features_for_logistic_regression\n"
+# perl 01_filter_snv_in_huan.pl
+# echo -e "finish_01_filter_snv_in_huan\n"
+# perl 02_calculate_features_for_logistic_regression.pl
+# echo -e "finish_02_calculate_features_for_logistic_regression\n"
+perl 07_extract_ICGC_mutation_id_HGVSg.pl
+echo -e "07_extract_ICGC_mutation_id_HVSGg\n"
+perl 08_merge_top_number_drug_sample_mutation_hgvsg.pl
+echo -e "08_merge_top_number_drug_sample_mutation_hgvsg\n"
+perl 081_merge_Drug_claim_primary_name_top_number_drug_sample_mutation_hgvsg.pl
+echo -e "081_merge_Drug_claim_primary_name_top_number_drug_sample_mutation_hgvsg\n"
+perl 082_merge_Drug_top_number_drug_sample_mutation_hgvsg_cancer_term.pl
+echo -e "082_merge_Drug_top_number_drug_sample_mutation_hgvsg_cancer_term\n"
+perl 09_filter_civic_sensitivty.pl
+echo -e "09_filter_civic_sensitivty\n"
+perl 10_civic_merge_oncotree.pl
+echo -e "10_civic_merge_oncotree\n"
+perl 11_deal_with_drug_by_drug_interaction_type.pl
+echo -e "11_deal_with_drug_by_drug_interaction_type\n"
+perl 12_merge_civic_and_mtctscan_other_database.pl
+echo -e "12_merge_civic_and_mtctscan_other_database\n"
+perl 13_transvar_ref_alt.pl
+echo -e "13_transvar_ref_alt\n"
+perl 14_cancer_drug_specific_hit_actionable_mutation.pl
+echo -e "14_cancer_drug_specific_hit_actionable_mutation\n"
+perl 15_pancancer_pandrug_hit_actionable_mutation.pl
+echo -e "15_pancancer_pandrug_hit_actionable_mutation\n"
+perl 16_count_actionable_mutation_percentage_in_per_drug.pl
+echo -e "16_count_actionable_mutation_percentage_in_per_drug\n"

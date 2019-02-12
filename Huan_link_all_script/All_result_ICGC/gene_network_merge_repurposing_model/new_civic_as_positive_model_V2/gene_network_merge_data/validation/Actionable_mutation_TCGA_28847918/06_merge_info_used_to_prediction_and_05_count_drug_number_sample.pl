@@ -1,4 +1,5 @@
-#为./output/05_count_drug_number_in_sample_info.txt $number>10的信息 从./output/01_sorted_filter_snv_in_huan.txt和output/02_calculate_features_for_logistic_regression.txt提取出用于预测的信息，得
+########为./output/05_count_drug_number_in_sample_info.txt $number>10的信息 从./output/01_sorted_filter_snv_in_huan.txt和output/02_calculate_features_for_logistic_regression.txt提取出用于预测的信息，得
+#为./output/05_count_drug_number_in_sample_info.txt 从./output/01_sorted_filter_snv_in_huan.txt和output/02_calculate_features_for_logistic_regression.txt提取出用于预测的信息，得
 #./output/06_merge_info_used_to_prediction_and_05_count_drug_number_sample.txt
 #!/usr/bin/perl
 use warnings;
@@ -35,11 +36,11 @@ while(<$I1>)
         my $oncotree_id_type =$f[3];
         my $paper_sample_name = $f[4];
         my $predict_value =$f[5];
-        if ($number>10){ #只统计$number>10
+       # if ($number>10){ #只统计$number>10
             my $k= "$Drug_chembl_id_Drug_claim_primary_name\t$oncotree_id\t$oncotree_id_type\t$paper_sample_name";
             my $v = "$predict_value\t$number";
             push @{$hash1{$k}},$v;
-        }
+       # }
     }
 }
 
