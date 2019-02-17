@@ -20,7 +20,7 @@ while(<$I1>)
         my $Drug_chembl_id_Drug_claim_primary_name= $f[-1]; 
         my $CCLE_name = $f[0];
         my $Compound = $f[5];
-        my $AUC = $f[10];
+        my $AUC = $f[6];
         my $k = "$Drug_chembl_id_Drug_claim_primary_name\t$CCLE_name";
         my $v = "$Compound\t$AUC";
         push @{$hash1{$k}},$v;
@@ -50,7 +50,7 @@ while(<$I2>)
             }
         }
         else{
-            print STDERR "$k\n";
+            #print STDERR "$k\n";
         }
     }
 }

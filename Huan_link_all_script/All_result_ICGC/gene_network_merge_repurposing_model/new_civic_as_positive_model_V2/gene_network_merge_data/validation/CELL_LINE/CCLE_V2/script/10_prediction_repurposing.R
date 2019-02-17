@@ -5,7 +5,7 @@ library(dplyr)
 library(stringr)
 
 
-setwd("/f/mulinlab/huan/All_result_ICGC/gene_network_merge_repurposing_model/new_civic_as_positive_model_V2/gene_network_merge_data/validation/CELL_LINE/CCLE/")
+setwd("/f/mulinlab/huan/All_result_ICGC/gene_network_merge_repurposing_model/new_civic_as_positive_model_V2/gene_network_merge_data/validation/CELL_LINE/CCLE_V2/")
 #---------------训练集
 org<-read.table("/f/mulinlab/huan/All_result_ICGC/gene_network_merge_repurposing_model/new_civic_as_positive_model_V2/gene_network_merge_data/test_data/output/09_filter_test_data_for_logistic_regression.txt",header = T,sep = "\t") %>% as.data.frame()
 #org<-read.table("/f/mulinlab/huan/All_result_ICGC/gene_network_merge_repurposing_model/new_civic_as_positive_model_V2/gene_network_merge_data/test_data/output/09_filter_test_data_for_logistic_regression_0.788.txt",header = T,sep = "\t") %>% as.data.frame()

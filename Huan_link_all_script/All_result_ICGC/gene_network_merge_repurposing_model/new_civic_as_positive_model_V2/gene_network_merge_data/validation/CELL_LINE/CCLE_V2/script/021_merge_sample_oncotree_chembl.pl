@@ -1,5 +1,10 @@
 #将../output/02_merge_sample_oncotree_drug.txt 和"/f/mulinlab/huan/All_result_ICGC/21_all_drug_infos.txt" 通过Drug_claim_primary_name merge,得
 #../output/021_merge_sample_oncotree_chembl.txt
+#得在huan中不存在的药物文件../output/021_out_of_huan_drug.txt
+#!/usr/bin/perl
+use warnings;
+use strict; 
+use utf8;
 
 
 my $f1 = "/f/mulinlab/huan/All_result_ICGC/all_drug_infos_score.txt";
@@ -8,7 +13,9 @@ my $f2 = "../output/02_merge_sample_oncotree_drug.txt";
 open my $I2, '<', $f2 or die "$0 : failed to open input file '$f2' : $!\n";
 my $fo1 ="../output/021_merge_sample_oncotree_chembl.txt"; 
 open my $O1, '>', $fo1 or die "$0 : failed to open output file '$fo1' : $!\n";
-
+my $fo2 ="../output/021_out_of_huan_drug.txt"; 
+open my $O2, '>', $fo2 or die "$0 : failed to open output file '$fo2' : $!\n";
+my (%hash1, %hash2, %hash3);
 while(<$I1>)
 {
     chomp;
@@ -63,7 +70,10 @@ while(<$I2>)
             }
         }
         else{
-            print STDERR "$drug\n";
+            unless(exists $hash3{$drug}){
+                $hash3{$drug} =1;
+                print $O2 "$drug\n";
+            }
         }
     }
 }

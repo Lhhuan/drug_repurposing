@@ -25,7 +25,7 @@ while(<$I1>)
         my $paper_sample_name = $f[3];
         my $predict_value =$f[-1];
         #if ($predict_value>0.5){ #只统计predict_value>0.5
-        if ($predict_value>0.9){ #只统计predict_value>0.5
+        if ($predict_value>=0.9){ #只统计predict_value>0.5
             my $v= "$oncotree_id\t$oncotree_id_type\t$paper_sample_name\t$predict_value";
             push @{$hash1{$Drug_chembl_id_Drug_claim_primary_name}},$v;
         }

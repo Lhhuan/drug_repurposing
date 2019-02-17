@@ -2,6 +2,10 @@
 # echo -e "finish_01_filter_snv_in_huan\n"
 # perl 02_calculate_features_for_logistic_regression.pl
 # echo -e "finish_02_calculate_features_for_logistic_regression\n"
+perl 05_count_drug_number_in_sample.pl
+echo -e "05_count_drug_number_in_sample\n"
+perl 06_merge_info_used_to_prediction_and_05_count_drug_number_sample.pl
+echo -e "06_merge_info_used_to_prediction_and_05_count_drug_number_sample\n"
 perl 07_extract_ICGC_mutation_id_HGVSg.pl
 echo -e "07_extract_ICGC_mutation_id_HVSGg\n"
 perl 08_merge_top_number_drug_sample_mutation_hgvsg.pl

@@ -12,6 +12,7 @@ use utf8;
 
 my $f1 = "/f/mulinlab/huan/workspace/drugrepo/dataset/gene-disease/Cancer/somatic_mutation/ICGC/release_27/release_27_cnv_and_indel_both/pathogenic_hotspot/04_sorted_all_tra_inv_pathogenic_hotspot_gene_oncotree.txt";
 my $f2 = "../output/sorted_tra_sample.txt";
+# my $f2 = "test_tra.txt";
 my $fo1 = "../output/07_tra_in_huan.txt";
 
 open my $I1, '<', $f1 or die "$0 : failed to open input file '$f1' : $!\n";
@@ -78,7 +79,7 @@ while(<$I2>)
                 my @f2 = split/\t/,$info;
                 my $output = "$paper_sample_name\t$info\t$k1\tdetail";
                 my $source =$f2[8];
-                if($source =~/inv_svscore/){
+                if($source =~/tra_svscore/){
                     my $chr1 = $f2[0];
                     my $start1 = $f2[1];
                     my $end1 = $f2[2];
@@ -171,7 +172,7 @@ while(<$I2>)
                     my @f2 = split/\t/,$info;
                     my $output = "$paper_sample_name\t$info\t$k2\tmain";
                     my $source =$f2[8];
-                    if($source =~/inv_svscore/){
+                    if($source =~/tra_svscore/){
                         my $chr1 = $f2[0];
                         my $start1 = $f2[1];
                         my $end1 = $f2[2];

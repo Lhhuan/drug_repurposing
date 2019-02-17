@@ -29,3 +29,21 @@ cat ../output/11_merge_prediction_repurposing_drug_sensitive_info.txt |cut -f1,2
 perl 12_top_prediction_sensitivity_comparsion.pl # #将../output/11_merge_prediction_repurposing_drug_sensitive_info_sample.txt prediction value 分成top 0-0.1, 0.1-0.9, 0.9-1 共3组做比较,
 #分别得文件../output/12_pandrug_top_${top}_${buttom}.txt
 Rscript 13_pandrug_comparison_boxplot.R
+perl 14_top_prediction_sensitivity_comparsion.pl # #将../output/11_merge_prediction_repurposing_drug_sensitive_info_sample.txt prediction value 分成top 0-0.2, 0.2-0.8, 0.8-1 共3组做比较,
+#分别得文件../output/14_pandrug_top_${top}_${buttom}.txt
+Rscript 15_pandrug_comparison_boxplot.R
+perl 16_top_prediction_sensitivity_comparsion.pl # #将../output/11_merge_prediction_repurposing_drug_sensitive_info_sample.txt prediction value 分成top 0-0.3, 0.3-0.7, 0.7-1 共3组做比较,
+#分别得文件../output/16_pandrug_top_${top}_${buttom}.txt
+Rscript 17_pandrug_comparison_boxplot.R
+perl 18_top_prediction_sensitivity_comparsion.pl # #将../output/11_merge_prediction_repurposing_drug_sensitive_info_sample.txt prediction value 分成top 0-0.4, 0.4-0.6, 0.6-1 共3组做比较,
+#分别得文件../output/18_pandrug_top_${top}_${buttom}.txt
+Rscript 19_pandrug_comparison_boxplot.R
+perl 20_top_prediction_sensitivity_comparsion.pl # #将../output/11_merge_prediction_repurposing_drug_sensitive_info_sample.txt prediction value 分成top 0-0.5, 0.5-1 共2组做比较,
+#分别得文件../output/20_pandrug_top_${top}_${buttom}.txt
+Rscript 21_pandrug_comparison_boxplot.R
+perl 22_top_prediction_sensitivity_comparsion.pl # #将../output/11_merge_prediction_repurposing_drug_sensitive_info_sample.txt prediction value 分成top 0-0.6, 0.6-1 共2组做比较,
+#分别得文件../output/22_pandrug_top_${top}_${buttom}.txt
+Rscript 23_pandrug_comparison_boxplot.R
+perl 24_top_prediction_sensitivity_comparsion.pl # #将../output/11_merge_prediction_repurposing_drug_sensitive_info_sample.txt prediction value 分成top 0-0.7, 0.7-1 共2组做比较,
+#分别得文件../output/24_pandrug_top_${top}_${buttom}.txt
+Rscript 25_pandrug_comparison_boxplot.R

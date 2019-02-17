@@ -17,6 +17,9 @@ wc -l simple_somatic_mutation.largethan4.vcf #334462
 wc -l simple_somatic_mutation.largethan5.vcf #194031
 Rscript select_occur.R  #绘制不同occurthanX与mutation 数目的关系。
 
+echo -e "Mutation_ID\toccur_time" > pancancer_mutation.largethan1_occurance.txt
+zcat simple_somatic_mutation.aggregated.vcf.gz | perl -ane '{next if($_ =~ /^#/); my @info_array = split(/;/,$F[7]); foreach my $i (@info_array){if($i =~ /^affected_donors/){my @a_affected = split(/\=/,$i);if($a_affected[1] >1){print "$F[2]\t$a_affected[1]\n"}}} }'  | sort -u |sort -k2,2g >> pancancer_mutation.largethan1_occurance.txt
+perl somatic_mutation.largethan1_cadd.pl #为pancancer_mutation.largethan1_occurance.txt 从./cadd_score/SNV_Indel_cadd_score.vcf中提取CADD score,得pancancer_mutation.largethan1_occurance_CADD.txt
 
 wget ftp://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_human/release_28/GRCh37_mapping/gencode.v28lift37.annotation.gff3.gz
 gzip -d gencode.v28lift37.annotation.gff3.gz #得gencode.v28lift37.annotation.gff3

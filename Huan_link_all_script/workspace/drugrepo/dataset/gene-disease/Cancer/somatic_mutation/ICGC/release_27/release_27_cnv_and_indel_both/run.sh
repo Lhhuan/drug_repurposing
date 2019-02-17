@@ -22,4 +22,9 @@ perl 05_merge_cnv_sv_all.pl #因为现在是gene只要落在INV和tra的一个br
 #所以将./pathogenic_hotspot/04_all_tra_inv_pathogenic_hotspot_gene_oncotree.txt和./pathogenic_hotspot/04_all_CNV_dup_del_pathogenic_hotspot_gene_oncotree.txt merge在一起，得./pathogenic_hotspot/05_all_sv_cnv_oncotree.txt
 
 
+cp /f/mulinlab/zhouyao/workspace/huan/results/hotspot_samples/temp/ ./occur_time 
+#在huan_handle_occur_time 中对./occur_time文件进行处理
+
+
+
 
