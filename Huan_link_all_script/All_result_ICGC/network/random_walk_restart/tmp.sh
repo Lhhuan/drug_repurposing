@@ -4,8 +4,8 @@
 # echo -e "finish_9.26_count_random_overlap_fact\n"
 # perl 9.27_merge_drug_target_network_gene_normal_score.pl
 # echo -e "finish_9.27_merge_drug_target_network_gene_normal_score\n"
-perl 10_find_logic_of_the_shortest.pl
-echo -e "finish_10_find_logic_of_the_shortest\n"
+# perl 10_find_logic_of_the_shortest.pl
+# echo -e "finish_10_find_logic_of_the_shortest\n"
 perl 11_find_cancer_for_drug.pl
 echo -e "finish_11_find_cancer_for_drug\n"
 perl 12_merge_drug_indication_cancer.pl

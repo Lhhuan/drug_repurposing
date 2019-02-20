@@ -5,7 +5,7 @@ less ./output/02_calculate_features_for_logistic_regression.txt | cut -f4 | sort
 wc -l ./output/02_calculate_features_for_logistic_regression.txt #4227221 个pairs
 Rscript 03_predict_repurposing.R #为./output/02_calculate_features_for_logistic_regression.txt 预测drug repurposing ,得./output/03_prediction_logistic_regression.txt
 Rscript 04_sort_predict_value_by_sample.R #取出./output/03_prediction_logistic_regression.txt中每个sample repurposing value top1 的药物，得./output/04_sample_in_paper_top_repurposing_value.txt
-perl 05_count_drug_number_in_sample.pl #统计./output/04_sample_in_paper_top_repurposing_value.txt 中predict_value >0.5的每个drug推荐的sample个数，得./output/05_count_drug_number_in_sample.txt
+perl 05_count_drug_number_in_sample.pl #统计./output/04_sample_in_paper_top_repurposing_value.txt 中predict_value >0.9的每个drug推荐的sample个数，得./output/05_count_drug_number_in_sample.txt
 ## 得 包含drug sample数目的drug cancer sample info得 ./output/05_count_drug_number_in_sample_info.txt #2488行
 perl 06_merge_info_used_to_prediction_and_05_count_drug_number_sample.pl #
 #为./output/05_count_drug_number_in_sample_info.txt 从./output/01_sorted_filter_snv_in_huan.txt和output/02_calculate_features_for_logistic_regression.txt提取出用于预测的信息，得

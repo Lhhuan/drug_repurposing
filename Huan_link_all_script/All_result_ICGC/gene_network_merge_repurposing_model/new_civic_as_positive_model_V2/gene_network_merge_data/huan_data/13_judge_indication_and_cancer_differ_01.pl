@@ -16,8 +16,8 @@ my $fo2 ="./output/13_indication_and_cancer_differ.txt";
 open my $O2, '>', $fo2 or die "$0 : failed to open output file '$fo2' : $!\n";
 my $fo4 ="./output/13_indication_and_cancer_lable.txt"; 
 open my $O4, '>', $fo4 or die "$0 : failed to open output file '$fo4' : $!\n";
-my $fo3 ="./output/13_indication_and_cancer_lable_info.txt"; 
-open my $O3, '>', $fo3 or die "$0 : failed to open output file '$fo3' : $!\n";
+# my $fo3 ="./output/13_indication_and_cancer_lable_info.txt"; 
+# open my $O3, '>', $fo3 or die "$0 : failed to open output file '$fo3' : $!\n";
 
 
 my $title = "Drug_chembl_id_Drug_claim_primary_name\tDrug_claim_primary_name";
@@ -31,10 +31,7 @@ my (%hash7,%hash8,%hash9,%hash10);
 while(<$I1>)
 {
     chomp;
-    if(/^Drug_chembl_id_Drug_claim_primary_name/){
-        print $O3 "$_\tlable\n";
-    }
-    else{
+    unless(/^Drug_chembl_id_Drug_claim_primary_name/){
         my @f= split /\t/;
         my $Drug_chembl_id_Drug_claim_primary_name = $f[0];
         my $Drug_claim_primary_name = $f[1];
@@ -60,9 +57,6 @@ while(<$I1>)
         foreach my $indication_main(@indication_mains){
             push @{$hash3{$k}},$indication_main;
         }
-        my $k9 = "$k\t$cancer_oncotree_detail_ID";
-        my $k10 = "$k\t$cancer_oncotree_main_ID";
-        push @{$hash9{$k9}},$_; #把 main 和tissue 都push 进数组
     }
 }
 
@@ -76,6 +70,7 @@ foreach my $drug (sort keys %hash1){
     my @indications = @{$hash3{$drug}};
     @indications = grep { ++$hash6{$_} < 2 } @indications ;
     foreach my $cancer_oncotree(@cancer_oncotrees){
+        print "$drug\t$cancer_oncotree\n";
         my @f = split/\t/,$cancer_oncotree;
         my $cancer_detail =$f[0];
         my $cancer_main = $f[1];
@@ -113,32 +108,32 @@ close ($O2);
 close ($O4);
 
 
-my $f2 ="./output/13_indication_and_cancer_lable.txt";
-open my $I2, '<', $f2 or die "$0 : failed to open input file '$f2' : $!\n";
+# my $f2 ="./output/13_indication_and_cancer_lable.txt";
+# open my $I2, '<', $f2 or die "$0 : failed to open input file '$f2' : $!\n";
 
 
-while(<$I2>)
-{
-    chomp;
-    my @f =split/\t/;
-    unless(/^Drug_chembl_id_Drug_claim_primary_name/){
-        my $Drug_chembl_id_Drug_claim_primary_name = $f[0];
-        my $Drug_claim_primary_name = $f[1];
-        my $cancer_oncotree_detail_ID = $f[2];
-        my $lable = $f[3];
-        my $k = join ("\t",@f[0..2]);
-        if (exists $hash9{$k}){
-            my @vs = @{$hash9{$k}};
-            foreach my $v(@vs){
-                my $output = "$v\t$lable";
-                unless(exists $hash10{$k}){
-                    $hash10{$k}=1;
-                    print $O3 "$output\n";
-                }
-            }
-        }
-        else{
-            print "$k\n";
-        }
-    }
-}
+# while(<$I2>)
+# {
+#     chomp;
+#     my @f =split/\t/;
+#     unless(/^Drug_chembl_id_Drug_claim_primary_name/){
+#         my $Drug_chembl_id_Drug_claim_primary_name = $f[0];
+#         my $Drug_claim_primary_name = $f[1];
+#         my $cancer_oncotree_detail_ID = $f[2];
+#         my $lable = $f[3];
+#         my $k = join ("\t",@f[0..2]);
+#         if (exists $hash9{$k}){
+#             my @vs = @{$hash9{$k}};
+#             foreach my $v(@vs){
+#                 my $output = "$v\t$lable";
+#                 unless(exists $hash10{$k}){
+#                     $hash10{$k}=1;
+#                     print $O3 "$output\n";
+#                 }
+#             }
+#         }
+#         else{
+#             print "$k\n";
+#         }
+#     }
+# }

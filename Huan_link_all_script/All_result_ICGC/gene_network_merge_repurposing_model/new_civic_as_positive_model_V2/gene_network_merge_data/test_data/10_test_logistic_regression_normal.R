@@ -47,7 +47,7 @@ library(pROC)
 modelroc <- roc(rs$true_value1,rs$predict_value1)
 plot(modelroc, print.auc=TRUE, auc.polygon=TRUE,legacy.axes=TRUE, grid=c(0.1, 0.2),
      grid.col=c("green", "red"), max.auc.polygon=TRUE,
-     auc.polygon.col="skyblue", print.thres=TRUE)        #画出ROC曲线，标出坐标，并标出AUC的值
+     auc.polygon.col="skyblue", print.thres=TRUE)        #画出ROC曲线，标出坐标，并标出AUC的值 # print.thres=TRUE 是print yuedan系数
 #-----------------------------
 
 library(ROCR)     

@@ -100,8 +100,11 @@ perl 07_cut_all_level_somatic_snv_indel_gene.pl #提取文件all_level_somatic_s
 Rscript 08_transform_07_ensg_entrezid.R #把07_somatic_snv_indel_mutationID_gene_geneLevel.txt的ensgid 转成entrezID,得文件08_ensg_to_entrezid.txt
 perl 09_merge_ensg_info_entrezid.pl #把07_somatic_snv_indel_mutationID_gene_geneLevel.txt 和 08_ensg_to_entrezid.txt merge在一起得文件09_somatic_snv_indel_mutationID_ensg_entrez.txt
 #-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+#-----------------------------------#准备画图数据
+perl count_number_of_mutation_map_to_per_level.pl ##统计07_somatic_snv_indel_mutationID_gene_geneLevel.txt中 map to gene level 的每个level的mutation的数目，得count_number_of_mutation_map_to_per_level.txt
 
 
+#------------------------------------------------------------------------------------
 
 wget -c http://krishna.gs.washington.edu/download/CADD/v1.4/GRCh37/InDels.tsv.gz
 wget -c http://krishna.gs.washington.edu/download/CADD/v1.4/GRCh37/InDels.tsv.gz.tbi
@@ -110,10 +113,15 @@ wget -c http://krishna.gs.washington.edu/download/CADD/v1.4/GRCh37/whole_genome_
 
 
 
+
+
+
+
+
 #用vep注释snv行不通
 ./sorted/VannoDB_DA_ICGC_r27_snp.vcf.gz 是whole_genome_SNVs.tsv.gz排序后的结果
 
-
+#--------------------------------------------------------------------------
 cat "/f/mulinlab/huan/workspace/drugrepo/dataset/gene-disease/Cancer/somatic_mutation/ICGC/release_27/release_27_snv_indel/01_mutation_in_protein_coding_map_gene.vcf" | perl -ane 'chomp; unless(/^#/){print "$F[0]\n";}' | sort -u > uniqu_protein_coding.txt #2518755  #2346449
 cat 01_mutation_out_protein_coding_map_gene.vcf | perl -ane 'chomp; unless(/^#/){print "$F[0]\n";}' | sort -u > uniqu_no_protein_coding.txt #3816510
 

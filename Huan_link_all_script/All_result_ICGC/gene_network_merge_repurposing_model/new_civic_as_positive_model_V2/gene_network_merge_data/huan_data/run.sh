@@ -29,4 +29,9 @@ perl 11_filter_drug_unique_status.pl #提取./output/10_merge_drug_indication.tx
 perl 12_merge_cancer_detail_main_ID.pl #用"/f/mulinlab/huan/All_result_ICGC/ICGC_occurthan1_snv_indel_project_oncotree_normalized.txt"中的detail id 和 main id
 #和./output/11_drug_unique_status_infos.txt merge到一起，得./output/12_merge_cancer_detail_main_ID.txt #原来的$cancer_oncotree_id变成了$indication_OncoTree_detail_ID
 perl 13_judge_indication_and_cancer_differ.pl #判断./output/12_merge_cancer_detail_main_ID.txt中的indication和cancer是否相同，
-#得indication和cancer相同文件./output/13_indication_and_cancer_same.txt ,得indication和cancer不相同文件./output/13_indication_and_cancer_differ.txt，
+#得indication和cancer相同文件./output/13_indication_and_cancer_same.txt ,得indication和cancer不相同文件./output/13_indication_and_cancer_differ.txt，#得加标签的原文件./output/13_indication_and_cancer_lable.txt
+#并从./output/12_merge_cancer_detail_main_ID.txt中提取./output/13_indication_and_cancer_lable.txt的信息，得./output/13_indication_and_cancer_lable_info.txt
+#13_judge_indication_and_cancer_differ_01.pl +13_judge_indication_and_cancer_differ_02.pl 和13_judge_indication_and_cancer_differ.pl 的作用是一样的
+perl 14_merge_oncotree_main_detail_term.pl # #用"/f/mulinlab/huan/All_result_ICGC/ICGC_occurthan1_snv_indel_project_oncotree_normalized.txt"中的detail oncotree term 和 oncotree term 和 ./output/13_indication_and_cancer_lable_info.txt
+# merge 到一起，得./output/14_merge_oncotree_main_detail_term.txt
+perl 15_split_drug_repurposing_and_drug_indication.pl # 把./output/14_merge_oncotree_main_detail_term.txt 中的indication和drug repurposing 分开，并把>=0.9的打上lable,得15_drug_repurposing_repeat_indication.txt 和15_drug_repurposing.txt

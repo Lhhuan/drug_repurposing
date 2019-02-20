@@ -1,7 +1,11 @@
-# perl 01_filter_snv_in_huan.pl
-# echo -e "finish_01_filter_snv_in_huan\n"
-# perl 02_calculate_features_for_logistic_regression.pl
-# echo -e "finish_02_calculate_features_for_logistic_regression\n"
+perl 01_filter_snv_in_huan.pl
+echo -e "finish_01_filter_snv_in_huan\n"
+perl 02_calculate_features_for_logistic_regression.pl
+echo -e "finish_02_calculate_features_for_logistic_regression\n"
+Rscript 03_predict_repurposing.R 
+echo -e "finish_03_predict_repurposing\n"
+Rscript 04_sort_predict_value_by_sample.R
+echo -e "finish_04_sort_predict_value_by_sample\n"
 perl 05_count_drug_number_in_sample.pl
 echo -e "05_count_drug_number_in_sample\n"
 perl 06_merge_info_used_to_prediction_and_05_count_drug_number_sample.pl

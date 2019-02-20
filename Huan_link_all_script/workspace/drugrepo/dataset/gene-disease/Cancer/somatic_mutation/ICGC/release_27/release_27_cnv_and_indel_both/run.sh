@@ -25,6 +25,14 @@ perl 05_merge_cnv_sv_all.pl #因为现在是gene只要落在INV和tra的一个br
 cp /f/mulinlab/zhouyao/workspace/huan/results/hotspot_samples/temp/ ./occur_time 
 #在huan_handle_occur_time 中对./occur_time文件进行处理
 
-
-
+perl split_pathogenic_tra_project_count_hotspot_number.pl #将./pathogenic_hotspot/tra_svscore_pathogenic_hotspot.txt 中的project拆分开得./pathogenic_hotspot/tra_svscore_pathogenic_hotspot_project_split.txt，
+#并统计每个project下有多少hotspot,得./pathogenic_hotspot/project_pathogenic_hotspot_tra.txt
+perl split_pathogenic_inv_project_count_hotspot_number.pl #将./pathogenic_hotspot/inv_svscore_pathogenic_hotspot.txt 中的project拆分开得./pathogenic_hotspot/inv_svscore_pathogenic_hotspot_project_split.txt，
+#并统计每个project下有多少hotspot,得./pathogenic_hotspot/project_pathogenic_hotspot_inv.txt
+perl split_pathogenic_del_project_count_hotspot_number.pl ##将./pathogenic_hotspot/del_svscore_pathogenic_hotspot.txt 中的project拆分开得./pathogenic_hotspot/del_svscore_pathogenic_hotspot_project_split.txt，
+#并统计每个project下有多少hotspot,得./pathogenic_hotspot/project_pathogenic_hotspot_del.txt
+perl split_pathogenic_cnv_project_count_hotspot_number.pl #将./pathogenic_hotspot/cnv_svscore_pathogenic_hotspot.txt 中的project拆分开得./pathogenic_hotspot/cnv_svscore_pathogenic_hotspot_project_split.txt，
+#并统计每个project下有多少hotspot,得./pathogenic_hotspot/project_pathogenic_hotspot_cnv.txt
+perl split_pathogenic_dup_project_count_hotspot_number.pl #将./pathogenic_hotspot/dup_svscore_pathogenic_hotspot.txt 中的project拆分开得./pathogenic_hotspot/dup_svscore_pathogenic_hotspot_project_split.txt，
+#并统计每个project下有多少hotspot,得./pathogenic_hotspot/project_pathogenic_hotspot_dup.txt
 

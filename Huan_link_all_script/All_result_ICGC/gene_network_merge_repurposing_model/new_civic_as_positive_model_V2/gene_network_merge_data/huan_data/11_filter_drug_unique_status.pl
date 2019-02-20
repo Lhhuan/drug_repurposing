@@ -44,6 +44,8 @@ while(<$I1>)
 
 foreach my $drug_info(sort keys %hash1){
     my @ori_status_infos = @{$hash1{$drug_info}};
+    my %hash15;
+    @ori_status_infos = grep { ++$hash15{$_} < 2 } @ori_status_infos;
     my @status_infos = sort {$b cmp $a} @ori_status_infos; #对数组按照字符串从大到小排序
     my $num = @ori_status_infos;
     if ($num eq 1){

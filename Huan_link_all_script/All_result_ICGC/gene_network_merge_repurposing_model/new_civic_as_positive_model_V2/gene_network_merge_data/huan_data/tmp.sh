@@ -1,3 +1,5 @@
+# perl 01_filter_gene_based_drug_cancer_mutation_info.pl
+# echo -e "01_filter_gene_based_drug_cancer_mutation_info\n"
 # perl 02_filter_network_based_infos.pl
 # echo -e "finish_02_filter_network_based_infos\n"
 # perl 03_merge_gene_based_and_network_based_data.pl
@@ -10,7 +12,8 @@
 # echo -e "finish_05_sub_calculate_features_for_logistic_regression\n"
 # perl 06_merge_sub_main_features_for_logistic_regression.pl
 # echo -e "finish_06_merge_sub_main_features_for_logistic_regression\n"
-
+Rscript 08_prediction_drug_repurposing_normal.R
+echo -e "finish_08_prediction_drug_repurposing_normal\n"
 perl 09_repurposing_Drug_claim_primary_name.pl
 echo -e "finish_09_repurposing_Drug_claim_primary_name\n"
 perl 10_merge_drug_indication.pl
