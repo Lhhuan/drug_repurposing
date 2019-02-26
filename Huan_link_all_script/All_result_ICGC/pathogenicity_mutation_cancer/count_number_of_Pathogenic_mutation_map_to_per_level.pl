@@ -49,5 +49,8 @@ foreach my $MOA (sort keys %hash2){
     my $n_number = @genes;
     my $percentage = $n_number/17141 *100;
     $percentage=sprintf "%.2f",$percentage; #四舍五入保留四位小数
+    $MOA =~s/LOF,GOF/GOF,LOF/g;
+    $MOA =~s/LOF/TSG/g;
+    $MOA =~s/GOF/Oncogene/g;
     print $O2 "$MOA\t$n_number\t${percentage}\%\n";
 }

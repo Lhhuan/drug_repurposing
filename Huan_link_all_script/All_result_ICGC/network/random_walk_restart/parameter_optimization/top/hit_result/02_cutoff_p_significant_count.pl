@@ -12,7 +12,7 @@ use File::Copy;
 
 my $fo1 ="./02_cutoff_p_significant_count.txt"; #最终输出结果文件,在不同的cutoff下，rwr结果hit住每个drug repo的disease gene的个数
 open my $O1, '>', $fo1 or die "$0 : failed to open output file '$fo1' : $!\n";
-print $O1 "cutoff\tdrug_repo_count\n";
+print $O1 "cutoff\tdrug_repo_count\trecall_percentage\n";
 
 while(<$I1>)
 {
@@ -29,5 +29,7 @@ foreach my $cutoff (sort keys %hash1){
     my %hash3;
     @v = grep { ++$hash3{$_} < 2 } @v; #对数组元素进行去重，
     my $count = @v;
-    print $O1 "$cutoff\t$count\n";
+    my $recall_percentage = $count/249*100;
+    $recall_percentage=sprintf "%.2f",$recall_percentage;
+    print $O1 "$cutoff\t$count\t$recall_percentage\n";
 }

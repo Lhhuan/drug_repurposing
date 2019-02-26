@@ -34,7 +34,7 @@ while(<$I1>)
         my @f =split/\t/;
         my $pos = join("\,",@f[0..5]);
         my $MEANPHRED = $f[-1];
-        print $O1 "$pos\t$MEANPHRED\tinversion\n";
+        print $O1 "$pos\t$MEANPHRED\tInversion\n";
     }
 }
 
@@ -46,7 +46,7 @@ while(<$I2>)
         my @f =split/\t/;
         my $pos = join("\,",@f[0..5]);
         my $MEANPHRED = $f[-1];
-        print $O1 "$pos\t$MEANPHRED\ttranslocation\n";
+        print $O1 "$pos\t$MEANPHRED\tTranslocation\n";
     }
 }
 
@@ -58,7 +58,7 @@ while(<$I3>)
         my @f =split/\t/;
         my $pos = join("\,",@f[0..2]);
         my $MEANPHRED = $f[-1];
-        print $O1 "$pos\t$MEANPHRED\tduplication\n";
+        print $O1 "$pos\t$MEANPHRED\tDuplication\n";
     }
 }
 
@@ -70,7 +70,7 @@ while(<$I4>)
         my @f =split/\t/;
         my $pos = join("\,",@f[0..2]);
         my $MEANPHRED = $f[-1];
-        print $O1 "$pos\t$MEANPHRED\tcnv\n";
+        print $O1 "$pos\t$MEANPHRED\tCNV\n";
     }
 }
 
@@ -82,7 +82,7 @@ while(<$I5>)
         my @f =split/\t/;
         my $pos = join("\,",@f[0..2]);
         my $MEANPHRED = $f[-1];
-        print $O1 "$pos\t$MEANPHRED\tdeletion\n";
+        print $O1 "$pos\t$MEANPHRED\tDeletion\n";
     }
 }
 while(<$I6>)
@@ -93,7 +93,7 @@ while(<$I6>)
         my @f =split/\t/;
         my $Mutation_ID = $f[0];
         my $MEANPHRED = $f[-1];
-        print $O1 "$Mutation_ID\t$MEANPHRED\tsnv\n";
+        print $O1 "$Mutation_ID\t$MEANPHRED\tSNV/Indel\n";
     }
 }
 close ($O1);

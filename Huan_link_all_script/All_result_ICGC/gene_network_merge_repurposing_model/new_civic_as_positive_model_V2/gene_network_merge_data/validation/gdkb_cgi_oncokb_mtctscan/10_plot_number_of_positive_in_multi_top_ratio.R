@@ -13,9 +13,9 @@ xlab( "Top repurposing value proportion")
 p2<-p1+theme(panel.grid =element_blank())+theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(), 
                                                 panel.background = element_blank(), axis.title.y = element_text(size = 15),
                                                 axis.title.x = element_text(size = 15),
-                                                axis.line = element_line(colour = "gray")) 
+                                                axis.line = element_line(colour = "black")) 
 #后面是去背景
-p3<-p2+theme(panel.background = element_rect(fill = "transparent",colour = "gray"))
+p3<-p2+theme(panel.background = element_rect(fill = "transparent",colour = "black"))
 #添加边框，以透明填充，边框颜色是黑色
 p3
 dev.off()

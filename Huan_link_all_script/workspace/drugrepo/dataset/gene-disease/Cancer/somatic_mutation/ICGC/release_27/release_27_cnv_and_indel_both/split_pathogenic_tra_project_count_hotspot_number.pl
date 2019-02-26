@@ -40,7 +40,7 @@ while(<$I1>)
 foreach my $project (sort keys %hash1){
     my @hotspots = @{$hash1{$project}};
     my %hash3;
-    @hotspots = grep { ++$hash1{$_} < 2 } @hotspots; #对数组内元素去重
+    @hotspots = grep { ++$hash3{$_} < 2 } @hotspots; #对数组内元素去重
     my $n_hotspot = @hotspots;
     print $O2 "$project\t$n_hotspot\n";
 }

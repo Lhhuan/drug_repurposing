@@ -21,7 +21,7 @@ p1<-ggplot(repo1,aes(x=predict_value)) + geom_density(color= "#448ef6")+ xlab("D
 p1<-p1+theme(panel.grid =element_blank())+theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(), 
                                                 panel.background = element_blank(), axis.title.y = element_text(size = 10),
                                                 axis.title.x = element_text(size = 10),
-                                                axis.line = element_line(colour = "gray")) #去背景
+                                                axis.line = element_line(colour = "black")) #去背景
 p1
 dev.off()
 
@@ -38,7 +38,7 @@ p2<-p2 + annotate("segment", x = 643, xend = 643, y = 0.9, yend = 1,colour = "#a
 p2<-p2+theme(panel.grid =element_blank())+theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(), 
                                                 panel.background = element_blank(), axis.title.y = element_text(size = 11),
                                                 axis.title.x = element_text(size = 11),
-                                                axis.line = element_line(colour = "gray")) #去背景
+                                                axis.line = element_line(colour = "black")) #去背景
 p2
 dev.off()
 

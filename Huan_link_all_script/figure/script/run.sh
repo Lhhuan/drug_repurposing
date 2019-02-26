@@ -10,5 +10,7 @@ Rscript project_map_to_oncotree.R #绘制project map to oncotree的
 Rscript Pathogenic_mutation_map_to_gene_level.R #绘制Pathogenic mutation map to gene的饼图
 Rscript distribution_of_Pathogenic_gene_MOA.R #绘制 Pathogenic gene moa 的饼图
 Rscript distribution_of_drug_repurposing_prediction_value.R #绘制drug repurposing score 的分布
-
-
+Rscript distribution_of_drug_type.R #绘制cancer drug 和noncancer drug 的type组成图。
+Rscript distribution_of_drug_status.R #绘制cancer drug 和noncancer drug 的status组成图。
+Rscript gene_based_logic_true_drug_enrichment.R #gene based logic true drug 在cancer 中enrichment
+Rscript network_based_logic_true_drug_enrichment.R #gene based logic true drug 在cancer 中enrichment

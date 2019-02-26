@@ -168,7 +168,14 @@ perl extract_drug_target_score.pl #把all_drug_infos_score.txt 中的Drug_claim_
 
 #-----------------------------------------------------------------------------------------------------------------
 
+#----------------------------------------------------------为画图做准备
+perl find_drug_type.pl #为all_drug_infos_score.txt 中的drug 在"/f/mulinlab/huan/workspace/drugrepo/dataset/drug-target/DrugBank/getfromdrugbank2017-12-18.txt" #找type,比如：biotech，small_molecule等
+#得all_drug_infos_score_type.txt
+perl classfy_drug_by_cancer_or_not.pl #把cancer drug和非cancer drug 分开，得cancer drug文件cancer_drug_type.txt, 得非cancer drug文件，noncancer_drug_type.txt
+#记录cancer 和非cancer drug每种drug type的cancer数目，分别得文件cancer_drug_type_number.txt， noncancer_drug_type_number.txt
 
-
-
-
+perl find_drug_unique_status.pl #all_drug_infos_score.txt 中的drug 因为有多个indication，所有会显示有多个status, 为drug找出最大的status 确定为drug 的status，得all_drug_unique_status_media.txt ,
+#将all_drug_unique_status_media.txt中First_approval有年份的写fda approved
+perl merge_drug_unique_status_cancer.pl #将all_drug_unique_status.txt 和cancer_drug_type.txt， noncancer_drug_type.txt merge 到一起，得cancer drug 的status 文件cancer_drug_type_status.txt
+#得non-cancer 的status 文件 non-cancer_drug_type_status.txt.
+#记录cancer 和非cancer drug每种drug type的cancer数目，分别得文件cancer_drug_status_number.txt， noncancer_drug_status_number.txt

@@ -1,0 +1,9 @@
+perl merge_all_pathogenicity_sv_cnv_project.pl #把../release_27_cnv_and_indel_both/pathogenic_hotspot/cnv_svscore_pathogenic_hotspot_project_split.txt, 
+#../release_27_cnv_and_indel_both/pathogenic_hotspot/inv_svscore_pathogenic_hotspot_project_split.txt,
+#../release_27_cnv_and_indel_both/pathogenic_hotspot/tra_svscore_pathogenic_hotspot_project_split.txt,
+#../release_27_cnv_and_indel_both/pathogenic_hotspot/del_svscore_pathogenic_hotspot_project_split.txt,
+#../release_27_cnv_and_indel_both/pathogenic_hotspot/dup_svscore_pathogenic_hotspot_project_split.txt,
+#../release_27_snv_indel/data_statistics/pathogenicity_id_project.txt merge成一个文件。得./output/merge_all_pathogenicity_sv_cnv_project.txt
+perl merge_oncotree_all_pathogenicity_sv_cnv_project.pl #把./output/merge_all_pathogenicity_sv_cnv_project.txt 和"/f/mulinlab/huan/All_result_ICGC/ICGC_occurthan1_snv_indel_project_oncotree_normalized.txt"
+#得./output/merge_oncotree_all_pathogenicity_sv_cnv_project.txt
+perl count_the_mutation_number_in_cancer.pl #统计./output/merge_oncotree_all_pathogenicity_sv_cnv_project.txt中每种cancer对应的特定的mutation 的数目。得./output/snv_sv_number_in_cancer.txt

@@ -34,4 +34,34 @@ perl 13_judge_indication_and_cancer_differ.pl #判断./output/12_merge_cancer_de
 #13_judge_indication_and_cancer_differ_01.pl +13_judge_indication_and_cancer_differ_02.pl 和13_judge_indication_and_cancer_differ.pl 的作用是一样的
 perl 14_merge_oncotree_main_detail_term.pl # #用"/f/mulinlab/huan/All_result_ICGC/ICGC_occurthan1_snv_indel_project_oncotree_normalized.txt"中的detail oncotree term 和 oncotree term 和 ./output/13_indication_and_cancer_lable_info.txt
 # merge 到一起，得./output/14_merge_oncotree_main_detail_term.txt
-perl 15_split_drug_repurposing_and_drug_indication.pl # 把./output/14_merge_oncotree_main_detail_term.txt 中的indication和drug repurposing 分开，并把>=0.9的打上lable,得15_drug_repurposing_repeat_indication.txt 和15_drug_repurposing.txt
+perl 15_split_drug_repurposing_and_drug_indication.pl # 把./output/14_merge_oncotree_main_detail_term.txt 中的indication和drug repurposing 分开，并把>=0.9的打上lable,得./output/15_drug_repurposing_recall_indication.txt 和./output/15_drug_potential_repurposing.txt
+
+#------------------------------------------------------------------------------------------------为画图做准备，统计gene based 和network based 对应的 genetic based 统计。
+#---------------------------------------------------------------没有对drug target数目设置限制, gene based 可以去top drug target统计，但是network based不可以，因为network是drug target group 作为整体走出来的
+cat ./output/01_filter_gene_based_drug_target_score_cancer_mutation_pathogenicity.txt | cut -f11,12,13,14,16,20 | sort -u >./output/gene_based_logic_true_drug_cancer_pairs.txt
+cat ./output/02_filter_network_based_infos.txt | cut -f1,2,15,16,17,18 > ./output/network_based_logic_true_drug_cancer_pairs.txt
+
+perl count_gene_drug_in_cancer.pl #根据 ./output/gene_based_logic_true_drug_cancer_pairs.txt 计算logic true gene based 每个cancer对应了几个drug，以及总体的比例，main cancer 文件
+#得./output/gene_based_logic_true_drug_count_in_main_cancer.txt detail 得./output/gene_based_logic_true_drug_count_in_detail_cancer.txt
+perl count_network_drug_in_cancer.pl #根据 ./output/network_based_logic_true_drug_cancer_pairs.txt 计算logic true gene based 每个cancer对应了几个drug，以及总体的比例，main cancer 文件
+#得./output/network_based_logic_true_drug_count_in_main_cancer.txt detail 得./output/network_based_logic_true_drug_count_in_detail_cancer.txt
+Rscript gene_based_drug_proportion_test.R #为./output/gene_based_logic_true_drug_count_in_main_cancer.txt 和./output/gene_based_logic_true_drug_count_in_detail_cancer.txt 做proportion_test，分别得
+#./output/gene_based_main_cancer_proportion_test.txt 和./output/gene_based_detail_cancer_proportion_test.txt
+Rscript network_based_drug_proportion_test.R #为./output/network_based_logic_true_drug_count_in_main_cancer.txt 和./output/network_based_logic_true_drug_count_in_detail_cancer.txt 做proportion_test，分别得
+#./output/network_based_main_cancer_proportion_test.txt 和./output/network_based_detail_cancer_proportion_test.txt
+#---------------------------------------------------------------------------------------------------------------------------------------------------------- 
+#-------------------------------------------------------------#取top的gene然后，然后看取drug cancer pairs
+perl merge_gene_based_and_network_based_data_for_figure.pl #把./output/02_unique_filter_network_based_infos.txt 取特定列和
+#./output/01_filter_gene_based_drug_target_score_cancer_mutation_pathogenicity.txt中取特定列merge到一起，得./output/merge_gene_based_and_network_based_data_for_figure.txt
+#对./output/merge_gene_based_and_network_based_data_for_figure.txt 进行排序去重得 ./output/03_unique_merge_gene_based_and_network_based_data.txt
+perl filter_top_gene_by_score.pl ##对于./output/merge_gene_based_and_network_based_data_for_figure.txt中的每个drug 按照drug target选出gene based 和network based 的top gene,得./output/filter_top_gene_by_score.txt
+perl recall_top_gene_by_score_info.pl #对./output/filter_top_gene_by_score.txt 从./output/merge_gene_based_and_network_based_data_for_figure.txt中提取相关信息，得./output/recall_top_gene_by_score_info.txt
+perl count_gene_drug_in_cancer_gene_top.pl # 统计./output/recall_top_gene_by_score_info.txt中gene based 和network based 中每种main cancer 和detail cancer 中 对应的drug 数目，分别得文件
+#得./output/gene_based_logic_true_drug_count_in_main_cancer_gene_top.txt detail 得./output/gene_based_logic_true_drug_count_in_detail_cancer_gene_top.txt
+#得./output/network_based_logic_true_drug_count_in_main_cancer_gene_top.txt detail 得./output/network_based_logic_true_drug_count_in_detail_cancer_gene_top.txt
+
+Rscript gene_based_drug_proportion_test_top.R #为./output/gene_based_logic_true_drug_count_in_main_cancer_gene_top.txt 和./output/gene_based_logic_true_drug_count_in_detail_cancer_gene_top.txt 做proportion_test，分别得
+#./output/gene_based_main_cancer_proportion_test_top.txt 和./output/gene_based_detail_cancer_proportion_test_top.txt
+
+#最终用于画图的是 #./output/gene_based_main_cancer_proportion_test_top.txt 和./output/gene_based_detail_cancer_proportion_test_top.txt
+#和#./output/network_based_main_cancer_proportion_test.txt 和./output/network_based_detail_cancer_proportion_test.txt

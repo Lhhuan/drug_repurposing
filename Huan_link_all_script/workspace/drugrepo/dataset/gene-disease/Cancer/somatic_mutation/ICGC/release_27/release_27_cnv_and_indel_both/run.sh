@@ -36,3 +36,5 @@ perl split_pathogenic_cnv_project_count_hotspot_number.pl #将./pathogenic_hotsp
 perl split_pathogenic_dup_project_count_hotspot_number.pl #将./pathogenic_hotspot/dup_svscore_pathogenic_hotspot.txt 中的project拆分开得./pathogenic_hotspot/dup_svscore_pathogenic_hotspot_project_split.txt，
 #并统计每个project下有多少hotspot,得./pathogenic_hotspot/project_pathogenic_hotspot_dup.txt
 
+
+
