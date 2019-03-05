@@ -21,7 +21,7 @@ p <- ggplot(rs,aes(x=proportion,y=value_in_paper))+geom_boxplot(aes(fill=proport
   scale_y_continuous(name = "drug sensitivity in paper") +
   scale_x_discrete(name = "top proportion")
 my_comparisons <- list(c("0_0.3","0.3_0.7"), c("0_0.3","0.7_1"),c("0.3_0.7","0.7_1") ) 
-p+coord_cartesian(ylim = c(-0.5,0.85))+stat_compare_means(comparisons = my_comparisons,method = "wilcox.test", 
+p+coord_cartesian(ylim = c(-0.5,0.85))+stat_compare_means(comparisons = my_comparisons,method = "wilcox.test", method.args = list(alternative = "less"),
                                                            tip.length = 0.01,label.y=c(0.63,0.73,0.85))
 ##组内进行比较，指定p bar的长度并指定坐标轴p值标的位置
 dev.off()

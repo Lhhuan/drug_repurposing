@@ -32,7 +32,7 @@ Rscript 10_predict_TCGA_data.R # 预测./output/09_calculate_features_for_logist
     #得./output/11_01_snv_in_huan_info.txt
     perl 11_merge_prediction_and_icgc_result_info.pl #把./output/10_prediction_logistic_regression.txt和./output/28847918_normal_type.txt merge 到一起，级drug cancer sample pair对应的突变信息merge到一起（./output/11_01_snv_in_huan_info.txt），
     #得./output/11_prediction_and_icgc_result_info.txt
-perl 11_merge_prediction_and_icgc_result.pl ##把./output/10_prediction_logistic_regression.txt和./output/28847918_normal_type.txt merge 到一起，得./output/11_prediction_and_icgc_result.txt
+perl 11_merge_prediction_and_icgc_result.pl ##把./output/10_prediction_logistic_regression.txt和./output/28847918_normal_type.txt merge 到一起，得./output/11_prediction_and_icgc_result.txt #共71782 -1 =71781组
 
 #-----------------------------------------------------------------------------------------------一些其他的验证
     Rscript 11_sort_value_in_paper.R  #对./output/11_prediction_and_icgc_result.txt 按照value in paper升序排列，得./output/11_prediction_and_icgc_result_sorted_by_value_in_paper.txt

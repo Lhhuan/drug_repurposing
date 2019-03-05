@@ -24,3 +24,7 @@ perl 12_merge_cancer_detail_main_ID.pl
 echo -e "finish_12_merge_cancer_detail_main_ID\n"
 perl 13_judge_indication_and_cancer_differ.pl
 echo -e "finish_13_judge_indication_and_cancer_differ\n"
+perl 14_merge_oncotree_main_detail_term.pl
+echo -e "finish_14_merge_oncotree_main_detail_term\n"
+perl 15_split_drug_repurposing_and_drug_indication.pl
+echo -e "finish_15_split_drug_repurposing_and_drug_indication\n"

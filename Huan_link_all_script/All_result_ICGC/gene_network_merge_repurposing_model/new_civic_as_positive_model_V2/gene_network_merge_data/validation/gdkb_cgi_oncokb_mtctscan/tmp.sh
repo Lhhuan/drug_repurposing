@@ -1,5 +1,5 @@
-perl 04_merge_mtctscan_chembl.pl
-echo -e "finish_04_merge_mtctscan_chembl\n"
+# perl 04_merge_mtctscan_chembl.pl
+# echo -e "finish_04_merge_mtctscan_chembl\n"
 perl 05_filter_out_mtctscan_test_in_huan.pl
 echo -e "finish_05_filter_out_mtctscan_test_in_huan\n"
 perl 06_random_select_9_fold_negative.pl

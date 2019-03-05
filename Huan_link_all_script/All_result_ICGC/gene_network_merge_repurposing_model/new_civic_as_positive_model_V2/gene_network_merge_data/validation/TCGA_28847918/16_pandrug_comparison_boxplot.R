@@ -34,6 +34,6 @@ p = p + coord_cartesian(ylim = ylim1*1.05)
 #                        c("0.7_0.8","0.8_0.9"),c("0.8_0.9","0.9_1"),c("0_0.1","0.9_1")) 
 my_comparisons <- list(c("0_0.1","0.1_0.2"),c("0.1_0.2","0.8_0.9"),c("0.2_0.3","0.7_0.8"),c("0_0.1","0.9_1")) 
 
-p + stat_compare_means(comparisons = my_comparisons,method = "wilcox.test")#组内进行比较
+p + stat_compare_means(comparisons = my_comparisons,method = "wilcox.test",method.args = list(alternative = "less"))#组内进行比较
 #dev.off()
 

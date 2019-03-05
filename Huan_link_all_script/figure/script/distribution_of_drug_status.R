@@ -17,7 +17,7 @@ pdf("distribution_of_drug_status_Cumulative.pdf",height = 3.5,width = 4.5) #把�
 p1<-ggplot(org,aes(x=class,y=drug_number, fill = drug_status)) +geom_bar(stat ="identity",width =0.4) #width =0.5 设置条形宽度
 # p1<-p1+scale_fill_manual(values =c("#a0edf7","#8ed6ff","#ffe3b0","#ffc1c8", "#ffcece", "#e8d3ff","#c6cfff","#deecff") )
 p1<-p1+labs(fill = "Drug status") #修改图例名字
-p1<-p1+scale_fill_discrete(limits= c("FDA approved","Phase4", "Phase3","Phase2","Phase1","Phase0","Preclinical","Unknown")) #修改图例顺序
+p1<-p1+scale_fill_discrete(limits= c("FDA approved","Phase 4", "Phase 3","Phase 2","Phase 1","Phase 0","Preclinical","Unknown")) #修改图例顺序
 p1<-p1+xlab("Drug classify by cancer")+ylab("Number of mutation") #修改坐标轴标签的文本
 p1<-p1+theme(panel.grid =element_blank())+theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
                                                 panel.background = element_blank(), axis.title.y = element_text(size = 13),

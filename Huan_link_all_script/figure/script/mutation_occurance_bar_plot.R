@@ -142,7 +142,7 @@ snv_num_sta$Class <-c("SNV/Indel") #添加标签
 #---------------------------------------------------------
 #--------------------------------
 org<- bind_rows(translocation_num_sta,inversion_num_sta,cnv_num_sta,deletion_num_sta,duplication_num_sta,snv_num_sta)
-
+# org$Class = factor(org$Class, levels=c("SNV/Indel","CNV", "Deletion","Duplication","Inversion","Translocation"))
 setwd("/f/mulinlab/huan/figure/figures/")
 pdf("all_mutation_occurance.pdf",height = 3.5,width = 5) #把图片存下来
 p<-ggplot(org,aes(x = occur_time, y = mutation_number_ratio, fill = Class)) + geom_bar(stat = 'identity', position = 'dodge')

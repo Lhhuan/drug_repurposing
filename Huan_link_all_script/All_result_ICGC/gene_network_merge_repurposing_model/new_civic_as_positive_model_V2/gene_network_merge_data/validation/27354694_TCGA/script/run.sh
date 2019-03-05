@@ -12,7 +12,7 @@ perl 08_filter_cnv_in_huan.pl # 用../output/05_28847918_cnv.txt和
 perl 09_calculate_features_for_logistic_regression.pl #用../output/07_filter_snv_in_huan.txt 和../output/08_filter_cnv_in_huan.txt 计算用于用于model预测的feature ,得../output/09_calculate_features_for_logistic_regression.txt
 Rscript 10_predict_TCGA_data.R # 预测../output/09_calculate_features_for_logistic_regression.txt 得../output/10_prediction_logistic_regression.txt
 
-perl 11_merge_prediction_and_icgc_result.pl #把../output/10_prediction_logistic_regression.txt和../output/04_overlap_drug_sample_infos.txt merge 到一起，得../output/11_prediction_and_icgc_result.txt
+perl 11_merge_prediction_and_icgc_result.pl #把../output/10_prediction_logistic_regression.txt和../output/04_overlap_drug_sample_infos.txt merge 到一起，得../output/11_prediction_and_icgc_result.txt #有224个正样本，126个负样本。
 
 #共有27354694_TCGA 中一共有152个药物，有113个在huan中
 #共有27354694_TCGA 中一共有1197个sample，有814个在huan下载的数据中，有208个的突变在huan中，可为208个进行预测，用到了59个drug

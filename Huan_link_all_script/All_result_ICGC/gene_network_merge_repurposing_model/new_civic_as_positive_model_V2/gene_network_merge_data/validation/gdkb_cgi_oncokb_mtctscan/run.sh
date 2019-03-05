@@ -14,7 +14,7 @@ perl 04_merge_mtctscan_chembl.pl ## 筛选在../../test_data/output/08_drug_prim
 perl 05_filter_out_mtctscan_test_in_huan.pl #将没有出现在./output/04_merge_mtctscan_all_sensitivity_oncotree_chembl.txt和../../test_data/output/09_filter_test_data_for_logistic_regression.txt 中的
 #../../huan_data/output/08_logistic_regression_prediction_potential_drug_repurposing_data.txt 的drug cancer pair信息抽出来，得./output/05_filter_out_mtctscan_out_test_in_huan.txt
 #得在./output/04_merge_mtctscan_all_sensitivity_oncotree_chembl.txt中出现的drug cancer pair,但不在../../test_data/output/09_filter_test_data_for_logistic_regression.txt的
-#文件./output/05_filter_mtctscan_use_to_validation_positive_prediction.txt
+#文件./output/05_filter_mtctscan_use_to_validation_positive_prediction.txt #294个正样本
 perl 06_random_select_9_fold_negative.pl #从./output/05_filter_out_mtctscan_out_test_in_huan.txt 中选出9倍数目的./output/05_filter_mtctscan_use_to_validation_positive_prediction.txt
 #得./output/06_random_select_9_fold_negative.txt
 perl 07_merge_negative_positive.pl #把./output/05_filter_mtctscan_use_to_validation_positive_prediction.txt 和./output/06_random_select_9_fold_negative.txt merge在一起，得./output/07_merge_negative_positive.txt

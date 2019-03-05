@@ -39,11 +39,11 @@ while(<$I1>)
         my $Max_phase = $f[1];
         $Max_phase=~s/unknown/Unknown/g;
         $Max_phase=~s/NA/unknown/g;
-        $Max_phase=~s/0/Phase0/g;
-        $Max_phase=~s/1/Phase1/g;
-        $Max_phase=~s/2/Phase2/g;
-        $Max_phase=~s/3/Phase3/g;
-        $Max_phase=~s/4/Phase4/g;
+        $Max_phase=~s/0/Phase 0/g;
+        $Max_phase=~s/1/Phase 1/g;
+        $Max_phase=~s/2/Phase 2/g;
+        $Max_phase=~s/3/Phase 3/g;
+        $Max_phase=~s/4/Phase 4/g;
         $Max_phase =~ s/Launched/FDA approved/g;
         my $First_approval = $f[2];
         $hash1{$Drug_chembl_id_Drug_claim_primary_name}=$Max_phase;

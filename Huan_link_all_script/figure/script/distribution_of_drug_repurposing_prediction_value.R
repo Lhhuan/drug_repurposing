@@ -17,7 +17,7 @@ repo1<-repo%>%arrange(desc(predict_value))#降序排序
 
 setwd("/f/mulinlab/huan/figure/figures/")
 pdf("distribution_of_Drug_repurposing_predicted_value.pdf",height = 3.5,width = 4) #把图片存下来
-p1<-ggplot(repo1,aes(x=predict_value)) + geom_density(color= "#448ef6")+ xlab("Drug repurposing predicted value")
+p1<-ggplot(repo1,aes(x=predict_value)) + geom_density(color= "#448ef6")+ xlab("Drug repurposing predicted value")+ylab("Density")
 p1<-p1+theme(panel.grid =element_blank())+theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(), 
                                                 panel.background = element_blank(), axis.title.y = element_text(size = 10),
                                                 axis.title.x = element_text(size = 10),
@@ -34,7 +34,7 @@ pdf("Top_Drug_repurposing_predicted_value.pdf",height = 3.5,width = 4) #把图�
 p2<-ggplot(repo_value,aes(x=reorder(Drug_cancer_ID,X=predict_value),y=predict_value)) + geom_point(size = 0.1,color= "#448ef6") #对x按照y对进行排序
 p2 <- p2 + theme(axis.text.x=element_blank(), axis.ticks.x=element_blank()) #不显示x轴上的刻度
 p2<-p2+xlab("Drug cancer pairs")+ylab("Drug repurposing predicted value")
-p2<-p2 + annotate("segment", x = 643, xend = 643, y = 0.9, yend = 1,colour = "#a1dd70") #加竖线 #有416个特别高的
+p2<-p2 + annotate("segment", x = 646, xend = 646, y = 0.9, yend = 1,colour = "#a1dd70") #加竖线 #有416个特别高的，对应的value>0.999
 p2<-p2+theme(panel.grid =element_blank())+theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(), 
                                                 panel.background = element_blank(), axis.title.y = element_text(size = 11),
                                                 axis.title.x = element_text(size = 11),

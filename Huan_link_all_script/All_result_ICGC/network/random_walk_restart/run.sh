@@ -1,3 +1,4 @@
+
 cp "/f/mulinlab/huan/All_result_ICGC/network/original_network_num.txt" ./  #复制本底网络
 
 #-----------------------------------------------------优化cutoff
@@ -13,7 +14,7 @@ cat 02_cutoff_p_significant_count.txt | sort -k1,1g > 02_sorted_cutoff_p_signifi
 #以02_sorted_cutoff_p_significant_count.txt的cutoff为横坐标，count为纵坐标作图，得02_sorted_cutoff_p_significant_count_map.xlsx，图在sheet1，图并不显著，所以把把02_cutoff_p_significant_count.txt的count值从大到小排序
 
 cat 02_cutoff_p_significant_count.txt | sort -k2,2rg -k1,1g > 02_sorted_count__cutoff_p_significant_count.txt  #把02_cutoff_p_significant_count.txt的count值从大到小排序。得到文件02_sorted_count__cutoff_p_significant_count.txt
-#发现cutoff 为 0.044 0.0441 0.0442 0.0439时，drug repo pair最高，为185,,百分比为73.90所以最终选0.044为cutoff
+#发现cutoff 为 0.044 0.0441 0.0442 0.0439时，drug repo pair最高，为185,,百分比为74.30所以最终选0.044为cutoff
 cd ..
 #此时目录为/f/mulinlab/huan/All_result_ICGC/network/random_walk_restart/parameter_optimization/top/
 #-------------------------------------------------------------------------------------测试设计的打分系统的逻辑是否正确。

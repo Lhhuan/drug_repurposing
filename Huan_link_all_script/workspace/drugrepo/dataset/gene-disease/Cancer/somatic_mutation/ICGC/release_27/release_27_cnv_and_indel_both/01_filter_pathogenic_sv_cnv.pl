@@ -29,7 +29,7 @@ while(<$I1>)
         print $O6 "$_\tSVTYPE\tsource\n";  #输出到总文件
     }
     else{
-        if($SVSCORETOP10 >15){
+        if($SVSCORETOP10 >=15){
             print $O1 "$_\n";
             print $O6 "$_\tNA\tdel_svscore\n";  #输出到总文件,因为没有SVTYPE，所以用NA填充
         }
@@ -50,7 +50,7 @@ while(<$I2>)
         print $O2 "$_\n";
     }
     else{
-        if($SVSCORETOP10 >15){
+        if($SVSCORETOP10 >=15){
             print $O2 "$_\n";
             print $O6 "$_\tNA\tdup_svscore\n";  #输出到总文件,因为没有SVTYPE，所以用NA填充
         }
@@ -78,7 +78,7 @@ while(<$I5>)
         # print STDERR "$SVSCORETOP10\n";
     }
     else{
-        if($SVSCORETOP10 >15){
+        if($SVSCORETOP10 >=15){
             print $O5 "$_\n";
             print $O6 "$_\tcnv_svscore\n";  #输出到总文件
         }
@@ -95,7 +95,7 @@ while(<$I3>)
         print $O7 "$_\tsource\n";  #输出到总文件
     }
     else{
-        if($SVSCORETOP10 >15){
+        if($SVSCORETOP10 >=15){
             print $O3 "$_\n";
             print $O7 "$_\tinv_svscore\n";  #输出到总文件,因为没有SVTYPE，所以用NA填充
         }
@@ -117,7 +117,7 @@ while(<$I4>)
         # print STDERR "$SVSCORETOP10\n";
     }
     else{
-        if($SVSCORETOP10 >15){
+        if($SVSCORETOP10 >=15){
             print $O4 "$_\n";
             print $O7 "$_\ttra_svscore\n";  #输出到总文件,因为没有SVTYPE，所以用NA填充
         }
