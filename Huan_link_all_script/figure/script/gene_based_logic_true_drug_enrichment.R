@@ -39,7 +39,7 @@ credplot.gg <- function(d){
 }
 
 setwd("/f/mulinlab/huan/figure/figures/")
-pdf("Gene_based_drug_detail_cancer_pairs_with_genetic_associations_percentage_than0.pdf",height = 4.5,width = 6) #把图片存下来
+pdf("Gene_based_drug_detail_cancer_pairs_with_genetic_associations_percentage_than0.pdf",height = 4.5,width = 5.2) #把图片存下来
 detail_than_0$Cancer_term <- factor(detail_than_0$Cancer_term, levels=detail_than_0$Cancer_term) #对Cancer_term进行排序
 p<-credplot.gg(detail_than_0)
 p
@@ -55,13 +55,13 @@ credplot.gg_main <- function(d){
   p1<-p1+ylab("Drug cancer pairs with genetic associations(%)")+xlab("Oncotree term of main") #修改坐标轴标签的文本
   p1<-p1+theme(panel.grid =element_blank())+theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
                                                 panel.background = element_blank(), axis.title.y = element_text(size = 11.5),
-                                                axis.title.x = element_text(size = 11.5),axis.text.y = element_text(size = 8,color="black"),
+                                                axis.title.x = element_text(size = 11),axis.text.y = element_text(size = 8,color="black"),
                                                 axis.line = element_line(colour = "black")) #去背景
   return(p1)
 }
 
 setwd("/f/mulinlab/huan/figure/figures/")
-pdf("Gene_based_drug_main_cancer_pairs_with_genetic_associations_percentage_large_than_0.pdf",height = 3.5,width = 5.5) #把图片存下来
+pdf("Gene_based_drug_main_cancer_pairs_with_genetic_associations_percentage_large_than_0.pdf",height = 3.2,width = 4.6) #把图片存下来
 main_than_0$Cancer_term <- factor(main_than_0$Cancer_term, levels=main_than_0$Cancer_term) #对Cancer_term进行排序
 p<-credplot.gg_main(main_than_0)
 p

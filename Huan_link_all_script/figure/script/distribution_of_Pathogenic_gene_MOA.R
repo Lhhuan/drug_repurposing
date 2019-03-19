@@ -12,7 +12,7 @@ mycolor1<-c("#ff7473","#ffc952","#47b8e0")
 setwd("/f/mulinlab/huan/figure/figures/")
 pdf("Distribution_of_Pathogenic_gene_MOA_no_NA_number.pdf",height = 3.5,width = 4.8) #把图片存下来
 pie(org1$gene_number, labels = org1$gene_number, cex=0.85,col = mycolor1)
-legend("bottomright", c("Oncogene","TSG","Oncogene,TSG"), cex = 0.55, fill = mycolor1)
+legend("topright", c("Oncogene","TSG","Oncogene,TSG"), cex = 0.55, fill = mycolor1)
 dev.off()
 
 #-------------------------------------------------------

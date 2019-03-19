@@ -40,3 +40,7 @@ perl 15_pancancer_pandrug_hit_actionable_mutation.pl #将./output/13_transvar_re
 #得标注mutation 是否是actionable的文件./output/15_pancancer_pandrug_hit_actionable_or_not.txt
 perl 16_count_actionable_mutation_percentage_in_per_drug.pl # 统计./output/15_pancancer_pandrug_hit_actionable_or_not.txt中每个drug 中出现的特定actionable_mutation的百分比 ,并从./output/05_count_drug_number_in_sample_info.txt 中
 #获得药物hit 住的 Sample 数目得./output/16_count_actionable_mutation_percentage_in_per_drug.txt
+perl 16_1_count_actionable_mutation_percentage_in_per_drug.pl # 统计./output/15_pancancer_pandrug_hit_actionable_or_not.txt中每个drug 中出现的特定actionable_mutation的百分比 ,并从./output/05_count_drug_number_in_sample_info.txt 中
+#获得药物hit 住的 Sample 数目得./output/16_count_actionable_mutation_percentage_in_per_drug_simple.txt
+cat ./output/15_pancancer_pandrug_hit_action_mutation.txt | cut -f39| sort -u >./output/final_hit_actionable_mutation.txt
+cat ./output/15_pancancer_pandrug_potential_mutation.txt | cut -f38 |sort -u > ./output/final_poteinal_actionable_mutation.txt

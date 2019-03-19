@@ -1,5 +1,4 @@
-#判断./output/12_merge_cancer_detail_main_ID.txt中的indication和cancer是否相同，
-#得indication和cancer相同文件./output/13_indication_and_cancer_same.txt ,得indication和cancer不相同文件./output/13_indication_and_cancer_differ.txt，#得加标签的原文件./output/13_indication_and_cancer_lable.txt
+
 #并从./output/12_merge_cancer_detail_main_ID.txt中提取./output/13_indication_and_cancer_lable.txt的信息，得./output/13_indication_and_cancer_lable_info.txt
 
 #!/usr/bin/perl
@@ -40,7 +39,7 @@ while(<$I1>)
         my $k = "$Drug_chembl_id_Drug_claim_primary_name\t$Drug_claim_primary_name";
         my $cancer_oncotree = "$cancer_oncotree_detail_ID\t$cancer_oncotree_main_ID";
         my $k9 = "$k\t$cancer_oncotree_detail_ID";
-        push @{$hash9{$k9}},$_; #把 cancer 的main 和tissue 都push 进数组
+        push @{$hash9{$k9}},$_; #把 cancer和tissue push 进数组
     }
 }
 
@@ -63,7 +62,7 @@ while(<$I2>)
             @vs = grep { ++$hash6{$_} < 2 } @vs ;
             foreach my $v(@vs){
                 my $output = "$v\t$lable";
-                unless(exists $hash10{$k}){
+                unless(exists $hash10{$k}){ #只为k保留一个indication
                     $hash10{$k}=1;
                     print $O3 "$output\n";
                 }

@@ -131,7 +131,7 @@ while(<$I2>)
             my @vs = @{$hash9{$k}};
             foreach my $v(@vs){
                 my $output = "$v\t$lable";
-                unless(exists $hash10{$k}){
+                unless(exists $hash10{$k}){ #只为k保留一个indication
                     $hash10{$k}=1;
                     print $O3 "$output\n";
                 }

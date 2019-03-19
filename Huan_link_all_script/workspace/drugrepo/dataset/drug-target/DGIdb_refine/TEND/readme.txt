@@ -1,0 +1,2 @@
+step1: 将interactions_v3.tsv中的源于TEND的数据筛选出来。得文件interactions_v3-TEND.txt 。
+step2: 从文件nrd3478-s1-TEND.txt中选出interactions_v3-TEND.txt中药物的indication。得匹配文件step2_result_drug_indication，不匹配文件step2_unmatch_drug。

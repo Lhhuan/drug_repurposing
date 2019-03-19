@@ -1,6 +1,5 @@
 #判断./output/12_merge_cancer_detail_main_ID.txt中的indication和cancer是否相同，
 #得indication和cancer相同文件./output/13_indication_and_cancer_same.txt ,得indication和cancer不相同文件./output/13_indication_and_cancer_differ.txt，#得加标签的原文件./output/13_indication_and_cancer_lable.txt
-#并从./output/12_merge_cancer_detail_main_ID.txt中提取./output/13_indication_and_cancer_lable.txt的信息，得./output/13_indication_and_cancer_lable_info.txt
 
 #!/usr/bin/perl
 use warnings;
