@@ -31,7 +31,7 @@ credplot.gg <- function(d){
   p1<-ggplot(data=d, aes(x=Cancer_term,y=final_percentage, ymin=conf_left , ymax=conf_right))
   p1<-p1+geom_pointrange(size = 0.3) 
   p1<-p1+coord_flip()# +  # flip coordinates (puts labels on y axis)
-  p1<-p1+ylab("Drug cancer pairs with genetic associations(%)")+xlab("Oncotree term of detail") #修改坐标轴标签的文本
+  p1<-p1+ylab("Drug cancer pairs with associations(%)")+xlab("Oncotree term of detail") #修改坐标轴标签的文本
   p1<-p1+theme(panel.grid =element_blank())+theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
                                                   panel.background = element_blank(), axis.title.y = element_text(size = 11.5),
                                                   axis.title.x = element_text(size = 11.5),axis.text.y = element_text(size = 5.5,color="black"),
@@ -53,7 +53,7 @@ credplot.gg_main <- function(d){
   p1<-ggplot(data=d, aes(x=Cancer_term,y=final_percentage, ymin=conf_left , ymax=conf_right))
   p1<-p1+geom_pointrange(size = 0.3) 
   p1<-p1+coord_flip()# +  # flip coordinates (puts labels on y axis)
-  p1<-p1+ylab("Drug cancer pairs with genetic associations(%)")+xlab("Oncotree term of main") #修改坐标轴标签的文本
+  p1<-p1+ylab("Drug cancer pairs with associations(%)")+xlab("Oncotree term of main") #修改坐标轴标签的文本
   p1<-p1+theme(panel.grid =element_blank())+theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
                                                   panel.background = element_blank(), axis.title.y = element_text(size = 11.5),
                                                   axis.title.x = element_text(size = 11.5),axis.text.y = element_text(size = 7.5,color="black"),

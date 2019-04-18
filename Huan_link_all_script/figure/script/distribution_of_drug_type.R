@@ -21,7 +21,7 @@ pdf("distribution_of_drug_type_Cumulative.pdf",height = 3.5,width = 4.5) #把图
 p1<-ggplot(org,aes(x=class,y=drug_number, fill = drug_type)) +geom_bar(stat ="identity",width =0.4) #width =0.5 设置条形宽度
 p1<-p1+labs(fill = "Drug type") #修改图例名字
 # p1<-p1+scale_fill_manual(values =c("#ffc1c8","#ffe3b0", "#8ed6ff") ) #自动添加颜色
-p1<-p1+xlab("Drug classify by cancer")+ylab("Number of mutation") #修改坐标轴标签的文本
+p1<-p1+xlab("Drug classify by cancer")+ylab("Number of drug") #修改坐标轴标签的文本
 p1<-p1+theme(panel.grid =element_blank())+theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(), 
                                                 panel.background = element_blank(), axis.title.y = element_text(size = 13),
                                                 axis.title.x = element_text(size = 13),axis.text.x = element_text(size = 10),

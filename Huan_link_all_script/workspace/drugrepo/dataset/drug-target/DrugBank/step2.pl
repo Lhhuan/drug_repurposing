@@ -3,7 +3,7 @@ use warnings;
 use strict;
 use utf8;
 
-my $fi_step1result ="./getfromdrugbank2017-12-18.txt";
+my $fi_step1result ="./getfromdrugbank2017-12-18_refine.txt";
 #my $fi_step1result ="./test.txt";
 my $fi_p_e ="./wgEncodeGencodeUniProtV24lift37.txt";
 my $fi_e_e ="./ensGene.txt";

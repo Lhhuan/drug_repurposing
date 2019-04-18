@@ -23,7 +23,7 @@ setwd("/f/mulinlab/huan/All_result_ICGC/gene_network_merge_repurposing_model/new
 
 pdf("26_pandrug_top_0.25_0.75_1_group_comparison_p.pdf",height = 4,width = 5) #把图片存下来
 p <- ggplot(rs,aes(x=proportion,y=value_in_paper))+geom_boxplot(aes(fill=proportion),width=0.3,outlier.colour = NA)+ #按照标签画图
-  scale_y_continuous(name = "Drug sensitivity in paper") +
+  scale_y_continuous(name = "Drug response value") +
   scale_x_discrete(name = "Top proportion")
 my_comparisons <- list(c("0-0.25","0.25-0.75"), c("0-0.25","0.75-1"),c("0.25-0.75","0.75-1") ) 
 p+coord_cartesian(ylim = c(-0.5,0.85))+stat_compare_means(comparisons = my_comparisons,method = "wilcox.test", method.args = list(alternative = "less"),
@@ -34,7 +34,7 @@ dev.off()
 #----------------violin
 pdf("26_pandrug_top_0.25_0.75_1_group_comparison_violin.pdf",height = 4,width = 5) #把图片存下来
 p1 <- ggplot(rs,aes(x=proportion,y=value_in_paper))+geom_violin()+geom_boxplot(aes(fill=proportion),width=0.3,outlier.colour = NA)+ #按照标签画图
-  scale_y_continuous(name = "drug sensitivity in paper") +
+  scale_y_continuous(name = "Drug response value") +
   scale_x_discrete(name = "top proportion")
 p1
 dev.off()
