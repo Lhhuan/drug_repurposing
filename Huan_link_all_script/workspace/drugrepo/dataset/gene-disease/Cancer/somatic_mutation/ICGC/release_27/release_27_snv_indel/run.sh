@@ -29,6 +29,9 @@ gzip -d gencode.v19.annotation.gff3.gz #得文件gencode.v19.annotation.gff3
 
 perl collect_protein_coding_gene.pl #把gencode.v19.annotation.gff3中gene_type为protein_coding的gene筛选出来。得文件protein_coding_gene.txt #20327 个protein_coding
 
+#--------------------------------------------------------------------------------------------------------------
+vep --dir /f/mulinlab/huan/tools/vep/ensembl-vep-release-93/.vep/ --assembly GRCh37  -i simple_somatic_mutation.largethan0.vcf --cache --offline -o simple_somatic_mutation.largethan0_vep_refine.vcf --nearest gene --symbol --gene --total_length --hgvs --hgvsg --protein --biotype --distance 500,0
+vep --dir /f/mulinlab/huan/tools/vep/ensembl-vep-release-93/.vep/ --assembly GRCh37  -i simple_somatic_mutation.largethan0.vcf --cache --offline -o simple_somatic_mutation.largethan0_vep.vcf --nearest gene --fork 30  --symbol --gene --total_length --hgvs --hgvsg --protein --biotype --distance 500,0
 #---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
  #map indel and snv to gene 
 
@@ -36,7 +39,7 @@ vep --dir /f/mulinlab/huan/tools/vep/ensembl-vep-release-93/.vep/ --assembly GRC
 
 
 cat simple_somatic_mutation.largethan1_vep.vcf | perl -ane 'chomp;unless(/^#/){@f = split/\s+/;my $id = $f[0];print"$id\n";}' | sort -u > uniq_somatic_snv_indel_vep.txt  #6335265
-
+cat simple_somatic_mutation.largethan0_vep.vcf | perl -ane 'chomp;unless(/^#/){@f = split/\s+/;my $id = $f[0];print"$id\n";}' | sort -u > uniq_all_somatic_snv_indel_vep.txt #77458762
 
 #./sorted/VannoDB_DA_ICGC_r27_snp.vcf.gz 是whole_genome_SNVs.tsv.gz排序后的结果
 
@@ -46,26 +49,26 @@ cat simple_somatic_mutation.largethan1_vep.vcf | perl -ane 'chomp;unless(/^#/){@
 #3 在1,2中都没有gene的药物用临近基因法获得，这里的临近基因法分为两步：
 # （1）用vep上下游5000bp 注释到的就算有gene,
 #  (2)  在（1）中没有map到gene的variant用最近的基因作为variat的gene
-perl 01_mutation_in_protein_coding_map_gene.pl  #为simple_somatic_mutation.largethan1_vep.vcf的mutation寻找对应的gene，此step把出现在protein coding区域的特定 consequence的mutation对应的gene找出来，
+perl 01_mutation_in_protein_coding_map_gene.pl  #为simple_somatic_mutation.largethan0_vep.vcf的mutation寻找对应的gene，此step把出现在protein coding区域的特定 consequence的mutation对应的gene找出来，
 #得map 到L1,1的文件01_mutation_in_protein_coding_map_gene_L1.1.vcf，map 到L1,2的文件01_mutation_in_protein_coding_map_gene_tmp_L1.2.vcf（则里面含有即map到L1.1,又map到1.2的数据）
 #把01_mutation_in_protein_coding_map_gene_tmp_L1.2.vcf 在L1.1中出现的L1.2数据去掉，得01_mutation_in_protein_coding_map_gene_L1.2.vcf
 #cat 01_mutation_in_protein_coding_map_gene_L1.1.vcf 01_mutation_in_protein_coding_map_gene_L1.2.vcf > 01_mutation_in_protein_coding_map_gene.vcf
 #没有落在protein区域的是01_mutation_out_protein_coding_map_gene.vcf 
 cat 01_mutation_out_protein_coding_map_gene.vcf | perl -ane 'unless(/^#/){@f =split/\s+/;print "$f[0]\t$f[1]\n"}' | sort -u > unique_01_out_gene.txt #
-cat 01_mutation_in_protein_coding_map_gene.vcf | perl -ane 'chomp;unless(/^#/){@f = split/\s+/;my $id = $f[0];print"$id\n";}' | sort -u > unique_01_in_gene1.txt # 2319927
-cat 01_mutation_out_protein_coding_map_gene.vcf | perl -ane 'chomp;unless(/^#/){@f = split/\s+/;my $id = $f[0];print"$id\n";}' | sort -u > unique_01_out_gene1.txt  #4015338
+cat 01_mutation_in_protein_coding_map_gene.vcf | perl -ane 'chomp;unless(/^#/){@f = split/\s+/;my $id = $f[0];print"$id\n";}' | sort -u > unique_01_in_gene1.txt # 28746165
+cat 01_mutation_out_protein_coding_map_gene.vcf | perl -ane 'chomp;unless(/^#/){@f = split/\s+/;my $id = $f[0];print"$id\n";}' | sort -u > unique_01_out_gene1.txt  #48712597
 perl 01_check_result.pl #
 perl 02_normal_unique_01_out_gene_varint_bed.pl #把01_mutation_out_protein_coding_map_gene.vcf转成bed文件，得02_normal_unique_01_out_gene_varint.bed 就是给源文件添加bed 文件需要的前三列,
 
 bedtools sort -i 02_normal_unique_01_out_gene_varint.bed > 02_sorted_final_normal_unique_01_out_gene_varint.bed #排序
 bedtools intersect -wa -wb -a ../../../enhancer–target/05_sorted_normal_merge_all_data.bed -b ./02_sorted_final_normal_unique_01_out_gene_varint.bed > 02_connect_out_gene_varint_enhancer_target.bed  #用bedtools 为02_sorted_final_normal_unique_01_out_gene_varint.bed在../../../enhancer–target/05_sorted_normal_merge_all_data.bed中寻找gene
- cat 02_connect_out_gene_varint_enhancer_target.bed | cut -f11 |sort -u | wc -l #239995
+ cat 02_connect_out_gene_varint_enhancer_target.bed | cut -f11 |sort -u | wc -l #3227412
 perl 03_filter_mutation_out_enhancer_target.pl #把在01_mutation_out_protein_coding_map_gene.vcf中存在，但是在02_connect_out_gene_varint_enhancer_target.bed中不存在的突变过滤出来，得文件03_mutation_out_enhancer_target.vcf, #3758803
 #同时把02_connect_out_gene_varint_enhancer_target.bed输出成元vcf文件，只是在其后面追加gene的信息，得文件03_mutation_in_enhancer_target.vcf
 
 
 
-perl 04_call_varint_out_gene_varint_enhancer_target_info.pl # 把03_mutation_out_enhancer_target.vcf根据mutation_id，simple_somatic_mutation.largethan1.vcf把其他的mutation的info补齐，得文件04_out_gene_varint_enhancer_target_info.vcf #
+perl 04_call_varint_out_gene_varint_enhancer_target_info.pl # 把03_mutation_out_enhancer_target.vcf根据mutation_id，simple_somatic_mutation.largethan0.vcf把其他的mutation的info补齐，得文件04_out_gene_varint_enhancer_target_info.vcf #
 cat 04_out_gene_varint_enhancer_target_info.vcf | cut -f3 | sort -u | wc -l #3775343
 #在./separate1中把04_out_gene_varint_enhancer_target_info.vcf分成40份，然后对其进行vep注释，脚本在./separate1/separate_the_all_ref_alt_to_40.pl   ./separate1/run.sh
 cat ./separate1/04_out_gene_varint_enhancer_target_info_vep*.vcf | uniq > 04_out_gene_varint_enhancer_target_info_vep.vcf
@@ -75,7 +78,7 @@ perl 05_filter_varint_gene_in_level3.pl #把04_out_gene_varint_enhancer_target_i
 
 cat 05_varint_gene_in_level3_1.vcf | perl -ane 'chomp;unless(/^#/){@f = split/\s+/;my $id = $f[0];print"$id\n";}' | sort -u > uniq_somatic_level3.1_ID.txt #169212
 wc -l  05_varint_out_level3_1.vcf # 3606131
-perl 06_call_variant_out_level3_1.pl #把05_varint_out_level3_1.vcf根据mutation_id，simple_somatic_mutation.largethan1.vcf把其他的mutation的info补齐，得文件06_varint_out_level3_1_info.vcf
+perl 06_call_variant_out_level3_1.pl #把05_varint_out_level3_1.vcf根据mutation_id，simple_somatic_mutation.largethan0.vcf把其他的mutation的info补齐，得文件06_varint_out_level3_1_info.vcf #3606131
 perl 061_trans_varint_out_level3_1_info_bed.pl  #把06_varint_out_level3_1_info.vcf转为bed 格式，即给06_varint_out_level3_1_info.vcf文件加一列，得06_varint_out_level3_1_info.bed
 bedtools sort -i 06_varint_out_level3_1_info.bed > 06_sorted_varint_out_level3_1_info.bed
 
@@ -98,7 +101,15 @@ perl test.pl #测试uniq_all_level_cancer_gene.txt比gencode.v19.protein_coding.
 
 perl 07_cut_all_level_somatic_snv_indel_gene.pl #提取文件all_level_somatic_snv_indel_gene.vcf的mutation id,gene及genelevel得文件07_somatic_snv_indel_mutationID_gene_geneLevel.txt
 Rscript 08_transform_07_ensg_entrezid.R #把07_somatic_snv_indel_mutationID_gene_geneLevel.txt的ensgid 转成entrezID,得文件08_ensg_to_entrezid.txt
+
 perl 09_merge_ensg_info_entrezid.pl #把07_somatic_snv_indel_mutationID_gene_geneLevel.txt 和 08_ensg_to_entrezid.txt merge在一起得文件09_somatic_snv_indel_mutationID_ensg_entrez.txt
+#--------------------------------------------------add out icgc driver mutation and actionable mutation
+perl 10_split_add_hgvsg_symbol.pl #将"/f/mulinlab/huan/ALL_result_ICGC_ALL_drug/gene_network_merge_repurposing_model/match_actionable_drive_mutation/release_27/add_actionable_driver_to_pathogenicity/out_ICGC/output/02_mutation_disease_cancer_project.txt"
+#中的symbol 分开，增加，mutation_id,得10_split_add_hgvsg_symbol.txt
+Rscript 11_transform_add_ensg_entrezid.R #将10_split_add_hgvsg_symbol.txt的symbol转成ensg和entrezid。得文件11_transform_add_ensg_entrezid.txt
+perl 12_merge_symbol_info_ensg_entreid.pl ##将10_split_add_hgvsg_symbol.txt和11_transform_add_ensg_entrezid.txt merge 到一起得12_add_mutation_ensg_entrezid_info.txt,得addid和project 的文件得12_add_project_mutation_id.txt
+#将11_transform_add_ensg_entrezid.txt和09_somatic_snv_indel_mutationID_ensg_entrez.txt merge到一起
+cat 09_somatic_snv_indel_mutationID_ensg_entrez.txt 11_transform_add_ensg_entrezid.txt >all_somatic_snv_indel_mutationID_ensg_entrez.txt
 #-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 #-----------------------------------#准备画图数据
 perl count_number_of_mutation_map_to_per_level.pl ##统计07_somatic_snv_indel_mutationID_gene_geneLevel.txt中 map to gene level 的每个level的mutation的数目，得count_number_of_mutation_map_to_per_level.txt

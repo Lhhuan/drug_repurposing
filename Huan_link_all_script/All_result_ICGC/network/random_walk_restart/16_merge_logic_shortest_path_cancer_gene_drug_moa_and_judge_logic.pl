@@ -87,7 +87,7 @@ while(<$I1>)
                         print $O1 "$output\ttrue\n";
                     }
                 }
-                else{ #drug target 为na
+                else{ #drug target 为na或者A,I
                     print $O3 "$output\tno\n"; #drug target 为unknown无法判断其logic 类型
                 }
             }

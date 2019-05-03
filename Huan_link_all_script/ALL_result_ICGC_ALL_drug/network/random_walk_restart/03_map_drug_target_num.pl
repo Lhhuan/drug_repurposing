@@ -29,6 +29,12 @@ while(<$I1>)
          $drug_name =~s/\//_/g;
          $drug_name =~s/\&/+/g; #把&替换+
          $drug_name =~s/-/_/g;
+         $drug_name =~s/,//g;
+         $drug_name =~s/'//g;
+         $drug_name =~s/\.//g;
+         $drug_name =~s/\+//g;
+         $drug_name =~s/\;//g;
+         $drug_name =~s/\://g;
          my $drug_symbol = $f[1];
          my $drug_entrez = $f[2];
          unless($drug_entrez=~/NULL|NA/){

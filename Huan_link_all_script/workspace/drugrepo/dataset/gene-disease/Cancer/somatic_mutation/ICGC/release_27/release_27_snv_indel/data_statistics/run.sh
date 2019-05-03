@@ -1,4 +1,9 @@
-perl statistic_id_project.pl #统计每个mutation id对应的project，统计affected donor >1的id 和Project 得文件ID_project.txt
+perl before_add_driver_actionable_statistic_id_project.pl #统计每个mutation id对应的project，统计affected donor >1的id 和Project 得文件before_add_driver_actionable_mutation_ID_project.txt
+perl statistic_id_project.pl #统计每个mutation id对应的project，统计affected donor的id 和Project 得文件ID_project.txt
+perl add_driver_actionable_id_project.pl #将ID_project.txt和../12_add_project_mutation_id.txt merge 到一起，add_project_mutation_id的occurance
+#用"/f/mulinlab/huan/ALL_result_ICGC_ALL_drug/pathogenicity_mutation_cancer/output/average_Pathogenic_occurance.txt"
+#得最终id_project 文件 Final_ID_project.txt
+
 perl filter_pathogenicity_id_project.pl #筛选出ID_project.txt中是致病性的mutation及其对应的project. 得文件pathogenicity_id_project.txt,并为project有多个mutation 计数得project_pathogenicity_mutation_number.txt
 #共有pathogenicity mutation 有105125个
 perl count_project_num.pl #统计ID_project.txt中每个project所对应的mutation id的数目，得文件project_id_num.txt，#并且给每个cancer一个id,得文件cancer_id.txt

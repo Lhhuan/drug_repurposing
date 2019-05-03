@@ -4,7 +4,7 @@ use warnings;
 use strict; 
 use utf8;
 
-my $f1 = "../simple_somatic_mutation.largethan1.vcf";
+my $f1 = "../simple_somatic_mutation.largethan0.vcf";
 my $fo1 = "./ID_project.txt";
 open my $I1, '<', $f1 or die "$0 : failed to open input file '$f1' : $!\n";
 open my $O1, '>', $fo1 or die "$0 : failed to open output file '$fo1' : $!\n";
@@ -29,7 +29,7 @@ while(<$I1>)
                     my @cancer = split/\|/,$cancers;
                     my $final_cancer = $cancer[0];
                     my $cancer_specific_affected_donors = $cancer[1];
-                    if ($cancer_specific_affected_donors>1){
+                    if ($cancer_specific_affected_donors>0){  #所有的都先统计出来
                         print $O1 "$ID\t$final_cancer\t$cancer_specific_affected_donors\n";
                     }
                 }

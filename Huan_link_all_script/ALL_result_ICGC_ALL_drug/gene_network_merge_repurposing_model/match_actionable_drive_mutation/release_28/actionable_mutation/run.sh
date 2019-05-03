@@ -1,0 +1,5 @@
+perl 01_extract_ICGC_mutation_id_HGVSg.pl #将"/f/mulinlab/huan/workspace/drugrepo/dataset/gene-disease/Cancer/somatic_mutation/ICGC/release_28/output/simple_somatic_mutation.all_vep.vcf"
+#中的mutation id和HVSGg提取出来，得./output/07_ICGC_mutation_id_HGVSg.txt
+perl 04_find_actionable_mutaton_in_pathogenicity.pl #寻找actionable mutation中的pathogenicity_mutation，寻找在./output/01_ICGC_mutation_id_HGVSg.txt中出现的."/f/mulinlab/huan/ALL_result_ICGC_ALL_drug/gene_network_merge_repurposing_model/match_actionable_drive_mutation/release_27/actionable_mutation/actionable_hit_all_ICGC_mutation/output/03_actionable_mutation_transvar_ref_alt.txt"
+#得./output/04_actionable_mutaton_in_pathogenicity.txt 得所有的actionable mutation文件./output/04_all_actionable_mutation.txt，得可以转成hgvs的actionable_mutation文件./output/04_actionable_mutation_can_transform_hgvs.txt 
+#得不可以转成hgvs的actionable_mutation文件./output/04_actionable_mutation_can_not_transform_hgvs.txt 

@@ -8,7 +8,7 @@ use utf8;
 system "less ../9.21_drug_target_num.txt |wc -l > line.txt";
 my $f1 ="line.txt";
 open my $I1, '<', $f1 or die "$0 : failed to open input file '$f1' : $!\n";
- my(%hash1,%hash2,%hash3,%hash6,%hash7);
+my(%hash1,%hash2,%hash3,%hash6,%hash7);
 
 while(<$I1>)
 {

@@ -1,0 +1,1 @@
+wget -c http://docm.info/api/v1/variants.tsv?versions=3.2
