@@ -6,7 +6,7 @@ use warnings;
 use strict; 
 use utf8;
 
-my $f1 = "/f/mulinlab/huan/workspace/drugrepo/dataset/gene-disease/Cancer/somatic_mutation/ICGC/release_27/pathogenicity_SV_CNV/v4/output/all_sv_snv.vcf";
+my $f1 = "/f/mulinlab/huan/workspace/drugrepo/dataset/gene-disease/Cancer/somatic_mutation/ICGC/release_27/pathogenicity_SV_CNV/v4/output/all_pathogenicity_sv_snv.vcf";
 my $f2 = "./output/Pathogenic_snv_indel_project.txt";
 my $fo1 = "./output/merge_P_snv_sv.txt";
 my $fo2 = "./output/sv_snv_number.txt";

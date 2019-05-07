@@ -98,4 +98,4 @@ while(<$I2>)
 system "cat ./output/04_actionable_mutation_can_not_transform_hgvs.txt | cut -f2 | sort -u > ./output/unique_04_actionable_mutation_can_not_transform_hgvs.txt";
 system "cat ./output/04_actionable_mutation_can_transform_hgvs.txt | cut -f3 | sort -u > ./output/unique_04_actionable_mutation_can_transform_hgvs.txt";
 system "cat ./output/04_actionable_mutaton_in_pathogenicity.txt | cut -f3 | sort -u > ./output/unique_04_actionable_mutaton_in_pathogenicity.txt";
-system "cat ./output/04_can_transform_actionable_mutaton_not_in_pathogenicity.txt | sort -u > ./output/unique_04_can_transform_actionable_mutaton_not_in_pathogenicity.txt";
+system "cat ./output/04_can_transform_actionable_mutaton_not_in_pathogenicity.txt|cut -f3 | sort -u > ./output/unique_04_can_transform_actionable_mutaton_not_in_pathogenicity.txt";

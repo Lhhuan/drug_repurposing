@@ -20,16 +20,16 @@ while(<$I1>)
     my $Drug_chembl_id_Drug_claim_primary_name = $f[0];
     my $phase = $f[6];
     my $Max_phase = $phase;
-    $Max_phase=~s/unknown|Nutraceutical|NA/Unknown/g;
-    $Max_phase=~s/0/Phase0/g;
-    $Max_phase=~s/1/Phase1/g;
-    $Max_phase=~s/2/Phase2/g;
-    $Max_phase=~s/3/Phase3/g;
-    $Max_phase=~s/4/Phase4/g;
-    $Max_phase=~ s/Vet Approved/Unknown/g;
+    $Max_phase=~s/unknown|Nutraceutical|NA/Experimental/g;
+    $Max_phase=~s/0/Clinical Trials/g;
+    $Max_phase=~s/1/Clinical Trials/g;
+    $Max_phase=~s/2/Clinical Trials/g;
+    $Max_phase=~s/3/Clinical Trials/g;
+    $Max_phase=~s/4/FDA approved/g;
+    $Max_phase=~ s/Vet Approved/Experimental/g;
     $Max_phase =~s/Approved|Launched/FDA approved/g;
-    $Max_phase =~s/Experimental/Preclinical/g;
-    $Max_phase =~s/Clinical Trials/Unclassified Clinical Trials/g;
+    # $Max_phase =~s/Experimental/Preclinical/g;
+    # $Max_phase =~s/Clinical Trials/Unclassified Clinical Trials/g;
     # print "$phase\t$Max_phase\n";
     my $First_approval = $f[7];
     my $v = $Max_phase;
@@ -79,55 +79,19 @@ foreach my $drug (sort keys %hash2){
             print $O1 "$drug\tFDA approved\tNA\n";
         }   
     }
-    elsif(grep /Phase4/,@phases){
+    elsif(grep /Clinical Trials/,@phases){
         unless(exists $hash1{$drug}){
             $hash1{$drug} =1;
-            print $O1 "$drug\tPhase4\tNA\n";
-        } 
-    }
-    elsif(grep /Phase3/,@phases){
-        unless(exists $hash1{$drug}){
-            $hash1{$drug} =1;
-            print $O1 "$drug\tPhase3\tNA\n";
-        } 
-    }
-    elsif(grep /Phase2/,@phases){
-        unless(exists $hash1{$drug}){
-            $hash1{$drug} =1;
-            print $O1 "$drug\tPhase2\tNA\n";
-        } 
-    }
-    elsif(grep /Phase1/,@phases){
-        unless(exists $hash1{$drug}){
-            $hash1{$drug} =1;
-            print $O1 "$drug\tPhase1\tNA\n";
-        } 
-    }
-    elsif(grep /Phase0/,@phases){
-        unless(exists $hash1{$drug}){
-            $hash1{$drug} =1;
-            print $O1 "$drug\tPhase0\tNA\n";
-        } 
-    }
-    elsif(grep /Unclassified Clinical Trials/,@phases){
-        unless(exists $hash1{$drug}){
-            $hash1{$drug} =1;
-            print $O1 "$drug\tUnclassified Clinical Trials\tNA\n";
-        } 
-    }
-    elsif(grep /Preclinical/,@phases){
-        unless(exists $hash1{$drug}){
-            $hash1{$drug} =1;
-            print $O1 "$drug\tPreclinical\tNA\n";
+            print $O1 "$drug\tClinical Trials\tNA\n";
         } 
     }
     else{
         unless(exists $hash1{$drug}){
             $hash1{$drug} =1;
-            # print "@phases\t$drug\n";
-            print $O1 "$drug\tUnknown\tNA\n";
+            print $O1 "$drug\tExperimental\tNA\n";
         } 
     }
+
 }
 
 

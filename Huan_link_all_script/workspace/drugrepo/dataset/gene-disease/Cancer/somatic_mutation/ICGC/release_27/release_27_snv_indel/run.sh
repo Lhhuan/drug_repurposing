@@ -103,14 +103,23 @@ perl 07_cut_all_level_somatic_snv_indel_gene.pl #提取文件all_level_somatic_s
 Rscript 08_transform_07_ensg_entrezid.R #把07_somatic_snv_indel_mutationID_gene_geneLevel.txt的ensgid 转成entrezID,得文件08_ensg_to_entrezid.txt
 
 perl 09_merge_ensg_info_entrezid.pl #把07_somatic_snv_indel_mutationID_gene_geneLevel.txt 和 08_ensg_to_entrezid.txt merge在一起得文件09_somatic_snv_indel_mutationID_ensg_entrez.txt
+
+
+
 #--------------------------------------------------add out icgc driver mutation and actionable mutation
 perl 10_split_add_hgvsg_symbol.pl #将"/f/mulinlab/huan/ALL_result_ICGC_ALL_drug/gene_network_merge_repurposing_model/match_actionable_drive_mutation/release_27/add_actionable_driver_to_pathogenicity/out_ICGC/output/02_mutation_disease_cancer_project.txt"
 #中的symbol 分开，增加，mutation_id,得10_split_add_hgvsg_symbol.txt
 Rscript 11_transform_add_ensg_entrezid.R #将10_split_add_hgvsg_symbol.txt的symbol转成ensg和entrezid。得文件11_transform_add_ensg_entrezid.txt
 perl 12_merge_symbol_info_ensg_entreid.pl ##将10_split_add_hgvsg_symbol.txt和11_transform_add_ensg_entrezid.txt merge 到一起得12_add_mutation_ensg_entrezid_info.txt,得addid和project 的文件得12_add_project_mutation_id.txt
 #将11_transform_add_ensg_entrezid.txt和09_somatic_snv_indel_mutationID_ensg_entrez.txt merge到一起
-cat 09_somatic_snv_indel_mutationID_ensg_entrez.txt 11_transform_add_ensg_entrezid.txt >all_somatic_snv_indel_mutationID_ensg_entrez.txt
+cat 09_somatic_snv_indel_mutationID_ensg_entrez.txt 12_add_mutation_ensg_entrezid_info.txt >all_somatic_snv_indel_mutationID_ensg_entrez.txt
 #-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+#---------------------------------------------------------------------------#提取位置和mutation id
+
+
+
+
 #-----------------------------------#准备画图数据
 perl count_number_of_mutation_map_to_per_level.pl ##统计07_somatic_snv_indel_mutationID_gene_geneLevel.txt中 map to gene level 的每个level的mutation的数目，得count_number_of_mutation_map_to_per_level.txt
 

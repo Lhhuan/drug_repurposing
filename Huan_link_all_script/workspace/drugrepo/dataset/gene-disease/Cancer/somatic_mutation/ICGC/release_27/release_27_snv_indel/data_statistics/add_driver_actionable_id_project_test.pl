@@ -1,7 +1,7 @@
 #留住ID_project.txt 中的"/f/mulinlab/huan/ALL_result_ICGC_ALL_drug/gene_network_merge_repurposing_model/match_actionable_drive_mutation/release_27/add_actionable_driver_to_pathogenicity/in_ICGC/output/01_unique_all_driver_actionable_in_ICGC.txt"
 #和 cancer specific mutation >1(>=2)的cancer 相关mutation id留住和../12_add_project_mutation_id.txt merge 到一起，add_project_mutation_id的occurance
 #用"/f/mulinlab/huan/ALL_result_ICGC_ALL_drug/pathogenicity_mutation_cancer/output/average_Pathogenic_occurance.txt"
-#得最终id_project 文件 Final_ID_project.txt
+#得最终id_project 文件 ID_project_occur_QC.txt
 #!/usr/bin/perl
 use warnings;
 use strict; 
@@ -10,7 +10,7 @@ use utf8;
 my $f1 = "/f/mulinlab/huan/ALL_result_ICGC_ALL_drug/gene_network_merge_repurposing_model/match_actionable_drive_mutation/release_27/add_actionable_driver_to_pathogenicity/in_ICGC/output/01_unique_all_driver_actionable_in_ICGC.txt";
 my $f2 = "./ID_project.txt";
 my $f3 = "../12_add_project_mutation_id.txt";
-my $fo1 = "./Final_ID_project.txt";
+my $fo1 = "./ID_project_occur_QC.txt";
 open my $I1, '<', $f1 or die "$0 : failed to open input file '$f1' : $!\n";
 open my $I2, '<', $f2 or die "$0 : failed to open input file '$f2' : $!\n";
 open my $I3, '<', $f3 or die "$0 : failed to open input file '$f3' : $!\n";
@@ -40,6 +40,8 @@ while(<$I2>)
         else{#除此之外的mutation 按照cancer specific mutattion occurance >1进行筛选
             if($cancer_specific_affected_donors>1){
                 print $O1 "$_\n";
+            }else{
+                print "$_\n";
             }
         }
         

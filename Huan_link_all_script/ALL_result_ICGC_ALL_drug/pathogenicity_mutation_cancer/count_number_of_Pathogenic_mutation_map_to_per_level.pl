@@ -37,6 +37,8 @@ foreach my $level(sort keys %hash1){
     $level =~s/Level1_1_protein_coding/Level1.1/g;
     $level =~s/Level1_2_protein_coding/Level1.2/g;
     $level =~s/level2_enhancer_target/Level2/g;
+    $level =~s/level3.1/Level3.1/g;
+    $level =~s/level3.2/Level3.2/g;
     my $percentage = $m_number/105125 *100;
     $percentage=sprintf "%.2f",$percentage; #四舍五入保留四位小数
     print $O1 "$level\t$m_number\t${percentage}\%\n";

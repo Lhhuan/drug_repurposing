@@ -1,4 +1,6 @@
-
+cp "/f/mulinlab/huan/workspace/drugrepo/dataset/gene-disease/Cancer/somatic_mutation/ICGC/release_27/release_27_snv_indel/all_somatic_snv_indel_mutationID_ensg_entrez.txt" ./output/ICGC_occurthan1_snv_indel_mutationID_ensg_entrez.txt
+cp "/f/mulinlab/huan/workspace/drugrepo/dataset/gene-disease/Cancer/somatic_mutation/ICGC/release_27/release_27_snv_indel/data_statistics//Pathogenicity_id_project.txt" ./output/ICGC_occurthan1_snv_indel_mutationID_project.txt  #这个是mutation occur >1的cancer。
+cp "/f/mulinlab/huan/workspace/drugrepo/dataset/gene-disease/Cancer/somatic_mutation/ICGC/release_27/release_27_snv_indel/data_statistics/cancer_id_full_oncotree1.txt" ./output/ICGC_occurthan1_snv_indel_project_oncotree.txt
 cat ./output/ICGC_occurthan1_snv_indel_mutationID_ensg_entrez.txt| perl -ane 'chomp;unless(/^Mutation_ID/){@f = split/\t/;print "$f[1]\n"}' | sort -u > ./output/unique_ICGC_occurthan1_snv_indel.txt
 
 perl 10_merge_ICGC_occurthan1_snv_indel_mutationID_project_gene.pl

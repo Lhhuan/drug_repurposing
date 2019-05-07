@@ -6,4 +6,4 @@ cat ./v4/CNV/DEL_hotspot_score |awk 'NR>1' >> ./v4/CNV/All_CNV_hotspot_score
 cat ./v4/CNV/LOH_hotspot_score |awk 'NR>1' >> ./v4/CNV/All_CNV_hotspot_score
 cat ./v4/CNV/LOHgain_hotspot_score |awk 'NR>1' >> ./v4/CNV/All_CNV_hotspot_score
 perl 02_merge_SV_cnv.pl # #将./v4/SV/refine_TRA_hotspot_score， ./v4/SV/DEL_hotspot_score, ./v4/SV/DUP_hotspot_score, ./v4/SV/INV_hotspot_score, ./v4/CNV/All_CNV_hotspot_score merge到一起，得./v4/output/all_sv_snv.vcf
-perl 03_count_sv_cnv_number.pl #
+perl 03_filter_p_sv_cnv_number.pl #将./v4/output/all_sv_snv.vcf中cadd fre score >=15的筛选出来，得./v4/output/all_pathogenicity_sv_snv.vcf
