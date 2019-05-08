@@ -13,7 +13,7 @@ open my $I1, '<', $f1 or die "$0 : failed to open input file '$f1' : $!\n";
 open my $I2, '<', $f2 or die "$0 : failed to open input file '$f2' : $!\n";
 open my $O1, '>', $fo1 or die "$0 : failed to open output file '$fo1' : $!\n";
 my (%hash1,%hash2,%hash3,%hash4);
-print $O1 "chr\tpos\tref\talt\tfile_id\tdonor_id\tproject\tMutation_ID\toncotree_detail_id\toncotree_main_id\n";
+print $O1 "file_id\tdonor_id\tproject\tMutation_ID\toncotree_detail_id\toncotree_main_id\n";
 
 while(<$I1>)
 {
