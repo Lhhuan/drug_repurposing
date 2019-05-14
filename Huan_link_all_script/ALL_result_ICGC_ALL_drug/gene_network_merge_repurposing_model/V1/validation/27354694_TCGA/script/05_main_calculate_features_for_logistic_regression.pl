@@ -2,7 +2,7 @@
 #用"/f/mulinlab/huan/workspace/drugrepo/dataset/gene-disease/Cancer/somatic_mutation/ICGC/release_27/pathogenicity_SV_CNV/v4/output/all_pathogenicity_sv_snv.vcf"
 # 用./output/03_unique_merge_gene_based_and_network_based_data.txt.gz和
 #"/f/mulinlab/huan/workspace/drugrepo/dataset/gene-disease/Cancer/somatic_mutation/ICGC/release_27/ICGC_sample_wgs_somatic/output/05_ICGC_pathogenicity_mutation_number_in_cancer_in_sample_level.txt"
-#中的oncotree sub tissue ID 计算逻辑回归需要的features，得./output/05_sub_calculate_features_for_logistic_regression.txt
+#中的oncotree main tissue ID 计算逻辑回归需要的features，得./output/05_main_calculate_features_for_logistic_regression.txt
 #!/usr/bin/perl
 use warnings;
 use strict; 
@@ -10,16 +10,17 @@ use utf8;
 use List::Util qw/sum/;
 use List::Util qw/max min/;
 
-my $f1 = "./head_03_test.txt";
-open my $I1, '<', $f1 or die "$0 : failed to open input file '$f1' : $!\n";
-# my $f1 = "./output/03_unique_merge_gene_based_and_network_based_data.txt.gz";
-# open( my $I1 ,"gzip -dc $f1|") or die ("can not open input file '$f1' \n"); #读压缩文件
-#my $f2 = "/f/mulinlab/huan/workspace/drugrepo/dataset/gene-disease/Cancer/somatic_mutation/ICGC/release_27/pathogenicity_SV_CNV/v4/output/all_pathogenicity_sv_snv.vcf";
-my $f2 = "./sv_cnv_test.txt";
+# my $f1 = "./head_03_test.txt";
+# # # my $f1 = "./test.txt";
+my $f1 = "./output/03_unique_merge_gene_based_and_network_based_data.txt.gz";
+# open my $I1, '<', $f1 or die "$0 : failed to open input file '$f1' : $!\n";
+open( my $I1 ,"gzip -dc $f1|") or die ("can not open input file '$f1' \n"); #读压缩文件
+my $f2 = "/f/mulinlab/huan/workspace/drugrepo/dataset/gene-disease/Cancer/somatic_mutation/ICGC/release_27/pathogenicity_SV_CNV/v4/output/all_pathogenicity_sv_snv.vcf";
+# my $f2 = "./sv_cnv_test.txt";
 open my $I2, '<', $f2 or die "$0 : failed to open input file '$f2' : $!\n";
 my $f3 = "/f/mulinlab/huan/workspace/drugrepo/dataset/gene-disease/Cancer/somatic_mutation/ICGC/release_27/ICGC_sample_wgs_somatic/output/05_ICGC_pathogenicity_mutation_number_in_cancer_in_sample_level.txt";
 open my $I3, '<', $f3 or die "$0 : failed to open input file '$f3' : $!\n";
-my $fo1 = "./output/05_sub_calculate_features_for_logistic_regression.txt";
+my $fo1 = "./output/05_main_calculate_features_for_logistic_regression.txt";
 open my $O1, '>', $fo1 or die "$0 : failed to open output file '$fo1' : $!\n";
 my $header="Drug_chembl_id_Drug_claim_primary_name\tcancer_oncotree_id\taverage_effective_drug_target_score\tmax_effective_drug_target_score\taverage_mutation_frequency\tmax_mutation_frequency";
 $header ="$header\taverage_mutation_pathogenicity\tmax_mutation_pathogenicity\taverage_mutation_map_to_gene_level_score\tmax_mutation_map_to_gene_level_score\taverage_the_shortest_path_length\tmin_the_shortest_path_length";
@@ -57,38 +58,39 @@ while(<$I1>)
         my $map_to_gene_level_score = $f[18];
         my $data_source = $f[19];
         # my $drug_all_target_number =$f[19];
-        unless($oncotree_ID_sub_tissue eq $oncotree_ID_main_tissue){ #如果sub id和main id不相同，就用sub id，否则在另一文件中用main id计算
-            my $k = "$Drug_chembl_id_Drug_claim_primary_name\t$oncotree_ID_sub_tissue";
-            my $v2 = "$Mutation_ID\t$cancer_specific_affected_donors\t$original_cancer_ID";
-            my $v4 = "$Mutation_ID\t$CADD_MEANPHRED";
-            my $v5 = "$Mutation_ID\t$map_to_gene_level_score";
-            my $v3 = "$the_shortest_path\t$path_length";
-            push @{$hash2{$k}},$v2;
-            push @{$hash3{$k}},$v3;
-            push @{$hash4{$k}},$v4;
-            push @{$hash5{$k}},$v5;
-            push @{$hash6{$k}},$normal_score_P;
-            push @{$hash30{$k}},$cancer_ENSG; #all_cancer genes
-            push @{$hash32{$k}},$project;
-            push @{$hash40{$k}},$Mutation_ID;
-            #-----------------------------------------------
-            #-----------------------------------------------push drug target score
+        my $sv_or_cnv_type = $f[20];
+        my $sv_or_cnv_id= $f[22];
+        my $SVSCORETOP10 = $f[-1];
+        my $k = "$Drug_chembl_id_Drug_claim_primary_name\t$oncotree_ID_main_tissue";
+        my $v2 = "$Mutation_ID\t$cancer_specific_affected_donors\t$original_cancer_ID";
+        my $v4 = "$Mutation_ID\t$CADD_MEANPHRED";
+        my $v5 = "$Mutation_ID\t$map_to_gene_level_score";
+        my $v3 = "$the_shortest_path\t$path_length";
+        push @{$hash2{$k}},$v2;
+        push @{$hash3{$k}},$v3;
+        push @{$hash4{$k}},$v4;
+        push @{$hash5{$k}},$v5;
+        push @{$hash6{$k}},$normal_score_P;
+        push @{$hash30{$k}},$cancer_ENSG; #all_cancer genes
+        push @{$hash32{$k}},$project;
+        push @{$hash40{$k}},$Mutation_ID;
+        #-----------------------------------------------
+        #-----------------------------------------------push drug target score
 #-----------------------------------------------push drug target score
-            if ($drug_target_score =~/NA/){
-                my $v1 = "$drug_ENSG\t1";#没有score，按1处理。
-                push @{$hash1{$k}},$v1; 
-            }
-            else{
-                my $v1 = "$drug_ENSG\t$drug_target_score";
-                push @{$hash1{$k}},$v1;
-            }
-            #---------------------------------------------------------- #把cancer gene 和drug target 直接match的push进数组。
-
-            if ($data_source =~/gene_based/){
-                push @{$hash7{$k}},$cancer_ENSG; # exact match cancer gene 个数
-                # $hash13{$k}=$drug_all_target_number;
-            }           
+        if ($drug_target_score =~/NA/){
+            my $v1 = "$drug_ENSG\t1";#没有score，按1处理。
+            push @{$hash1{$k}},$v1; 
         }
+        else{
+            my $v1 = "$drug_ENSG\t$drug_target_score";
+            push @{$hash1{$k}},$v1;
+        }
+        #---------------------------------------------------------- #把cancer gene 和drug target 直接match的push进数组。
+
+        if ($data_source =~/gene_based/){
+            push @{$hash7{$k}},$cancer_ENSG; # exact match cancer gene 个数
+            # $hash13{$k}=$drug_all_target_number;
+        }           
     }
 }
 
@@ -139,7 +141,7 @@ while(<$I3>)
         my $oncotree_id = $f[0];
         my $average_mutation_number_in_sample = $f[3];
         my $type  =$f[4];
-        if ($type =~/oncotree_detail_id/){
+        if ($type =~/oncotree_main_id/){
             $hash39{$oncotree_id}=$average_mutation_number_in_sample;
         }
     }
@@ -171,15 +173,12 @@ foreach my $k (sort keys %hash1){
     @cancer_affect_donor_infos = grep { ++$hash15{$_} < 2 } @cancer_affect_donor_infos;
     my @cancer_specific_affected_donors =();
     my @cancer_specific_mutation = ();
-    my %hash45;
     foreach my $v2_t(@cancer_affect_donor_infos){
         my @f = split/\t/,$v2_t;
         my $mutation_id = $f[0];
-        my $cancer_specific_affected_donor = $f[1];
-        my $original_cancer_ID = $f[2];
-        push @{$hash45{$mutation_id}},$cancer_specific_affected_donor; #为了算max mutation pathogenicity score
+        my $cancer_specific_affected_donors = $f[1];
         push @cancer_specific_mutation,$mutation_id;#因为同一mutation 会对应同一main cancer typex下的sub cancer type,所以会出现一个mutation 对应同一个main cancer type 会出现多个不同的cancer_specific_affected_donors，所以把单独看mutation的个数
-        push @cancer_specific_affected_donors,$cancer_specific_affected_donor; 
+        push @cancer_specific_affected_donors,$cancer_specific_affected_donors; 
     } 
     my $sum_mutation_f =sum @cancer_specific_affected_donors; 
     my %hash26;
@@ -187,13 +186,7 @@ foreach my $k (sort keys %hash1){
     my $mutation_num = @cancer_specific_mutation;
     my $averge_mutation_frequency = $sum_mutation_f/$mutation_num;   
     #-------------------------------------------计算max mutation frequency
-    my @use_max_affected_donors;
-    foreach my $mutation_id (sort keys %hash45){
-        my @affected_number = @{$hash45{$mutation_id}};
-        my $all_donors = sum @affected_number;
-        push @use_max_affected_donors,$all_donors;
-    }
-    my $max_mutation_frequency = max @use_max_affected_donors;
+    my $max_mutation_frequency =max @cancer_specific_affected_donors;
     #-------------------------------------------------------------#计算 average mutation pathogenicity score (除以mutation number)
     my @mutation_pathogenicity_infos = @{$hash4{$k}};
     my %hash16;
@@ -296,7 +289,7 @@ foreach my $k (sort keys %hash1){
         push  @outputs,$matching_score;
     }
     else{
-        my $average_mutation_number_in_sample = $hash39{average_detail_id};
+        my $average_mutation_number_in_sample = $hash39{average_main_id};
         my $matching_score = $Mutation_ID_number/$average_mutation_number_in_sample;
         push  @outputs,$matching_score;
     }  

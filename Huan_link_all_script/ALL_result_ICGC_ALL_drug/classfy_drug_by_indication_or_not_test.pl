@@ -1,5 +1,5 @@
-#用./output/all_drug_infos_score_type.txt把no-indication drug和 indication drug分开。indication drug又分为 cancer drug和非cancer drug ，得drug indication type文件./output/drug_indication_type.txt 
-#得cancer drug文件./output/cancer_drug_type.txt, 得非cancer drug文件，./output/noncancer_drug_type.txt，得no-indication drug 文件./output/noncancer_drug_type.txt
+#用./output/all_drug_infos_score_type.txt把no-indication drug和 indication drug分开。indication drug又分为 cancer drug和非cancer drug ，得cancer drug文件./output/cancer_drug_type.txt, 得非cancer drug文件，./output/noncancer_drug_type.txt，
+#得no-indication drug 文件./output/noncancer_drug_type.txt
 #记录cancer 、非cancer drug和no indication 每种drug type的cancer数目，分别得文件./output/cancer_drug_type_number.txt， ./output/noncancer_drug_type_number.txt #共有cancer drug 2759个，非cancer drug 4037个 
 #./output/no_indication_drug_number.txt #没有indication的drug 6255个。得三种药物数目统计文件./output/three_type_drug_type_number.txt
 #!/usr/bin/perl
@@ -15,7 +15,6 @@ my $fo4 ="./output/cancer_drug_type_number.txt";
 my $fo5 ="./output/noncancer_drug_type_number.txt";
 my $fo6 ="./output/no_indication_drug_type_number.txt";
 my $fo7 ="./output/three_type_drug_type_number.txt";
-my $fo8 ="./output/drug_indication_type.txt";
 open my $I1, '<', $f1 or die "$0 : failed to open input file '$f1' : $!\n";
 open my $O1, '>', $fo1 or die "$0 : failed to open output file '$fo1' : $!\n";
 open my $O2, '>', $fo2 or die "$0 : failed to open output file '$fo2' : $!\n";
@@ -24,7 +23,6 @@ open my $O4, '>', $fo4 or die "$0 : failed to open output file '$fo4' : $!\n";
 open my $O5, '>', $fo5 or die "$0 : failed to open output file '$fo5' : $!\n";
 open my $O6, '>', $fo6 or die "$0 : failed to open output file '$fo6' : $!\n";
 open my $O7, '>', $fo7 or die "$0 : failed to open output file '$fo7' : $!\n";
-open my $O8, '>', $fo8 or die "$0 : failed to open output file '$fo8' : $!\n";
 
 my $header = "Drug_chembl_id_Drug_claim_primary_name\tdrug_type";
 print $O1 "$header\n";
@@ -34,7 +32,6 @@ my $out1 = "drug_type\tdrug_number";
 print $O4 "$out1\n";
 print $O5 "$out1\n";
 print $O6 "$out1\n";
-print $O8 "Drug_chembl_id_Drug_claim_primary_name\tdrug_type\tindication_type\n";
 my (%hash1, %hash2,%hash3);
 while(<$I1>)
 {
@@ -60,15 +57,12 @@ foreach my $drug (sort keys %hash1){
     my $drug_type =$hash1{$drug};
     if(exists $hash3{$drug}){ #cancer drug
         print $O1 "$drug\t$drug_type\n";
-        print $O8 "$drug\t$drug_type\tCancer_drug\n";
     }
     elsif(exists $hash2{$drug}){ #non-cancer drug
         print $O2 "$drug\t$drug_type\n";
-        print $O8 "$drug\t$drug_type\tNon-cancer_drug\n";
     }
     else{# no indication drug 
         print $O3 "$drug\t$drug_type\n";
-        print $O8 "$drug\t$drug_type\tNo_indication_drug\n";
     }
 }
 

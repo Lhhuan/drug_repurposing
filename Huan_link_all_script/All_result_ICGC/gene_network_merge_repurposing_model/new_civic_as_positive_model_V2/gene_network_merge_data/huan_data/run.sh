@@ -19,8 +19,8 @@ perl 05_main_calculate_features_for_logistic_regression.pl
 perl 06_merge_sub_main_features_for_logistic_regression.pl ##将./output/05_sub_calculate_features_for_logistic_regression.txt和./output/05_main_calculate_features_for_logistic_regression.txt merge 在一起，
 #得./output/06_merge_sub_main_features_for_logistic_regression.txt
 #./output/06_merge_sub_main_features_for_logistic_regression.txt 是计算出所以的sub和main tissue的features 可以供用户查询时提供的data 
-perl 07_filter_icgc_data_features_for_logistic_regression.pl #用./output/04_final_data_for_calculate_features.txt中的sub oncotree id(没有sub的采用main，也就是相当于用sub那列)和 drug pair 提出 ./output/06_merge_sub_main_features_for_logistic_regression.txt中
-#的feature，得./output/07_filter_icgc_data_features_for_logistic_regression.txt
+# perl 07_filter_icgc_data_features_for_logistic_regression.pl #用./output/04_final_data_for_calculate_features.txt中的sub oncotree id(没有sub的采用main，也就是相当于用sub那列)和 drug pair 提出 ./output/06_merge_sub_main_features_for_logistic_regression.txt中
+# #的feature，得./output/07_filter_icgc_data_features_for_logistic_regression.txt
 Rscript 08_prediction_drug_repurposing_normal.R #预测./output/07_filter_icgc_data_features_for_logistic_regression.txt的repurposing 结果，得./output/08_logistic_regression_prediction_potential_drug_repurposing_data.txt
 perl 09_repurposing_Drug_claim_primary_name.pl #给./output/08_logistic_regression_prediction_potential_drug_repurposing_data.txt加一列Drug_claim_primary_name，得./output/09_repurposing_Drug_claim_primary_name.txt
 perl 10_merge_drug_indication.pl #将"/f/mulinlab/huan/All_result_ICGC/21_all_drug_infos.txt"中的indication和./output/09_repurposing_Drug_claim_primary_name.txt merge 到一起，

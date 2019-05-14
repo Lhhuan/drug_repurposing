@@ -11,18 +11,17 @@ use List::Util qw/sum/;
 use List::Util qw/max min/;
 
 # my $f1 = "./head_03_test.txt";
-# # # my $f1 = "./test.txt";
-my $f1 = "./output/03_unique_merge_gene_based_and_network_based_data.txt.gz";
 # open my $I1, '<', $f1 or die "$0 : failed to open input file '$f1' : $!\n";
+my $f1 = "./output/03_unique_merge_gene_based_and_network_based_data.txt.gz";
 open( my $I1 ,"gzip -dc $f1|") or die ("can not open input file '$f1' \n"); #读压缩文件
 my $f2 = "/f/mulinlab/huan/workspace/drugrepo/dataset/gene-disease/Cancer/somatic_mutation/ICGC/release_27/pathogenicity_SV_CNV/v4/output/all_pathogenicity_sv_snv.vcf";
 # my $f2 = "./sv_cnv_test.txt";
 open my $I2, '<', $f2 or die "$0 : failed to open input file '$f2' : $!\n";
 my $f3 = "/f/mulinlab/huan/workspace/drugrepo/dataset/gene-disease/Cancer/somatic_mutation/ICGC/release_27/ICGC_sample_wgs_somatic/output/05_ICGC_pathogenicity_mutation_number_in_cancer_in_sample_level.txt";
 open my $I3, '<', $f3 or die "$0 : failed to open input file '$f3' : $!\n";
-my $fo1 = "./output/05_main_calculate_features_for_logistic_regression_test.txt";
+my $fo1 = "./output/05_main_calculate_features_for_logistic_regression.txt";
 open my $O1, '>', $fo1 or die "$0 : failed to open output file '$fo1' : $!\n";
-my $header="Drug_chembl_id_Drug_claim_primary_name\tcancer_oncotree_main_id\taverage_effective_drug_target_score\tmax_effective_drug_target_score\taverage_mutation_frequency\tmax_mutation_frequency";
+my $header="Drug_chembl_id_Drug_claim_primary_name\tcancer_oncotree_id\taverage_effective_drug_target_score\tmax_effective_drug_target_score\taverage_mutation_frequency\tmax_mutation_frequency";
 $header ="$header\taverage_mutation_pathogenicity\tmax_mutation_pathogenicity\taverage_mutation_map_to_gene_level_score\tmax_mutation_map_to_gene_level_score\taverage_the_shortest_path_length\tmin_the_shortest_path_length";
 $header = "$header\tmin_rwr_normal_P_value\tmedian_rwr_normal_P_value";
 $header = "$header\tcancer_gene_exact_match_drug_target_ratio\tmatching_score\taverage_del_svscore\taverage_dup_svscore\taverage_inv_svscore\taverage_tra_svscore\taverage_cnv_svscore";
@@ -57,20 +56,17 @@ while(<$I1>)
         my $project = $f[17];
         my $map_to_gene_level_score = $f[18];
         my $data_source = $f[19];
-        # my $drug_all_target_number =$f[19];
-        my $sv_or_cnv_type = $f[20];
-        my $sv_or_cnv_id= $f[22];
-        my $SVSCORETOP10 = $f[-1];
         my $k = "$Drug_chembl_id_Drug_claim_primary_name\t$oncotree_ID_main_tissue";
         my $v2 = "$Mutation_ID\t$cancer_specific_affected_donors\t$original_cancer_ID";
         my $v4 = "$Mutation_ID\t$CADD_MEANPHRED";
         my $v5 = "$Mutation_ID\t$map_to_gene_level_score";
         my $v3 = "$the_shortest_path\t$path_length";
+        my $v6 = "$normal_score_P\t$cancer_ENSG";
         push @{$hash2{$k}},$v2;
         push @{$hash3{$k}},$v3;
         push @{$hash4{$k}},$v4;
         push @{$hash5{$k}},$v5;
-        push @{$hash6{$k}},$normal_score_P;
+        push @{$hash6{$k}},$v6;
         push @{$hash30{$k}},$cancer_ENSG; #all_cancer genes
         push @{$hash32{$k}},$project;
         push @{$hash40{$k}},$Mutation_ID;
@@ -173,12 +169,15 @@ foreach my $k (sort keys %hash1){
     @cancer_affect_donor_infos = grep { ++$hash15{$_} < 2 } @cancer_affect_donor_infos;
     my @cancer_specific_affected_donors =();
     my @cancer_specific_mutation = ();
+    my %hash45;
     foreach my $v2_t(@cancer_affect_donor_infos){
         my @f = split/\t/,$v2_t;
         my $mutation_id = $f[0];
-        my $cancer_specific_affected_donors = $f[1];
+        my $cancer_specific_affected_donor = $f[1];
+        my $original_cancer_ID = $f[2];
+        push @{$hash45{$mutation_id}},$cancer_specific_affected_donor; #为了算max mutation pathogenicity score
         push @cancer_specific_mutation,$mutation_id;#因为同一mutation 会对应同一main cancer typex下的sub cancer type,所以会出现一个mutation 对应同一个main cancer type 会出现多个不同的cancer_specific_affected_donors，所以把单独看mutation的个数
-        push @cancer_specific_affected_donors,$cancer_specific_affected_donors; 
+        push @cancer_specific_affected_donors,$cancer_specific_affected_donor; 
     } 
     my $sum_mutation_f =sum @cancer_specific_affected_donors; 
     my %hash26;
@@ -186,7 +185,13 @@ foreach my $k (sort keys %hash1){
     my $mutation_num = @cancer_specific_mutation;
     my $averge_mutation_frequency = $sum_mutation_f/$mutation_num;   
     #-------------------------------------------计算max mutation frequency
-    my $max_mutation_frequency =max @cancer_specific_affected_donors;
+    my @use_max_affected_donors;
+    foreach my $mutation_id (sort keys %hash45){
+        my @affected_number = @{$hash45{$mutation_id}};
+        my $all_donors = sum @affected_number;
+        push @use_max_affected_donors,$all_donors;
+    }
+    my $max_mutation_frequency = max @use_max_affected_donors;
     #-------------------------------------------------------------#计算 average mutation pathogenicity score (除以mutation number)
     my @mutation_pathogenicity_infos = @{$hash4{$k}};
     my %hash16;
@@ -235,10 +240,17 @@ foreach my $k (sort keys %hash1){
     #-------------------------------------------------------------------------- #计算min normal P 和 median p
     my @rwr_normal_score_P_infos = @{$hash6{$k}};
     my %hash19;
+    my @normal_score_P;
     @rwr_normal_score_P_infos = grep { ++$hash19{$_} < 2 } @rwr_normal_score_P_infos;
-    my $min_rwr_normal_P_value = min @rwr_normal_score_P_infos;
+    foreach my $rwr_normal_score_P_info(@rwr_normal_score_P_infos){
+        my @Ps = split/\t/,$rwr_normal_score_P_info;
+        my $p_score = $Ps[0];
+        push @normal_score_P,$p_score;
+    }
+    
+    my $min_rwr_normal_P_value = min  @normal_score_P;
     #--------------------------------------计算median p
-    my $median_rwr_normal_P_value = mid(@rwr_normal_score_P_infos); #把@rwr_normal_score_P_infos传递给子程序
+    my $median_rwr_normal_P_value = mid( @normal_score_P); #把@rwr_normal_score_P_infos传递给子程序
     sub mid{
         my @list = sort{$a<=>$b} @_;
         my $count = @list;

@@ -1,6 +1,6 @@
 ##把网络最短路径的文件./output/10_start_end_logical.txt及./output/15.1_merge_drug_target_network_id_success_pair_info.txt merge在一起，得文件./output/16_merge_logic_shortest_path_cancer_gene_drug_moa.txt（因为测试过中间文件很大，所以就不输出了，直接对其判断逻辑）
 #并判断最短路径的逻辑和drug target 和cancer gene的逻辑，得逻辑一致的文件./output/16_judge_the_shortest_drug_target_cancer_gene_logic_true.txt,得逻辑不一致的文件./output/16_judge_the_shortest_drug_target_cancer_gene_logic_conflict.txt,
-#得没有逻辑的文件./output/16_judge_the_shortest_drug_target_cancer_gene_no_logic.txt,####得总文件./output/16_judge_the_shortest_drug_target_cancer_gene_logic.txt.gz
+#得没有逻辑的文件./output/16_judge_the_shortest_drug_target_cancer_gene_no_logic.txt,####得总文件./output/16_judge_the_shortest_drug_target_cancer_gene_logic.txt
 #!/usr/bin/perl
 use warnings;
 use strict;
@@ -17,8 +17,8 @@ my $fo2 ="./output/16_judge_the_shortest_drug_target_cancer_gene_logic_conflict.
 open my $O2, "| gzip >$fo2" or die $!;
 my $fo3 ="./output/16_judge_the_shortest_drug_target_cancer_gene_no_logic.txt.gz"; 
 open my $O3, "| gzip >$fo3" or die $!;
-my $fo4 ="./output/16_judge_the_shortest_drug_target_cancer_gene_logic.txt.gz"; 
-open my $O4, "| gzip >$fo4" or die $!;
+# my $fo4 ="./16_judge_the_shortest_drug_target_cancer_gene_logic.txt"; 
+# open my $O4, '>', $fo4 or die "$0 : failed to open output file '$fo4' : $!\n";
 
 my $header ="the_shortest_path\tpath_logic\tpath_length\tdrug_name_network\tstart_id\tstart_entrez\trandom_overlap_fact_end_id\tnormal_score_P\tend_entrze\tCADD_MEANPHRED\tMutation_ID\tENSG\tMap_to_gene_level\tproject\tcancer_specific_affected_donors\tcancer_ID\tproject_full_name\tproject_full_name_from_project\toncotree_term_detail";
 $header = "$header\toncotree_ID_detail\toncotree_term_main_tissue\toncotree_ID_main_tissue\tgene_role_in_cancer";
@@ -26,7 +26,7 @@ $header ="$header\tDrug_chembl_id|Drug_claim_primary_name\tGene_symbol\tEntrez_i
 print $O1 "$header\n";
 print $O2 "$header\n";
 print $O3 "$header\n";
-print $O4 "$header\n";
+# print $O4 "$header\n";
 
 
 
@@ -67,32 +67,26 @@ while(<$I1>)
             my $drug_type =$f[-3];
             if($Role_in_cancer=~/LOF,GOF/){ ##gene role是LOF，GOF时表明gene 既有可能是lof,也有可能是GOF，所以不管drug是A和I或者both都有可能是对的，所以这里算逻辑上对
                  print $O1 "$output\ttrue\n";
-                 print $O4 "$output\ttrue\n";
             }
             elsif($Role_in_cancer=~/LOF/){
                 if($drug_type=~/I/){
                     if($path_logic=~/in/){  #三者乘积为-1，logic true
                         print $O1 "$output\ttrue\n";
-                        print $O4 "$output\ttrue\n";
                     }
                     elsif($path_logic=~/a|-/){ #三者乘机为1，logic conflict
                         print $O2 "$output\tconflict\n";
-                        print $O4 "$output\tconflict\n";
                     }
                 }
                 elsif($drug_type=~/A/){
                     if($path_logic =~/in/){ #三者乘机为1，logic conflict
                         print $O2 "$output\tconflict\n"; 
-                        print $O4 "$output\tconflict\n";
                     }
                     elsif($path_logic =~/a|-/){ #三者乘积为-1，logic true
                         print $O1 "$output\ttrue\n";
-                        print $O4 "$output\ttrue\n";
                     }
                 }
                 else{ #drug target 为na或者A,I
                     print $O3 "$output\tno\n"; #drug target 为unknown无法判断其logic 类型
-                    print $O4 "$output\tno\n";
                 }
             }
             else{ #此时$Role_in_cancer是GOF或者NA
@@ -100,31 +94,25 @@ while(<$I1>)
                     if($drug_type=~/I/){
                         if($path_logic =~/in/){ #三者乘机为1，logic conflict
                             print $O2 "$output\tconflict\n";
-                            print $O4 "$output\tconflict\n";
                         }
                         elsif($path_logic =~/a|-/){ #三者乘积为-1，logic true
                                 print $O1 "$output\ttrue\n";
-                                print $O4 "$output\ttrue\n";
                         }
                     }
                     elsif($drug_type =~/A/){
                         if($path_logic =~/in/){ #三者乘积为-1，logic true
                             print $O1 "$output\ttrue\n"; 
-                            print $O4 "$output\ttrue\n"; 
                         }
                         elsif($path_logic =~/a|-/){ #三者乘机为1，logic conflict
                             print $O2 "$output\tconflict\n";
-                            print $O4 "$output\tconflict\n";
                         }
                     }
                     else{ #drug target 为na
                         print $O3 "$output\tno\n"; #drug target 为unknown无法判断其logic 类型
-                        print $O4 "$output\tno\n";
                     }
                 }
                 else{#此时$Role_in_cancer是NA
                     print $O3 "$output\tno\n"; #drug target 为unknown无法判断其logic 类型
-                    print $O4 "$output\tno\n";
                 }
             }
         }
