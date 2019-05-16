@@ -22,7 +22,7 @@ open my $O4, '>', $fo4 or die "$0 : failed to open output file '$fo4' : $!\n";
 my (%hash1, %hash2);
 print $O1 "ID\tproject\tcancer_specific_affected_donors\tCADD_PHRED\n";
 print $O2 "ID\tproject\tcancer_specific_affected_donors\n";
-print $O3 "ID\tCADD_PHRED\n";
+print $O3 "Mutaton_ID\tCADD_PHRED\n";
 print $O4 "ID\tproject\tcancer_specific_affected_donors\tCADD_PHRED\n";
 
 while(<$I1>)

@@ -1,12 +1,12 @@
-#利用"/f/mulinlab/huan/ALL_result_ICGC_ALL_drug/output/all_drug_infos_score.txt" 给./output/08_logistic_regression_prediction_potential_drug_repurposing_data.txt加一列Drug_claim_primary_name，得./output/09_repurposing_Drug_claim_primary_name.txt
+#利用"/f/mulinlab/huan/ALL_result_ICGC_ALL_drug/output/all_drug_infos_score.txt" 给./output/09_out_of_training_dataset_repurposing_data.txt加一列Drug_claim_primary_name，得./output/10_repurposing_Drug_claim_primary_name.txt
 #!/usr/bin/perl
 use warnings;
 use strict; 
 use utf8;
 
 my $f1 ="/f/mulinlab/huan/ALL_result_ICGC_ALL_drug/output/all_drug_infos_score.txt";
-my $f2 ="./output/08_logistic_regression_prediction_potential_drug_repurposing_data.txt";
-my $fo1 ="./output/09_repurposing_Drug_claim_primary_name.txt";
+my $f2 ="./output/09_out_of_training_dataset_repurposing_data.txt";
+my $fo1 ="./output/10_repurposing_Drug_claim_primary_name.txt";
 open my $I1, '<', $f1 or die "$0 : failed to open input file '$f1' : $!\n";
 open my $I2, '<', $f2 or die "$0 : failed to open input file '$f2' : $!\n";
 open my $O1, '>', $fo1 or die "$0 : failed to open output file '$fo1' : $!\n";
@@ -16,7 +16,7 @@ while(<$I1>)
 {
     chomp;
     my @f= split /\t/;
-    unless(/^Drug_claim_primary_name/){
+    unless(/^Drug_chembl_id_Drug_claim_primary_name/){
         my $Drug_chembl_id_Drug_claim_primary_name= $f[0];
         my $Drug_claim_primary_name = $f[4];
         push @{$hash1{$Drug_chembl_id_Drug_claim_primary_name}},$Drug_claim_primary_name;

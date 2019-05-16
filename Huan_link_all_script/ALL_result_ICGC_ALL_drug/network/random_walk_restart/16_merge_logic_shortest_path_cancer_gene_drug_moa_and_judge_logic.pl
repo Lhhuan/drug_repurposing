@@ -20,9 +20,9 @@ open my $O3, "| gzip >$fo3" or die $!;
 my $fo4 ="./output/16_judge_the_shortest_drug_target_cancer_gene_logic.txt.gz"; 
 open my $O4, "| gzip >$fo4" or die $!;
 
-my $header ="the_shortest_path\tpath_logic\tpath_length\tdrug_name_network\tstart_id\tstart_entrez\trandom_overlap_fact_end_id\tnormal_score_P\tend_entrze\tCADD_MEANPHRED\tMutation_ID\tENSG\tMap_to_gene_level\tproject\tcancer_specific_affected_donors\tcancer_ID\tproject_full_name\tproject_full_name_from_project\toncotree_term_detail";
+my $header ="the_shortest_path\tpath_logic\tpath_length\tdrug_name_network\tstart_id\tstart_entrez\trandom_overlap_fact_end_id\tnormal_score_P\tend_entrze\tCADD_MEANPHRED\tMutation_ID\tCancer_ENSG_ID\tMap_to_gene_level\tproject\tcancer_specific_affected_donors\tcancer_ID\tproject_full_name\tproject_full_name_from_project\toncotree_term_detail";
 $header = "$header\toncotree_ID_detail\toncotree_term_main_tissue\toncotree_ID_main_tissue\tgene_role_in_cancer";
-$header ="$header\tDrug_chembl_id|Drug_claim_primary_name\tGene_symbol\tEntrez_id\tENSG_ID\tDrug_type\tdrug_target_score\tdrug_target_network_id\tthe_final_logic";
+$header ="$header\tDrug_chembl_id_Drug_claim_primary_name\tGene_symbol\tEntrez_id\tENSG_ID\tDrug_type\tdrug_target_score\tdrug_target_network_id\tthe_final_logic";
 print $O1 "$header\n";
 print $O2 "$header\n";
 print $O3 "$header\n";

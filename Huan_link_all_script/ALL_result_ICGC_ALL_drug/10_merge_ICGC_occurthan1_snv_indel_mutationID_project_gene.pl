@@ -14,7 +14,7 @@ open my $I2, '<', $f2 or die "$0 : failed to open input file '$f2' : $!\n";
 open my $O1, '>', $fo1 or die "$0 : failed to open output file '$fo1' : $!\n";
 open my $O2, '>', $fo2 or die "$0 : failed to open output file '$fo2' : $!\n";
 my (%hash1,%hash2,%hash3,%hash4);
-print $O1 "Mutation_ID\tENSG\tMap_to_gene_level\tentrezgene\tproject\tcancer_specific_affected_donors\n";
+print $O1 "Mutation_ID\tENSG_ID\tMap_to_gene_level\tentrezgene\tproject\tcancer_specific_affected_donors\n";
 while(<$I1>)
 {
     chomp;
