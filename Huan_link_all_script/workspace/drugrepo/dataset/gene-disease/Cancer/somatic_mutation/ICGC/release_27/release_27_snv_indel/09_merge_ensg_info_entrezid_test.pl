@@ -11,7 +11,7 @@ open my $I1, '<', $f1 or die "$0 : failed to open input file '$f1' : $!\n";
 open my $I2, '<', $f2 or die "$0 : failed to open input file '$f2' : $!\n";
 open my $O1, '>', $fo1 or die "$0 : failed to open output file '$fo1' : $!\n";
 my (%hash1,%hash2,%hash3,%hash4);
-print $O1 "Mutation_ID\tGene\tMap_to_gene_level\tentrezgene\tsymbol\n";
+print $O1 "Mutation_ID\tGene\tMap_to_gene_level\tentrezgene\n";
 while(<$I1>)
 {
     chomp;
@@ -32,9 +32,7 @@ while(<$I2>)
         my @f = split/\t/;
         my $ensg = $f[0];
         my $entrezgene =$f[3];
-        my $symbol = $f[4];
-        my $v= "$entrezgene\t$symbol";
-        $hash2{$ensg}=$v;
+        $hash2{$ensg}=$entrezgene;
      }
 }
 

@@ -2,6 +2,7 @@ library(tidyverse)
 library(stringr)
 library(GenomicFeatures)
 library(mygene)
+setwd("/f/mulinlab/huan/All_result_ICGC/network/")
 di<-"~/All_result_ICGC/network"
 
 

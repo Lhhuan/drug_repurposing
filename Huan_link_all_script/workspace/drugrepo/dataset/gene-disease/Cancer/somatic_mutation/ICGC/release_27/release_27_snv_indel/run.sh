@@ -109,7 +109,7 @@ perl 09_merge_ensg_info_entrezid.pl #把07_somatic_snv_indel_mutationID_gene_gen
 #--------------------------------------------------add out icgc driver mutation and actionable mutation
 perl 10_split_add_hgvsg_symbol.pl #将"/f/mulinlab/huan/ALL_result_ICGC_ALL_drug/gene_network_merge_repurposing_model/match_actionable_drive_mutation/release_27/add_actionable_driver_to_pathogenicity/out_ICGC/output/02_mutation_disease_cancer_project.txt"
 #中的symbol 分开，增加，mutation_id,得10_split_add_hgvsg_symbol.txt
-Rscript 11_transform_add_ensg_entrezid.R #将10_split_add_hgvsg_symbol.txt的symbol转成ensg和entrezid。得文件11_transform_add_ensg_entrezid.txt
+Rscript 11_transform_add_ensg_entrezid.R #将10_split_add_hgvsg_symbol.txt的symbol转成ensg和entrezid,symbol。得文件11_transform_add_ensg_entrezid.txt
 perl 12_merge_symbol_info_ensg_entreid.pl ##将10_split_add_hgvsg_symbol.txt和11_transform_add_ensg_entrezid.txt merge 到一起得12_add_mutation_ensg_entrezid_info.txt,得addid和project 的文件得12_add_project_mutation_id.txt
 #将11_transform_add_ensg_entrezid.txt和09_somatic_snv_indel_mutationID_ensg_entrez.txt merge到一起
 cat 09_somatic_snv_indel_mutationID_ensg_entrez.txt 12_add_mutation_ensg_entrezid_info.txt >all_somatic_snv_indel_mutationID_ensg_entrez.txt

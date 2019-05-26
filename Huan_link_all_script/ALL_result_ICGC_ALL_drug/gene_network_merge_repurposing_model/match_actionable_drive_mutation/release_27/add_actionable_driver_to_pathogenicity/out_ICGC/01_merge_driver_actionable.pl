@@ -25,7 +25,7 @@ my (%hash1,%hash2,%hash3,%hash4,%hash5,%hash6);
 my $header = "variant_id\tfinal_variant\thgvsg\tdisease\tsource";
 print $O1 "$header\n";
 print $O2 "hgvsg\tdisease\n";
-print $O3 "hgvsg\n";
+print $O3 "hgvsg\tsource\n";
 print $O4 "disease\n";
 
 while(<$I1>)
@@ -40,7 +40,8 @@ while(<$I1>)
         $disease=~s/_/ /g;
         $disease =lc($disease);
         my $v= "$hgvsg\t$disease";
-        $hash1{$hgvsg}=1;
+        my $source = "actionable_mutation";
+        push @{$hash1{$hgvsg}},$source;
         $hash2{$v}=1;
         $hash3{$disease}=1;
     }
@@ -59,7 +60,8 @@ while(<$I2>)
         $disease=~s/_/ /g;
         $disease =lc($disease);
         my $v= "$hgvsg\t$disease";
-        $hash1{$hgvsg}=1;
+        my $source = "driver_mutation";
+        push @{$hash1{$hgvsg}},$source;
         $hash2{$v}=1;
         $hash3{$disease}=1;
     }
@@ -70,7 +72,11 @@ foreach my $d_v(sort keys %hash2){
 }
 
 foreach my $id (sort keys %hash1){
-    print $O3 "$id\n";
+    my %hash7;
+    my @sources = @{$hash1{$id}};
+    @sources = grep { ++$hash7{$_}<2} @sources;
+    my $source =join(";",@sources);
+    print $O3 "$id\t$source\n";
 }
 
 foreach my $disease(sort keys %hash3){

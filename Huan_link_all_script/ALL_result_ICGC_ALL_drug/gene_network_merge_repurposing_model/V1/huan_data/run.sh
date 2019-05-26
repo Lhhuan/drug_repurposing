@@ -33,8 +33,20 @@ perl 12_merge_cancer_detail_main_ID.pl ##用"/f/mulinlab/huan/ALL_result_ICGC_AL
 perl 13_judge_indication_and_cancer_differ.pl ##判断./output/12_merge_cancer_detail_main_ID.txt中的indication和cancer是否相同，
 #得indication和cancer相同文件./output/13_indication_and_cancer_same.txt ,得indication和cancer不相同文件./output/13_indication_and_cancer_differ.txt，#得加标签的原文件./output/13_indication_and_cancer_lable.txt
 #并从./output/12_merge_cancer_detail_main_ID.txt中提取./output/13_indication_and_cancer_lable.txt的信息，得./output/13_indication_and_cancer_lable_info.txt
-perl 14.1_merge_indication_and_cancer_lable.pl #将./output/09_out_of_training_dataset_repurposing_data.txt 和 ./output/13_indication_and_cancer_lable.txt merge到一起，得./output/14_09_out_of_training_dataset_repurposing_label.txt
+perl 14.1_merge_indication_and_cancer_lable.pl #将./output/09_out_of_training_dataset_repurposing_data.txt 和 ./output/13_indication_and_cancer_lable.txt merge到一起，得./output/14_out_of_training_dataset_repurposing_label.txt
 perl 14_merge_oncotree_main_detail_term.pl ##用"/f/mulinlab/huan/ALL_result_ICGC_ALL_drug/output/ICGC_occurthan1_snv_indel_project_oncotree_normalized.txt"中的detail oncotree term 和 oncotree term 和 ./output/13_indication_and_cancer_lable_info.txt
 # merge 到一起，得./output/14_merge_oncotree_main_detail_term.txt
 perl 15_split_drug_repurposing_and_drug_indication.pl ## 把./output/14_merge_oncotree_main_detail_term.txt 中的indication和drug repurposing 分开，并把>=0.9的打上lable,
 #得./output/15_drug_repurposing_recall_indication.txt 和./output/15_drug_potential_repurposing.txt
+
+
+
+#----------------------------统计drug cancer pair 中 repo value 是否随着actionable 的个数增加而增加
+perl 17_count_drug_cancer_pair_actionable_number.pl #用"/f/mulinlab/huan/ALL_result_ICGC_ALL_drug/gene_network_merge_repurposing_model/match_actionable_drive_mutation/release_27/add_actionable_driver_to_pathogenicity/all_actionable_driver/output/01_all_actionable_driver_mutation.txt"
+# 和./output/03_unique_merge_gene_based_and_network_based_data.txt.gz 统计不同drug cancer 中的actionable or driver mutation 的数目，得文件./output/17_drug_cancer_pairs_actionable_number.txt
+#得pair的actionable文件./output/17_drug_cancer_pairs_actionable.txt
+perl 18_merge_actionable_number_and_prediction_value.pl #将 ./output/17_drug_cancer_pairs_actionable_number.txt 和./output/08_logistic_regression_prediction_potential_drug_repurposing_data.txt merge在一起，
+#得./output/18_actionable_number_and_prediction_value.txt
+Rscript 19_actionable_number_and_prediction_value_correlative.R  #用./output/18_actionable_number_and_prediction_value.txt画prediction value 和actionable mutation mutation 的相关性。得./figure/19_actionable_number_and_prediction_value_correlative.pdf
+#
+#---------------------------------------

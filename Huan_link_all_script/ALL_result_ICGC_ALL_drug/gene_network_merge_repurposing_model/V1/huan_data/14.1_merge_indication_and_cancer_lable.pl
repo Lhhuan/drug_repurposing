@@ -1,4 +1,4 @@
-#将./output/09_out_of_training_dataset_repurposing_data.txt 和 ./output/13_indication_and_cancer_lable.txt merge到一起，得./output/14_09_out_of_training_dataset_repurposing_label.txt
+#将./output/09_out_of_training_dataset_repurposing_data.txt 和 ./output/13_indication_and_cancer_lable.txt merge到一起，得./output/14_out_of_training_dataset_repurposing_label.txt
 #!/usr/bin/perl
 use warnings;
 use strict; 
@@ -18,10 +18,12 @@ while(<$I1>)
     my @f= split /\t/;
     unless(/^Drug_chembl_id_Drug_claim_primary_name/){
         my $Drug_chembl_id_Drug_claim_primary_name= $f[0];
+        my $Drug_claim_primary_name = $f[1];
         my $cancer_id = $f[2];
         my $lable = $f[3];
         my $k = "$Drug_chembl_id_Drug_claim_primary_name\t$cancer_id";
-        $hash1{$k}=$lable;
+        my $v= "$Drug_claim_primary_name\t$lable";
+        $hash1{$k}=$v;
     }
 }
 
@@ -30,7 +32,7 @@ while(<$I2>)
     chomp;
     my @f= split /\t/;
     if(/^Drug_chembl_id_Drug_claim_primary_name/){
-        print $O1 "$_\tindication_or_repurposing\n";
+        print $O1 "$_\tDrug_claim_primary_name\tindication_or_repurposing\n";
     }
     else{
         my $Drug= $f[0];

@@ -13,7 +13,7 @@ open my $I2, '<', $f2 or die "$0 : failed to open input file '$f2' : $!\n";
 open my $O1, '>', $fo1 or die "$0 : failed to open output file '$fo1' : $!\n";
 open my $O2, '>', $fo2 or die "$0 : failed to open output file '$fo2' : $!\n";
 my (%hash1,%hash2,%hash3,%hash4);
-print $O1 "Mutation_ID\tGene\tMap_to_gene_level\tentrezgene\n";
+print $O1 "Mutation_ID\tGene\tMap_to_gene_level\tentrezgene\tsymbol\n";
 print $O2 "ID\tproject\n";
 while(<$I1>)
 {
@@ -48,10 +48,11 @@ while(<$I2>)
         $ensg =~s/,.*$//g;
         # print "$ensg\n";
         my $entrezgene =$f[2];
+        my $symbol = $f[3];
         if (exists $hash1{$gene}){
             my @ids = @{$hash1{$gene}};
             foreach my $id(@ids){
-                my $output = "$id\t$ensg\tLevel1_1_protein_coding\t$entrezgene";
+                my $output = "$id\t$ensg\tLevel1_1_protein_coding\t$entrezgene\t$symbol";
                 unless(exists $hash3{$output}){
                     $hash3{$output} =1;
                     print $O1 "$output\n";

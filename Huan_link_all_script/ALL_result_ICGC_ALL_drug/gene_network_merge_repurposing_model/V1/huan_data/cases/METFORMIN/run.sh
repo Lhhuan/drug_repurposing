@@ -1,0 +1,3 @@
+zless "/f/mulinlab/huan/ALL_result_ICGC_ALL_drug/gene_network_merge_repurposing_model/V1/huan_data/output/03_merge_gene_based_and_network_based_data.txt.gz" | head -1 >./output/METFORMIN_COAD_info.txt
+zgrep -w "COAD" "/f/mulinlab/huan/ALL_result_ICGC_ALL_drug/gene_network_merge_repurposing_model/V1/huan_data/output/03_merge_gene_based_and_network_based_data.txt.gz" | grep -w "CHEMBL1431">>./output/METFORMIN_COAD_info.txt
+cat ./output/METFORMIN_COAD_info.txt | cut -f1,2,3,5,6,13,20| sort -ur > ./output/uniq_METFORMIN_COAD_info.txt

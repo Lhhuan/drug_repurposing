@@ -20,10 +20,10 @@ my $fo3 ="./output/13_indication_and_cancer_lable_info.txt";
 open my $O3, '>', $fo3 or die "$0 : failed to open output file '$fo3' : $!\n";
 
 
-my $title = "Drug_chembl_id_Drug_claim_primary_name\tDrug_claim_primary_name";
+my $title = "Drug_chembl_id_Drug_claim_primary_name\tDrug_claim_primary_name\tcancer_oncotree_detail_ID";
 print $O1 "$title\tindication\n";
-print $O2 "$title\trepo_cancer\n";
-print $O4 "$title\tcancer_id\tlable\n";
+print $O2 "$title\n";
+print $O4 "$title\tlable\n";
 
 
 my (%hash1,%hash2,%hash3);
@@ -77,19 +77,19 @@ foreach my $drug (sort keys %hash1){
         my $cancer_detail =$f[0];
         my $cancer_main = $f[1];
         if(grep /$cancer_detail/, @indications ){  #捕获在indication里出现的cancer
-            my $out = "$drug\t$cancer_detail\toverlap_indication_with_oncotree_detail_id"; #标注和indication的来源
+            my $out = "$drug\t$cancer_detail"; #标注和indication的来源
             unless(exists $hash7{$out}){
                 $hash7{$out}=1;
-                print $O1 "$out\n";
+                print $O1 "$out\toverlap_indication_with_oncotree_detail_id\n";
                 print $O4 "$out\tindication\n";
             }
         }
         else{
             if(grep /$cancer_main/, @indications ){
-                my $out = "$drug\t$cancer_detail\toverlap_indication_with_oncotree_main_id";
+                my $out = "$drug\t$cancer_detail";
                 unless(exists $hash7{$out}){
                     $hash7{$out}=1;
-                    print $O1 "$out\n";
+                    print $O1 "$out\toverlap_indication_with_oncotree_main_id\n";
                     print $O4 "$out\tindication\n";
                 }
             }

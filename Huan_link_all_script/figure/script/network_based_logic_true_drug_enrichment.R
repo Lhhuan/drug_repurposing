@@ -41,7 +41,7 @@ credplot.gg <- function(d){
 
 setwd("/f/mulinlab/huan/figure/figures/")
 pdf("Network_based_drug_detail_cancer_pairs_with_genetic_associations_percentage_than0.pdf",height = 4.5,width = 7) #把图片存下来
-detail_than_0$Cancer_term <- factor(detail_than_0$Cancer_term, levels=detail_than_0$Cancer_term) #对Cancer_term进行排序
+detail_than_0$Cancer_term <- factor(detail_than_0$Cancer_term, levels=detail_than_0$Cancer_term) #对Cancer_term进行排序，按照原来表格中出现的Cancer_term顺序排
 p<-credplot.gg(detail_than_0)
 p
 dev.off()
