@@ -1,11 +1,11 @@
-##把./output/11_merge_ICGC_occurthan1_snv_indel_mutationID_project_oncotree.txt和./output/normal_three_source_gene_role.txt merge 在一起，得文件./output/12_merge_ICGC_info_gene_role.txt
+##把./output/11_merge_ICGC_occurthan1_snv_indel_mutationID_project_oncotree.txt和./output/normal_four_source_gene_role.txt merge 在一起，得文件./output/12_merge_ICGC_info_gene_role.txt
 #!/usr/bin/perl
 use warnings;
 use strict; 
 use utf8;
 
 my $f1 = "./output/11_merge_ICGC_occurthan1_snv_indel_mutationID_project_oncotree.txt";
-my $f2 = "./output/normal_three_source_gene_role.txt";
+my $f2 = "./output/normal_four_source_gene_role.txt";
 my $fo1 = "./output/12_merge_ICGC_info_gene_role.txt";
 my $fo2 = "./output/12_co_ICGC_info_gene_role.txt"; #两个数据库重合的基因。
 open my $I1, '<', $f1 or die "$0 : failed to open input file '$f1' : $!\n";

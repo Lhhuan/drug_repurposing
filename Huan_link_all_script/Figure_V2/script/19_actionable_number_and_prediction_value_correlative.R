@@ -2,7 +2,7 @@ library(gcookbook)
 library(dplyr)
 library(ggplot2)
 library(readr)
-setwd("/f/mulinlab/huan/ALL_result_ICGC_ALL_drug/gene_network_merge_repurposing_model/V1/huan_data/")
+setwd("/f/mulinlab/huan/ALL_result_ICGC_ALL_drug/gene_network_merge_repurposing_model/V2/huan_data/")
 org<-read_tsv("./output/18_actionable_number_and_prediction_value.txt",col_names = T )%>%as.data.frame()
 
 # pdf("mutation_occurance_cutoff.pdf",height = 3.5,width = 4)

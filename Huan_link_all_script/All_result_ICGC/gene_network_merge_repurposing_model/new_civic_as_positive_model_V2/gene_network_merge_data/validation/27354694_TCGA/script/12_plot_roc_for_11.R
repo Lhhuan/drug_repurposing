@@ -14,3 +14,4 @@ plot(modelroc, print.auc=TRUE, auc.polygon=TRUE,legacy.axes=TRUE, grid=c(0.1, 0.
      grid.col=c("green", "red"), max.auc.polygon=TRUE,
      auc.polygon.col="skyblue")        #画出ROC曲线，标出坐标，并标出AUC的值 #print.thres=TRUE 是输出约旦系数
 #dev.off()
+

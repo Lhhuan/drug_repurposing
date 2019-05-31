@@ -2,7 +2,7 @@ library(gcookbook)
 library(dplyr)
 library(ggplot2)
 library(readr)
-setwd("/f/mulinlab/huan/ALL_result_ICGC_ALL_drug/gene_network_merge_repurposing_model/V1/huan_data/")
+setwd("/f/mulinlab/huan/ALL_result_ICGC_ALL_drug/gene_network_merge_repurposing_model/V2/huan_data/")
 org<-read_tsv("./output/15_drug_repurposing_recall_indication.txt",col_names = T )%>%as.data.frame()
 
 ##按照predict_value的median对cancer_oncotree_main_ID排序
