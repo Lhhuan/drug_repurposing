@@ -15,7 +15,7 @@
 # cat ./output/pathogenicity_mutation_cancer.txt|awk 'NR>1' | cut -f1,2,6,7 | sort -u >>./output/Pathogenic_snv_indel_project.txt
 perl merge_p_score_mutation_cancer.pl  #用../output/12_merge_ICGC_info_gene_role.txt
 #和"/f/mulinlab/huan/workspace/drugrepo/dataset/gene-disease/Cancer/somatic_mutation/ICGC/release_27/release_27_snv_indel/data_statistics/pathogenicity_id_cadd_score.txt" 文件merge
-#得./output/pathogenicity_mutation_cancer.txt，得所有致病性mutation id文件./output/pathogenicity_mutation_ID.txt
+#得./output/pathogenicity_mutation_cancer.txt，得所有致病性mutation id文件./output/pathogenicity_mutation_ID.txt #85994
 
 perl count_number_of_Pathogenic_mutation_map_to_per_level.pl #统计./output/pathogenicity_mutation_cancer.txt中 map to gene level 的每个level的mutation的数目，得./output/count_number_of_Pathogenic_mutation_map_to_per_level.txt
 #统计gene moa, 统计每种moa 下的gene数及其比例，得./output/count_number_of_cancer_gene_MOA.txt

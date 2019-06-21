@@ -46,8 +46,8 @@ cat ./9.25_random_overlap_fact/output/9.25_random_overlap_fact*.txt > ./output/9
 perl 9.26_count_random_overlap_fact.pl #为./output/9.25_random_overlap_fact.txt，为每个drug对应的random_overlap_fact出现的end计数，得文件./output/9.26_drug_count_random_overlap_fact.txt，
 #同时得end计数重复出现频率即normal score ,这个score越低，表示特异性越强，得文件./output/9.26_drug_network_disease_gene_normal_score.txt
 
-perl 9.27_merge_drug_target_network_gene_normal_score.pl #把./output/08_drug_start_comma_end.txt 中的drug target id 用../output/04_map_ICGC_snv_indel_in_network_num.txt 转换成entrez id，并和./output/9.26_drug_network_disease_gene_normal_score.txt 
-#merge在一起，得 ./output/9.27_merge_drug_target_network_gene_normal_score.txt  
+perl 9.27_merge_drug_target_network_gene_normal_score.pl #把./output/08_drug_start_comma_end.txt 中的drug target id 用../output/network_gene_num.txt 转换成entrez id，并和./output/9.26_drug_network_disease_gene_normal_score.txt 
+#merge在一起，得 ./output/9.27_merge_drug_target_network_gene_normal_score.txt 
 
 #-------------------------------
 perl 10_find_logic_of_the_shortest.pl #用"/f/mulinlab/huan/All_result_ICGC/network/the_shortest_path/normal_network_num.txt"为./output/09_the_shortest_path.txt里面的路径寻找start和end的逻辑关系,

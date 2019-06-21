@@ -1,0 +1,4 @@
+perl 07_filter_uniparc_out_and_random_select.pl
+echo -e "finish_07_filter_uniparc_out_and_random_select\n"
+perl 08_filter_uniparc_in_random.pl
+echo -e "finish_08_filter_uniparc_in_random\n"

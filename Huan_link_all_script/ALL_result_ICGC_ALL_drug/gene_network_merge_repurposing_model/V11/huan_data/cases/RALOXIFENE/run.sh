@@ -1,0 +1,2 @@
+head -1 "/f/mulinlab/huan/ALL_result_ICGC_ALL_drug/gene_network_merge_repurposing_model/V1/huan_data/output/14_out_of_training_dataset_repurposing_label.txt" > ./output/CHEMBL81.txt
+grep -w "CHEMBL81" "/f/mulinlab/huan/ALL_result_ICGC_ALL_drug/gene_network_merge_repurposing_model/V1/huan_data/output/14_out_of_training_dataset_repurposing_label.txt" >>./output/CHEMBL81.txt

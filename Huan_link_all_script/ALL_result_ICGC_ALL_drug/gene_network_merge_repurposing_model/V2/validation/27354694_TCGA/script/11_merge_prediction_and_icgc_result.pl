@@ -52,8 +52,8 @@ while(<$I2>)
             # print STDERR "$k\n";
             my $value_in_paper = $hash1{$k};
             my $output = "$Drug_chembl_id_Drug_claim_primary_name\t$drug_in_paper\t$oncotree_id\t$oncotree_id_type\t$paper_sample_name\t$predict_value\t$value_in_paper";
-            # if ($value_in_paper =~/Complete|Partial/){ #Complete Response和Partial Response是1
-            if ($value_in_paper =~/Complete/){ #Complete Response和Partial Response是1
+            if ($value_in_paper =~/Complete|Partial/){ #Complete Response和Partial Response是1
+            # if ($value_in_paper =~/Complete/){ #Complete Response和Partial Response是1
                 print $O1 "$output\t1\n";
             }
             elsif($value_in_paper =~/Stable|Progressive/){ #Stable Disease 和Clinical Progressive Disease是0

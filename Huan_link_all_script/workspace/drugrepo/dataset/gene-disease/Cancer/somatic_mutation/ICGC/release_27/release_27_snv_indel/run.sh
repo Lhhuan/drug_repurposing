@@ -107,13 +107,18 @@ perl 09_merge_ensg_info_entrezid.pl #把07_somatic_snv_indel_mutationID_gene_gen
 
 
 #--------------------------------------------------add out icgc driver mutation and actionable mutation
-perl 10_split_add_hgvsg_symbol.pl #将"/f/mulinlab/huan/ALL_result_ICGC_ALL_drug/gene_network_merge_repurposing_model/match_actionable_drive_mutation/release_27/add_actionable_driver_to_pathogenicity/out_ICGC/output/02_mutation_disease_cancer_project.txt"
+perl 10_split_add_hgvsg_symbol.pl #将"/f/mulinlab/huan/ALL_result_ICGC_ALL_drug/gene_network_merge_repurposing_model/match_actionable_drive_mutation/release_27/add_actionable_driver_to_pathogenicity/out_ICGC/output/03_merge_cgi_and_other_mutation_out_icgc.txt"
 #中的symbol 分开，增加，mutation_id,得10_split_add_hgvsg_symbol.txt
 Rscript 11_transform_add_ensg_entrezid.R #将10_split_add_hgvsg_symbol.txt的symbol转成ensg和entrezid,symbol。得文件11_transform_add_ensg_entrezid.txt
-perl 12_merge_symbol_info_ensg_entreid.pl ##将10_split_add_hgvsg_symbol.txt和11_transform_add_ensg_entrezid.txt merge 到一起得12_add_mutation_ensg_entrezid_info.txt,得addid和project 的文件得12_add_project_mutation_id.txt
-#将11_transform_add_ensg_entrezid.txt和09_somatic_snv_indel_mutationID_ensg_entrez.txt merge到一起
+perl 12_merge_symbol_info_ensg_entreid.pl #将10_split_add_hgvsg_symbol.txt和11_transform_add_ensg_entrezid.txt merge 到一起得12_add_mutation_ensg_entrezid_info.txt,得addid和project 的文件得12_add_project_mutation_id.txt
 cat 09_somatic_snv_indel_mutationID_ensg_entrez.txt 12_add_mutation_ensg_entrezid_info.txt >all_somatic_snv_indel_mutationID_ensg_entrez.txt
 #-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+#------------------------------------------for zhouyao 
+perl 13_call_add_snv_indel_position.pl #借助"/f/mulinlab/huan/ALL_result_ICGC_ALL_drug/gene_network_merge_repurposing_model/match_actionable_drive_mutation/release_27/add_actionable_driver_to_pathogenicity/out_ICGC/output/03_merge_cgi_and_other_mutation_out_icgc_unique_muatation_vep.vcf"
+#call出12_add_project_mutation_id.txt 中mutation的位置，得13_add_snv_position.txt, 13_add_indel_positive.txt, 13_add_project_mutation_id_position.txt
+perl 13_filter_fusion_Indel.pl #由于13_add_indel_positive.txt 中ins和del混合的数据，这种数据在cadd里不能计算。所以只算单独ins 或者单独del的数据，得文件13_add_indel_ins_del_no_fusion.txt，del 和ins fusion 的文件13_add_indel_ins_del_fusion.txt
+
+
 
 #---------------------------------------------------------------------------#提取位置和mutation id
 

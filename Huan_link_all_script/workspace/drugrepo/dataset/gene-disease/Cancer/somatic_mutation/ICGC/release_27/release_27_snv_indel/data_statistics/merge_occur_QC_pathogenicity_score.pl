@@ -20,8 +20,8 @@ while(<$I1>)
     chomp;
     unless (/^ID/){
         my @f = split/\t/;
-        my $ID = $f[0];
-        my $CADD_PHRED = $f[1];
+        my $ID = $f[2];
+        my $CADD_PHRED = $f[-1];
         $hash1{$ID}=$CADD_PHRED;
     }
 }

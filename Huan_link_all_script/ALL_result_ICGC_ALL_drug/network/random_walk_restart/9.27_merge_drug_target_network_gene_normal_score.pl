@@ -1,4 +1,4 @@
-#把./output/08_drug_start_comma_end.txt 中的drug target id 用../output/04_map_ICGC_snv_indel_in_network_num.txt 转换成entrez id，并和./output/9.26_drug_network_disease_gene_normal_score.txt 
+#把./output/08_drug_start_comma_end.txt 中的drug target id 用../output/network_gene_num.txt 转换成entrez id，并和./output/9.26_drug_network_disease_gene_normal_score.txt 
 #merge在一起，得 ./output/9.27_merge_drug_target_network_gene_normal_score.txt
 #!/usr/bin/perl
 use warnings;
@@ -7,7 +7,8 @@ use utf8;
 
 my $f1 ="./output/08_drug_start_comma_end.txt";
 open my $I1, '<', $f1 or die "$0 : failed to open input file '$f1' : $!\n";
-my $f2 ="../output/04_map_ICGC_snv_indel_in_network_num.txt";
+my $f2 ="../output/network_gene_num.txt";
+# my $f2 ="../output/04_map_ICGC_snv_indel_in_network_num.txt";
 open my $I2, '<', $f2 or die "$0 : failed to open input file '$f2' : $!\n";
 my $f3 ="./output/9.26_drug_network_disease_gene_normal_score.txt";
 open my $I3, '<', $f3 or die "$0 : failed to open input file '$f3' : $!\n";
@@ -33,9 +34,9 @@ while(<$I2>)
 {
     chomp;
     my @f= split /\t/;
-    unless(/^entrezgene/){  #entrezgene和network_id转换
-        my $gene = $f[0];
-        my $network_id = $f[1];
+    unless(/^gene_symbol/){  #entrezgene和network_id转换
+        my $gene = $f[1];
+        my $network_id = $f[2];
         $hash2{$network_id}=$gene;
     }
 }
@@ -62,6 +63,9 @@ foreach my $drug (sort keys %hash1){
         if (exists $hash2{$start_id}){
             my $start_entrez = $hash2{$start_id};
             push @start_entrez_id, $start_entrez;
+        }
+        else{
+            print "$start_id\n";
         }
     }
     my $out_gene = join(",",@start_entrez_id);

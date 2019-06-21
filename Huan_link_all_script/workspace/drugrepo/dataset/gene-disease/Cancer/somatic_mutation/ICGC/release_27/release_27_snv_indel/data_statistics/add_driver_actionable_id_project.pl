@@ -22,7 +22,10 @@ while(<$I1>)
 {
     chomp;
     unless (/^ICGC_Mutation_ID/){
-        $hash1{$_}=1;
+        my @f= split/\t/;
+        my $ICGC_Mutation_ID =$f[0];
+        $hash1{$ICGC_Mutation_ID}=1;
+        # print "$ICGC_Mutation_ID\n";
     }
 }
 
@@ -35,6 +38,7 @@ while(<$I2>)
         my $project = $f[1];
         my $cancer_specific_affected_donors = $f[2];
         if (exists $hash1{$ID}){ #在ICGC中的driver和actionable mutation直接输出
+        # print  "$ID\n";
             print $O1 "$_\n";
         }
         else{#除此之外的mutation 按照cancer specific mutattion occurance >1进行筛选

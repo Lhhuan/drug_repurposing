@@ -1,3 +1,4 @@
+#./output/no_antitumor_in_cancer_drug_type.txt 为non-cancer drug
 #用./output/all_drug_infos_score_type.txt把no-indication drug和 indication drug分开。indication drug又分为 cancer drug和非cancer drug ，得drug indication type文件./output/drug_indication_type.txt 
 #得cancer drug文件./output/cancer_drug_type.txt, 得非cancer drug文件，./output/noncancer_drug_type.txt，得no-indication drug 文件./output/noncancer_drug_type.txt
 #记录cancer 、非cancer drug和no indication 每种drug type的cancer数目，分别得文件./output/cancer_drug_type_number.txt， ./output/noncancer_drug_type_number.txt #共有cancer drug 2759个，非cancer drug 4037个 
@@ -8,6 +9,7 @@ use strict;
 use utf8;
 
 my $f1 ="./output/all_drug_infos_score_type.txt";
+my $f5 = "./output/no_antitumor_in_cancer_drug_type.txt";
 my $fo1 ="./output/cancer_drug_type.txt";
 my $fo2 ="./output/noncancer_drug_type.txt";
 my $fo3 ="./output/no_indication_drug.txt";
@@ -17,6 +19,7 @@ my $fo6 ="./output/no_indication_drug_type_number.txt";
 my $fo7 ="./output/three_type_drug_type_number.txt";
 my $fo8 ="./output/drug_indication_type.txt";
 open my $I1, '<', $f1 or die "$0 : failed to open input file '$f1' : $!\n";
+open my $I5, '<', $f5 or die "$0 : failed to open input file '$f5' : $!\n";
 open my $O1, '>', $fo1 or die "$0 : failed to open output file '$fo1' : $!\n";
 open my $O2, '>', $fo2 or die "$0 : failed to open output file '$fo2' : $!\n";
 open my $O3, '>', $fo3 or die "$0 : failed to open output file '$fo3' : $!\n";
@@ -35,7 +38,7 @@ print $O4 "$out1\n";
 print $O5 "$out1\n";
 print $O6 "$out1\n";
 print $O8 "Drug_chembl_id_Drug_claim_primary_name\tdrug_type\tindication_type\n";
-my (%hash1, %hash2,%hash3);
+my (%hash1, %hash2,%hash3,%hash11);
 while(<$I1>)
 {
     chomp;
@@ -56,11 +59,46 @@ while(<$I1>)
     }
 }
 
+while(<$I5>)  #之前认为cancer drug的非cancer drug
+{
+    chomp;
+    my @f= split /\t/;
+    unless(/^Drug_claim_primary_name/){
+        my $Drug_chembl_id_Drug_claim_primary_name= $f[0];
+        $Drug_chembl_id_Drug_claim_primary_name = uc($Drug_chembl_id_Drug_claim_primary_name);#为了避免同一种Drug_chembl_id_Drug_claim_primary_name 有两个名字A-B和AB而造成的重复，此处对Drug_chembl_id_Drug_claim_primary_name进行处理。
+        $Drug_chembl_id_Drug_claim_primary_name =~s/{//g;
+        $Drug_chembl_id_Drug_claim_primary_name =~s/}//g;
+        $Drug_chembl_id_Drug_claim_primary_name =~s/"//g;
+        $Drug_chembl_id_Drug_claim_primary_name =~s/\(//g;
+        $Drug_chembl_id_Drug_claim_primary_name =~s/\)//g;
+        $Drug_chembl_id_Drug_claim_primary_name =~s/\s+//g;
+        $Drug_chembl_id_Drug_claim_primary_name =~s/-//g;
+        $Drug_chembl_id_Drug_claim_primary_name =~s/_//g;
+        $Drug_chembl_id_Drug_claim_primary_name =~s/\]//g;
+        $Drug_chembl_id_Drug_claim_primary_name =~s/\[//g;
+        $Drug_chembl_id_Drug_claim_primary_name =~s/\//_/g;
+        $Drug_chembl_id_Drug_claim_primary_name =~s/\&/+/g; #把&替换+
+        $Drug_chembl_id_Drug_claim_primary_name =~s/,//g;
+        $Drug_chembl_id_Drug_claim_primary_name =~s/'//g;
+        $Drug_chembl_id_Drug_claim_primary_name =~s/\.//g;
+        $Drug_chembl_id_Drug_claim_primary_name =~s/\+//g;
+        $Drug_chembl_id_Drug_claim_primary_name =~s/\;//g;
+        $Drug_chembl_id_Drug_claim_primary_name =~s/\://g;
+        $hash11{$Drug_chembl_id_Drug_claim_primary_name} =1;
+    }
+}
+
 foreach my $drug (sort keys %hash1){
     my $drug_type =$hash1{$drug};
-    if(exists $hash3{$drug}){ #cancer drug
-        print $O1 "$drug\t$drug_type\n";
-        print $O8 "$drug\t$drug_type\tCancer_drug\n";
+    if(exists $hash3{$drug}){ 
+        if (exists $hash11{$drug}){  #已标记为no_antitumor_in_cancer_drug
+            print $O2 "$drug\t$drug_type\n";
+            print $O8 "$drug\t$drug_type\tNon-cancer_drug\n";
+        }
+        else{ #cancer drug
+            print $O1 "$drug\t$drug_type\n";
+            print $O8 "$drug\t$drug_type\tCancer_drug\n";
+        }
     }
     elsif(exists $hash2{$drug}){ #non-cancer drug
         print $O2 "$drug\t$drug_type\n";

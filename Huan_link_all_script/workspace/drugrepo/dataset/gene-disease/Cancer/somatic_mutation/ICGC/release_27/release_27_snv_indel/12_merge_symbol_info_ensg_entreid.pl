@@ -18,21 +18,20 @@ print $O2 "ID\tproject\n";
 while(<$I1>)
 {
     chomp;
-    unless (/^Mutation_ID/){
+    unless (/^final_variant/){
         my @f = split/\t/;
         my $project = $f[4];
         my $gene =$f[5];
         my $mutation_ID = $f[6];
-        if ($mutation_ID=~/\>/){
+        unless ($mutation_ID=~/dup/){
             push @{$hash1{$gene}},$mutation_ID;
             my $v = "$mutation_ID\t$project";
             unless (exists $hash2{$v}){
                 $hash2{$v} =1;
                 print $O2 "$v\n";
             }
-
         }
-     }
+    }
 }
 
 while(<$I2>)
@@ -42,7 +41,7 @@ while(<$I2>)
         my @f = split/\t/;
         my $gene = $f[0];
         my $ensg = $f[1];
-        $ensg =~s/\\c//g;
+        $ensg =~s/c//g;
         $ensg =~ s/\(//g;
         $ensg =~s/\"//g;
         $ensg =~s/,.*$//g;

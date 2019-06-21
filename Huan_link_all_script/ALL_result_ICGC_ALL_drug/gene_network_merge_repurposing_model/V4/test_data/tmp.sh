@@ -1,0 +1,4 @@
+perl 08_merge_drug_name_data_for_logistic_regression.pl
+echo -e "finish_08_merge_drug_name_data_for_logistic_regression\n"
+perl 09_filter_test_data_for_logistic_regression.pl
+echo -e "finish_09_filter_test_data_for_logistic_regression\n"

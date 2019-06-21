@@ -1,0 +1,1 @@
+/f/mulinlab/huan/tools/ncbi-blast-2.9.0+/bin/makeblastdb -in  uniparc -dbtype prot

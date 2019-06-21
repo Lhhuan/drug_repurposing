@@ -29,13 +29,12 @@ while(<$I1>)
                     my @cancer = split/\|/,$cancers;
                     my $final_cancer = $cancer[0];
                     my $cancer_specific_affected_donors = $cancer[1];
-                    if ($cancer_specific_affected_donors>0){  #所有的都先统计出来
-                        print $O1 "$ID\t$final_cancer\t$cancer_specific_affected_donors\n";
-                    }
+                    # if ($cancer_specific_affected_donors>0){  #所有的都先统计出来
+                    print $O1 "$ID\t$final_cancer\t$cancer_specific_affected_donors\n";
+                    # }
                 }
 
             }
-
         }
        
      }

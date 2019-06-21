@@ -39,7 +39,7 @@ foreach my $level(sort keys %hash1){
     $level =~s/level2_enhancer_target/Level2/g;
     $level =~s/level3.1/Level3.1/g;
     $level =~s/level3.2/Level3.2/g;
-    my $percentage = $m_number/105125 *100;
+    my $percentage = $m_number/85994 *100; #除以所有 p mutation 的数目 : wc -l ./output/pathogenicity_mutation_ID.txt
     $percentage=sprintf "%.2f",$percentage; #四舍五入保留四位小数
     print $O1 "$level\t$m_number\t${percentage}\%\n";
 }
@@ -49,7 +49,7 @@ foreach my $MOA (sort keys %hash2){
     my %hash4;
     @genes =grep { ++$hash4{$_} < 2 } @genes; #对数组内元素去重
     my $n_number = @genes;
-    my $percentage = $n_number/17141 *100;
+    my $percentage = $n_number/16292 *100;  #所有p_mutation map 到的gene数目： cat ../output/12_merge_ICGC_info_gene_role.txt| cut -f2 | sort -u | wc -l 
     $percentage=sprintf "%.2f",$percentage; #四舍五入保留四位小数
     $MOA =~s/LOF,GOF/GOF,LOF/g;
     $MOA =~s/LOF/TSG/g;

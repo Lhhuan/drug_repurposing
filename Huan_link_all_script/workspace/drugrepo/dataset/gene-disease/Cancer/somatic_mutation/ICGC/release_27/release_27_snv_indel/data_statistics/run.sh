@@ -11,7 +11,13 @@ perl filter_pathogenicity_mutation_id.pl #用./merge_occur_QC_pathogenicity_scor
 #得pathogenicity mutation id project cadd score 文件./Pathogenicity_id_project_cadd_score.txt
 perl extract_pathogenicity_mutation_postion.pl #用从../simple_somatic_mutation.aggregated.vcf.gz中提取./pathogenicity_id_cadd_score.txt 的位置信息，得./pathogenicity_mutation_postion.txt
 #-------------------------------------------------------------------------------
+#-----------------------------------------------------------------------------------------------
 perl extract_no_cadd_postion.pl #用../simple_somatic_mutation.largethan0.vcf 提取./no_cadd_score.txt中的位置和ref alt，得。、no_cadd_pos.txt
+
+perl extract_pathogenicity_mutation_hgvsg_2019.6.11.pl  #用../simple_somatic_mutation.largethan0_vep.vcf 中提取./pathogenicity_id_cadd_score.txt 的 hgvsg,得./pathogenicity_mutation_postion_hgvsg.txt,
+#并得目前所有mutation的hgvsg文件./icgc_and_add_hgvsg_before_2019.6.11.txt
+perl test_cgi_oncogenic_mutation_in_p.pl # 从cgi中下载的catalog_of_validated_oncogenic_mutations.tsv ，看在./pathogenicity_mutation_postion_hgvsg.txt, 或./icgc_and_add_hgvsg_before_2019.6.11.txt 中有多少存在。
+#得存在文件./in_pathogenicity_cgi.txt  ./in_icgc_add_cgi.txt 得不存在文件 ./out_pathogenicity_cgi.txt ./out_icgc_add_cgi.txt
 
 
 
