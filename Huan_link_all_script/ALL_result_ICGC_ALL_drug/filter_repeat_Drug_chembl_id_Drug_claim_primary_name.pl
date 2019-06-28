@@ -40,7 +40,7 @@ foreach my $Drug_claim_primary_name(sort keys %hash1){
     my %hash2;
     @Drug_chembl_ids = grep { ++$hash2{$_} < 2 } @Drug_chembl_ids;
     my $num = @Drug_chembl_ids;
-    if ($num eq 1){ #数组长度为1，即一个$Drug_claim_primary_name只有一行chembl
+    if ($num == 1){ #数组长度为1，即一个$Drug_claim_primary_name只有一行chembl
         my $Drug_chembl_id =$Drug_chembl_ids[0];
         if ($Drug_chembl_id =~/^CHEMBL/){  #有chembl按照chembl填充
             my $out = "$Drug_chembl_id\t$Drug_claim_primary_name\t$Drug_chembl_id";

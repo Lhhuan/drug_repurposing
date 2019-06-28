@@ -63,6 +63,9 @@ perl 16_merge_logic_shortest_path_cancer_gene_drug_moa_and_judge_logic.pl ##把�
 #得没有逻辑的文件./output/16_judge_the_shortest_drug_target_cancer_gene_no_logic.txt,####得总文件./output/16_judge_the_shortest_drug_target_cancer_gene_logic.txt
 
 
+
+
+#-------------------------------------------涉及
 Rscript network_gene_trans_symbol.R # ./output/network_gene_num.txt #由于 ./output/network_gene_num.txt 中的gene_symbol列有的是基因的别名，所以重新转一次symbol，得./output/network_alias_to_symbol.txt 
 perl merge_network_gene_symbol.pl #将./output/network_gene_num.txt和./output/network_alias_to_symbol.txt merge到一起./output/network_gene_num_symbol.txt
 perl 10_find_logic_of_the_shortest_path.pl #用"/f/mulinlab/huan/All_result_ICGC/network/the_shortest_path/normal_network_num.txt"为./output/09_the_shortest_path.txt里面的路径寻找start和end的逻辑关系,得./output/10_start_end_path_logical.txt

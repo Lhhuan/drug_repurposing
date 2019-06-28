@@ -42,7 +42,7 @@ while(<$I2>)
     }
 }
 
-my @new = randomElem ( 160000, @ids ) ; # pick any $num from @array ，把$num和@array传递给子程序。这里是用的值传递。还有一种方式是引用传递，相当于硬链接
+my @new = randomElem ( 50000, @ids ) ; # pick any $num from @array ，把$num和@array传递给子程序。这里是用的值传递。还有一种方式是引用传递，相当于硬链接
 my $output = join("\n", @new);
 print $O1 "$output\n";
 # foreach my $v(@new){

@@ -122,7 +122,7 @@ while(<$I3>)
 {
     chomp;
     my @f= split /\t/;
-    my $k = join ("\t",@f[1..23]);
+    my $k = join ("\t",@f[1..25]);
     unless (exists $hash4{$k}){
         $hash4{$k} =1;
         print $O2 "$k\n";

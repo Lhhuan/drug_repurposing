@@ -56,8 +56,8 @@ while(<$I2>)
             # if ($value_in_paper =~/Complete/){ #Complete Response和Partial Response是1
                 print $O1 "$output\t1\n";
             }
-            # elsif($value_in_paper =~/Stable|Progressive/){ #Stable Disease 和Clinical Progressive Disease是0
-            elsif($value_in_paper =~/Progressive/){ #Clinical Progressive Disease是0
+            elsif($value_in_paper =~/Stable|Progressive/){ #Stable Disease 和Clinical Progressive Disease是0
+            # elsif($value_in_paper =~/Progressive/){ #Clinical Progressive Disease是0
                 print $O1 "$output\t0\n";
             }
             else{

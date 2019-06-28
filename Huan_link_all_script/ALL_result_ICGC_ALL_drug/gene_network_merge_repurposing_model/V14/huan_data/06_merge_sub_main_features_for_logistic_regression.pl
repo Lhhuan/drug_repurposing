@@ -17,12 +17,13 @@ open my $I2, '<', $f2 or die "$0 : failed to open input file '$f2' : $!\n";
 my $fo1 = "./output/06_merge_sub_main_features_for_logistic_regression.txt";
 open my $O1, '>', $fo1 or die "$0 : failed to open output file '$fo1' : $!\n";
 
-my $header="cancer_oncotree_id_type\tDrug_chembl_id_Drug_claim_primary_name\tcancer_oncotree_id\taverage_effective_drug_target_score\tmax_effective_drug_target_score\taverage_mutation_frequency\tmax_mutation_frequency";
+my $header="cancer_oncotree_id_type\tDrug_chembl_id_Drug_claim_primary_name\tcancer_oncotree_id\taverage_effective_drug_target_score\tmax_effective_drug_target_score\taverage_drug_target_affinity\tmax_drug_target_affinity\taverage_mutation_frequency\tmax_mutation_frequency";
 $header ="$header\taverage_mutation_pathogenicity\tmax_mutation_pathogenicity\taverage_mutation_map_to_gene_level_score\tmax_mutation_map_to_gene_level_score\taverage_the_shortest_path_length\tmin_the_shortest_path_length";
 $header = "$header\tmin_rwr_normal_P_value\tmedian_rwr_normal_P_value";
 $header = "$header\tcancer_gene_exact_match_drug_target_ratio\tmatching_score\taverage_del_svscore\taverage_dup_svscore\taverage_inv_svscore\taverage_tra_svscore\taverage_cnv_svscore";
-
 print $O1 "$header\n";
+
+
 my (%hash1,%hash2,%hash3,%hash4,%hash5,%hash6,%hash7,%hash8,%hash9,%hash10,%hash11,%hash12,%hash13,%hash30);
 
 

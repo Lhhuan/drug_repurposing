@@ -1,4 +1,5 @@
 #将./CGI/cancer_bioactivities_db.tsv 和./output/all_drug_infos_score.txt merge 到一起，得./output/drug_target_score_and_bioactivities.txt
+#得./output/all_drug_infos_score_bioactivities.txt
 #!/usr/bin/perl
 use warnings;
 use strict; 

@@ -19,7 +19,8 @@ while(<$I1>)
         my $Pos = $f[8];
         my $Ref = $f[2];
         my $Alt = $f[3];
-        my $output= "$Chr\t$Pos\tSNV$.\t$Ref\t$Alt\t.\t.\t.";
+        my $ID = "${Chr}_${Pos}_${Ref}_${Alt}";
+        my $output= "$Chr\t$Pos\t$ID\t$Ref\t$Alt\t.\t.\t.";
         print $O1 "$output\n";
     }
 }

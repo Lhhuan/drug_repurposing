@@ -1,4 +1,3 @@
-
 #用"/f/mulinlab/huan/workspace/drugrepo/dataset/gene-disease/Cancer/somatic_mutation/ICGC/release_27/pathogenicity_SV_CNV/v4/output/all_pathogenicity_sv_snv.vcf"
 # 用./output/03_unique_merge_gene_based_and_network_based_data.txt.gz和
 #"/f/mulinlab/huan/workspace/drugrepo/dataset/gene-disease/Cancer/somatic_mutation/ICGC/release_27/ICGC_sample_wgs_somatic/output/05_ICGC_pathogenicity_mutation_number_in_cancer_in_sample_level.txt"
@@ -10,12 +9,12 @@ use utf8;
 use List::Util qw/sum/;
 use List::Util qw/max min/;
 
-my $f1 = "./head_03_test.txt";
-open my $I1, '<', $f1 or die "$0 : failed to open input file '$f1' : $!\n";
-my $f2 = "./sv_cnv_test.txt";
-# my $f1 = "./output/03_unique_merge_gene_based_and_network_based_data.txt.gz";
-# open( my $I1 ,"gzip -dc $f1|") or die ("can not open input file '$f1' \n"); #读压缩文件
-# my $f2 = "/f/mulinlab/huan/workspace/drugrepo/dataset/gene-disease/Cancer/somatic_mutation/ICGC/release_27/pathogenicity_SV_CNV/v4/output/all_pathogenicity_sv_snv.vcf";
+# my $f1 = "./head_03_test.txt";
+# open my $I1, '<', $f1 or die "$0 : failed to open input file '$f1' : $!\n";
+# my $f2 = "./sv_cnv_test.txt";
+my $f1 = "./output/03_unique_merge_gene_based_and_network_based_data.txt.gz";
+open( my $I1 ,"gzip -dc $f1|") or die ("can not open input file '$f1' \n"); #读压缩文件
+my $f2 = "/f/mulinlab/huan/workspace/drugrepo/dataset/gene-disease/Cancer/somatic_mutation/ICGC/release_27/pathogenicity_SV_CNV/v4/output/all_pathogenicity_sv_snv.vcf";
 open my $I2, '<', $f2 or die "$0 : failed to open input file '$f2' : $!\n";
 my $f3 = "/f/mulinlab/huan/workspace/drugrepo/dataset/gene-disease/Cancer/somatic_mutation/ICGC/release_27/ICGC_sample_wgs_somatic/output/05_ICGC_pathogenicity_mutation_number_in_cancer_in_sample_level.txt";
 open my $I3, '<', $f3 or die "$0 : failed to open input file '$f3' : $!\n";
@@ -195,10 +194,15 @@ foreach my $k (sort keys %hash1){
             push @q_drug_target, $drug_target_pair;
             push @drug_target_affinity,$affinity;
         }
+        else{
+             print "$drug_target_pair\n";
+        }
     }
 
     my $drug_target_pair_number = @q_drug_target;
     my $sum_affinity= sum @drug_target_affinity;
+    # print "$sum_affinity\n";
+    # print "$drug_target_pair_number\n";
     my $average_drug_target_affinity = $sum_affinity/$drug_target_pair_number;
     my $max_drug_target_affinity = max @drug_target_affinity;
 
