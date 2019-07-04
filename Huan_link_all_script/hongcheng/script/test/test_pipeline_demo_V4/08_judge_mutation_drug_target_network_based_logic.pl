@@ -26,7 +26,7 @@ open my $O4, "| gzip >$fo4" or die $!;
 # $header = "$header\tDrug_type\tindication_OncoTree_term_detail\tindication_OncoTree_IDs_detail\tindication_OncoTree_main_term\tindication_OncoTree_main_ID\tdrug_target_score\tPACTIVITY_median";
 # $header = "$header\tdrug_target_network_id";
 my $header = "the_shortest_path\tpath_logic_direction\tshortest_path_length";
-$header= "network_drug_name\tstart_id\tstart_entrez\trandom_overlap_fact_end\tnormal_score_P"; #network
+$header= "$header\tnetwork_drug_name\tstart_id\tstart_entrez\trandom_overlap_fact_end\tnormal_score_P"; #network
 $header = "$header\tVariant_id\tENSG\tConsequence\tProtein\tB_sift_score\tmutation_to_gene_moa\tEntrez\tTumour_Types\tcancer_gene_normal_MOA\tMOA_rule"; #mutation
 $header= "$header\tDrug_chembl_id_Drug_claim_primary_name\tGene_symbol\tEntrez_id";
 $header= "$header\tDrug_type\tdrug_target_score\tPACTIVITY_median";

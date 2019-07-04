@@ -11,8 +11,8 @@ perl 04_judge_gene_based_logic_mutation_cancer_gene_and_drug_target.pl
 echo -e "finish_04_judge_gene_based_logic_mutation_cancer_gene_and_drug_target\n"
 perl 05_network_based_merge_mutation_gene_MOA_cancer_drug.pl
 echo -e "finish_05_network_based_merge_mutation_gene_MOA_cancer_drug\n"
-perl 06_merge_drug_indication_cancer.pl
-echo -e "finish_06_merge_drug_indication_cancer\n"
+perl 06_merge_drug_info.pl
+echo -e "finish_06_merge_drug_info\n"
 perl 07_merge_drug_target_network_id_success_pair_info.pl
 echo -e "finish_07_merge_drug_target_network_id_success_pair_info\n"
 perl 08_judge_mutation_drug_target_network_based_logic.pl
