@@ -19,8 +19,11 @@ while(<$I1>)
     unless  (/^POS/){
         my $pos = $f[0];
         my $score = $f[1];
+        my $project = $f[2];
+        my @p = split /,/,$project;
+        my $number = @p;
         if($score>=15){
-            print $O1 "$_\n";
+            print $O1 "$_\t$number\n";
         }
         else{
             print "$_\n";

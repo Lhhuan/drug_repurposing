@@ -13,6 +13,11 @@ perl extract_pathogenicity_mutation_postion.pl #用从../simple_somatic_mutation
 #-------------------------------------------------------------------------------
 #-----------------------------------------------------------------------------------------------
 perl extract_no_cadd_postion.pl #用../simple_somatic_mutation.largethan0.vcf 提取./no_cadd_score.txt中的位置和ref alt，得。、no_cadd_pos.txt
+perl extract_pathogenicity_mutation_hgvsg_2019.8.5.pl   #用../simple_somatic_mutation.largethan0_vep.vcf 中提取./pathogenicity_id_cadd_score.txt 的 hgvsg,得./pathogenicity_mutation_postion_hgvsg_2019.8.5.txt,
+#并得目前所有mutation的hgvsg文件./icgc_and_add_hgvsg_2019.8.5.txt
+
+
+
 
 perl extract_pathogenicity_mutation_hgvsg_2019.6.11.pl  #用../simple_somatic_mutation.largethan0_vep.vcf 中提取./pathogenicity_id_cadd_score.txt 的 hgvsg,得./pathogenicity_mutation_postion_hgvsg.txt,
 #并得目前所有mutation的hgvsg文件./icgc_and_add_hgvsg_before_2019.6.11.txt

@@ -81,7 +81,7 @@ while(<$I1>)
 sub transvar_results {  #transvar 处理
     my ($variant) =@_;
     # print STDERR "$variant\n";
-    my $transvar_results = readpipe ("transvar panno -i $variant --ensembl | cut -f1,5 | sed -n '2p' ");  #得到perl system 的返回值，相当于 system "transvar panno -i $final_variant --ensembl | cut -f1,5"的返回值
+    my $transvar_results = readpipe ("transvar panno -i $variant --ensembl | cut -f1,5 | sed -n '2p' ");  #得到perl system 的返回值，相当于 system "transvar panno -i $final_variant --ensembl | cut -f1,5"的返回值,
     my @v = split/\s+/,$transvar_results;
     my $number = @v;
     if ($number>1){
